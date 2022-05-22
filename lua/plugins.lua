@@ -249,6 +249,11 @@ packer.startup({
         })
 
         use({
+            'rktjmp/paperplanes.nvim',
+            config = get_config('paperplanes'),
+        })
+
+        use({
             'kevinhwang91/nvim-bqf',
             config = get_config('bqf'),
         })
