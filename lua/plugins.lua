@@ -169,7 +169,6 @@ packer.startup({ function(use)
 
     use({
         "simrat39/symbols-outline.nvim",
-        cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
         config = get_config("symbols-outline"),
     })
 
@@ -226,7 +225,6 @@ packer.startup({ function(use)
     use({
         "iamcco/markdown-preview.nvim",
         run = "cd app && yarn install",
-        cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
         config = get_config("markdown-preview"),
     })
 
