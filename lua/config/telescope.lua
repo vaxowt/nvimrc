@@ -54,8 +54,8 @@ telescope.setup({
 })
 
 vim.keymap.set('n', '<leader>fs', "<Cmd>lua require('telescope.builtin').builtin()<CR>", { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>fg', "<Cmd>lua require('telescope.builtin').grep_string()<CR>", { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>fG', "<Cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fG', "<Cmd>lua require('telescope.builtin').grep_string()<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fg', "<Cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fb', "<Cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fh', "<Cmd>lua require('telescope.builtin').help_tags()<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fH', "<Cmd>lua require('telescope.builtin').man_pages()<CR>", { noremap = true, silent = true })
