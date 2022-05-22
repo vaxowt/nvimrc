@@ -141,7 +141,10 @@ packer.startup({ function(use)
     use("romainl/vim-cool")
 
     -- A (Neo)vim plugin for formatting code.
-    use("sbdchd/neoformat")
+    use({
+        "sbdchd/neoformat",
+        config=get_config('neoformat'),
+    })
 
     use({
         "machakann/vim-sandwich",
