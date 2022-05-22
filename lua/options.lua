@@ -49,12 +49,10 @@ vim.o.pumheight = 30
 -- show special characters
 vim.o.list = true
 vim.o.listchars = 'tab:> ,trail:·,extends:>,precedes:<,nbsp:+'
+
 -- Python 3 executable path (faster startup)
 vim.g.python3_host_prog = 'python'
+
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
-vim.cmd([[
-colorscheme gruvbox-material
-]])

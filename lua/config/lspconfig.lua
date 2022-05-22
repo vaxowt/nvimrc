@@ -10,21 +10,17 @@ require("nvim-lsp-installer").setup {
     },
 }
 
-vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
-vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
-
 local border = {
-    { "🭽", "FloatBorder" },
-    { "▔", "FloatBorder" },
-    { "🭾", "FloatBorder" },
-    { "▕", "FloatBorder" },
-    { "🭿", "FloatBorder" },
-    { "▁", "FloatBorder" },
-    { "🭼", "FloatBorder" },
-    { "▏", "FloatBorder" },
+    { "┌", "NormalFloat" },
+    { "─", "NormalFloat" },
+    { "┐", "NormalFloat" },
+    { "│", "NormalFloat" },
+    { "┘", "NormalFloat" },
+    { "─", "NormalFloat" },
+    { "└", "NormalFloat" },
+    { "│", "NormalFloat" },
 }
 
--- To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
@@ -38,35 +34,7 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- require('vim.lsp.protocol').CompletionItemKind = {
---     '', -- Text
---     '', -- Method
---     '', -- Function
---     '', -- Constructor
---     '', -- Field
---     '', -- Variable
---     '', -- Class
---     'ﰮ', -- Interface
---     '', -- Module
---     '', -- Property
---     '', -- Unit
---     '', -- Value
---     '了', -- Enum
---     '', -- Keyword
---     '﬌', -- Snippet
---     '', -- Color
---     '', -- File
---     '', -- Reference
---     '', -- Folder
---     '', -- EnumMember
---     '', -- Constant
---     '', -- Struct
---     '', -- Event
---     'ﬦ', -- Operator
---     '', -- TypeParameter
--- }
-
--- vim.keymap.set('n', '<space>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', {noremap=true, silent=true})
+vim.keymap.set('n', '<space>cd', '<Cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<space>q', '<Cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })

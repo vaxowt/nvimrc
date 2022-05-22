@@ -5,6 +5,9 @@ vim.keymap.set("n", "<leader>t", "<Plug>TranslateW")
 
 vim.keymap.set("v", "<leader>t", "<Plug>TranslateWV")
 
-vim.cmd([[
-highlight def link TranslatorBorder TelescopeBorder
-]])
+local grp_translator_colors = vim.api.nvim_create_augroup("grp_translator_colors", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = '*',
+    command = [[highlight! def link TranslatorBorder Normal]],
+    group = grp_translator_colors,
+})

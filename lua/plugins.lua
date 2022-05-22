@@ -17,12 +17,7 @@ end
 
 local packer = require("packer")
 
-packer.init({
-    enable = true,
-    threshold = 0,
-})
-
-packer.startup(function(use)
+packer.startup({ function(use)
     -- A use-package inspired plugin manager for Neovim.
     -- Uses native packages, supports Luarocks dependencies,
     -- written in Lua,
@@ -39,11 +34,13 @@ packer.startup(function(use)
     -- Neovim plugin that allows you to seamlessly manage LSP servers with :LspInstall
     use({
         "williamboman/nvim-lsp-installer",
-        -- Quickstart configurations for the Nvim LSP client
-        {
-            "neovim/nvim-lspconfig",
-            config = get_config("lspconfig"),
-        },
+    })
+
+    -- Quickstart configurations for the Nvim LSP client
+    use({
+        "neovim/nvim-lspconfig",
+        config = get_config("lspconfig"),
+        after = { "nvim-lsp-installer", "vim-illuminate" },
     })
 
     -- A completion plugin for neovim coded in Lua
@@ -60,8 +57,8 @@ packer.startup(function(use)
             { "hrsh7th/cmp-calc" },
             { "hrsh7th/cmp-emoji" },
             { "uga-rosa/cmp-dictionary" },
-            { 'andersevenrud/cmp-tmux' },
-            { 'max397574/cmp-greek' },
+            { "andersevenrud/cmp-tmux" },
+            { "max397574/cmp-greek" },
         },
         config = get_config("cmp"),
     })
@@ -89,28 +86,38 @@ packer.startup(function(use)
 
     use("dstein64/vim-startuptime")
 
+    use {
+        "ahmedkhalf/project.nvim",
+        requires = "nvim-telescope/telescope.nvim",
+        config = get_config('project'),
+    }
+
+    use({
+        "EdenEast/nightfox.nvim",
+        config = get_config("nightfox"),
+    })
+    use({
+        "marko-cerovac/material.nvim",
+    })
+    use({
+        "rose-pine/neovim",
+        as = "rose-pine",
+    })
+    use "projekt0n/github-nvim-theme"
+    use 'ful1e5/onedark.nvim'
     -- Gruvbox with Material Palette
     use({
         "sainnhe/gruvbox-material",
-        config = get_config("gruvbox-material"),
+        -- load config first
+        config = get_config('gruvbox-material'),
     })
     -- Comfortable & Pleasant Color Scheme for Vim
-    use("sainnhe/everforest")
+    use({
+        "sainnhe/everforest",
+        config = get_config('everforest'),
+    })
     -- An arctic, north-bluish clean and elegant Vim theme
-    use 'arcticicestudio/nord-vim'
-    -- A simplified and optimized Gruvbox colorscheme for Vim
-    use 'lifepillar/vim-gruvbox8'
-    -- A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.
-    use 'joshdick/onedark.vim'
-    -- Clean & Elegant Color Scheme for Vim, Zsh and Terminal Emulators
-    use 'sainnhe/edge'
-    -- Dark blue color scheme for Vim and Neovim
-    use 'cocopon/iceberg.vim'
-    -- A better color scheme for the late night coder
-    use 'ajmwagar/vim-deus'
-    -- A Vim colorscheme based on Github's syntax highlighting as of 2018.
-    use 'cormacrelf/vim-colors-github'
-
+    use("arcticicestudio/nord-vim")
 
     use({
         "windwp/nvim-autopairs",
@@ -147,14 +154,22 @@ packer.startup(function(use)
         config = get_config("easy-align"),
     })
 
+    use "tpope/vim-repeat"
+
     use({
         "ggandor/lightspeed.nvim",
         config = get_config("lightspeed"),
     })
 
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = get_config('todo-comments')
+    }
+
     use({
         "simrat39/symbols-outline.nvim",
-        cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen', 'SymbolsOutlineClose' },
+        cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
         config = get_config("symbols-outline"),
     })
 
@@ -200,6 +215,7 @@ packer.startup(function(use)
 
     use({
         "nvim-treesitter/nvim-treesitter-textobjects",
+        config = get_config('treesitter-textobjects'),
     })
 
     use({
@@ -226,11 +242,26 @@ packer.startup(function(use)
     })
 
     use {
-        'brglng/vim-im-select',
-        config = get_config("im-select"),
+        'kevinhwang91/nvim-bqf',
+        config = get_config('bqf'),
     }
 
+    use({
+        "brglng/vim-im-select",
+        config = get_config("im-select"),
+    })
+
     if Packer_bootstrap then
-        require("packer").sync()
+        packer.sync()
     end
-end)
+end,
+config = {
+    -- max_jobs = 8,
+    display = {
+        open_fn = function()
+            return require("packer.util").float({
+                border = "rounded",
+            })
+        end,
+    },
+}, })

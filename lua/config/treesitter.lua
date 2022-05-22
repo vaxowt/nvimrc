@@ -1,5 +1,6 @@
 require('nvim-treesitter.configs').setup {
     ensure_install = 'all',
+    ignore_install = {"latex"},
     sync_install = false,
     highlight = {
         enable = true,
@@ -12,6 +13,19 @@ require('nvim-treesitter.configs').setup {
             node_incremental = "grn",
             scope_incremental = "grc",
             node_decremental = "grm",
+        },
+    },
+    textobjects = {
+        select = {
+            enable = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+                ["a,"] = "@parameter.outer",
+                ["i,"] = "@parameter.inner",
+            },
         },
     },
 }
