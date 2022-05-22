@@ -117,7 +117,7 @@ packer.startup({ function(use)
         config = get_config('everforest'),
     })
     -- An arctic, north-bluish clean and elegant Vim theme
-    use("arcticicestudio/nord-vim")
+    use("shaunsingh/nord.nvim")
 
     use({
         "windwp/nvim-autopairs",
