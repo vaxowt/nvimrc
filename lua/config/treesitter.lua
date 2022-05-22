@@ -30,5 +30,10 @@ require('nvim-treesitter.configs').setup({
     },
 })
 
--- vim.o.foldmethod = 'expr'
--- vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+-- open folds by default
+vim.o.foldlevel = 99
+-- vim.o.fillchars = 'fold: '
+vim.o.foldtext =
+    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
