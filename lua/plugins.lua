@@ -222,6 +222,11 @@ packer.startup({
         })
 
         use({
+            'lukas-reineke/indent-blankline.nvim',
+            config = get_config('indent-blankline'),
+        })
+
+        use({
             'tyru/open-browser.vim',
             config = get_config('open-browser'),
         })
