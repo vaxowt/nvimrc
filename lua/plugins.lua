@@ -244,6 +244,11 @@ packer.startup({
         })
 
         use({
+            'saifulapm/chartoggle.nvim',
+            config = get_config('chartoggle'),
+        })
+
+        use({
             'kevinhwang91/nvim-bqf',
             config = get_config('bqf'),
         })
