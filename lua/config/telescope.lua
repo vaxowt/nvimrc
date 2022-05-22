@@ -13,7 +13,7 @@ telescope.setup({
         },
     },
     defaults = {
-        file_ignore_patterns = { "node_modules", ".git" },
+        file_ignore_patterns = { "node_modules", "%.git" },
         -- used for grep_string and live_grep
         vimgrep_arguments = {
             "rg",
