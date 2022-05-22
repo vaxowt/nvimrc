@@ -91,5 +91,9 @@ vim.keymap.set("n", "<leader>e", "<Cmd>lua require('lir.float').toggle()<CR>", {
 vim.keymap.set("n", "-", "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
 
 vim.cmd([[
-highlight def link LirFloatBorder TelescopeBorder
+augroup test
+    autocmd!
+    autocmd ColorScheme * highlight LirTransparentCursor gui=strikethrough blend=100 
+    autocmd ColorScheme * highlight def link LirFloatBorder TelescopeBorder
+augroup END
 ]])
