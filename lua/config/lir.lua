@@ -1,38 +1,38 @@
-local actions = require("lir.actions")
-local mark_actions = require("lir.mark.actions")
-local clipboard_actions = require("lir.clipboard.actions")
+local actions = require('lir.actions')
+local mark_actions = require('lir.mark.actions')
+local clipboard_actions = require('lir.clipboard.actions')
 
-require("lir").setup({
+require('lir').setup({
     show_hidden_files = false,
     devicons_enable = true,
     hide_cursor = true,
     mappings = {
-        ["l"] = actions.edit,
-        ["<C-s>"] = actions.split,
-        ["<C-v>"] = actions.vsplit,
-        ["<C-t>"] = actions.tabedit,
+        ['l'] = actions.edit,
+        ['<C-s>'] = actions.split,
+        ['<C-v>'] = actions.vsplit,
+        ['<C-t>'] = actions.tabedit,
 
-        ["h"] = actions.up,
-        ["-"] = actions.up,
-        ["q"] = actions.quit,
-        ["<esc>"] = actions.quit,
+        ['h'] = actions.up,
+        ['-'] = actions.up,
+        ['q'] = actions.quit,
+        ['<esc>'] = actions.quit,
 
-        ["cd"] = actions.cd,
+        ['cd'] = actions.cd,
 
-        ["K"] = actions.mkdir,
-        ["N"] = actions.newfile,
-        ["R"] = actions.rename,
-        ["Y"] = actions.yank_path,
-        ["."] = actions.toggle_show_hidden,
-        ["D"] = actions.delete,
+        ['K'] = actions.mkdir,
+        ['N'] = actions.newfile,
+        ['R'] = actions.rename,
+        ['Y'] = actions.yank_path,
+        ['.'] = actions.toggle_show_hidden,
+        ['D'] = actions.delete,
 
-        ["J"] = function()
-            mark_actions.toggle_mark("n")
-            vim.cmd("normal! j")
+        ['J'] = function()
+            mark_actions.toggle_mark('n')
+            vim.cmd('normal! j')
         end,
-        ["C"] = clipboard_actions.copy,
-        ["X"] = clipboard_actions.cut,
-        ["P"] = clipboard_actions.paste,
+        ['C'] = clipboard_actions.copy,
+        ['X'] = clipboard_actions.cut,
+        ['P'] = clipboard_actions.paste,
     },
     float = {
         winblend = 0,
@@ -48,14 +48,14 @@ require("lir").setup({
             local height = math.floor(vim.o.lines * 0.6)
             return {
                 border = {
-                    "╭",
-                    "─",
-                    "╮",
-                    "│",
-                    "╯",
-                    "─",
-                    "╰",
-                    "│",
+                    '╭',
+                    '─',
+                    '╮',
+                    '│',
+                    '╯',
+                    '─',
+                    '╰',
+                    '│',
                 },
                 width = width,
                 height = height,
@@ -67,28 +67,28 @@ require("lir").setup({
     on_init = function()
         -- use visual mode
         vim.keymap.set(
-            "x",
-            "J",
+            'x',
+            'J',
             [[:<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>]],
             { noremap = true, silent = true, buffer = true }
         )
 
         -- echo cwd
-        vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
+        vim.api.nvim_echo({ { vim.fn.expand('%:p'), 'Normal' } }, false, {})
     end,
 })
 
 -- custom folder icon
-require("nvim-web-devicons").set_icon({
+require('nvim-web-devicons').set_icon({
     lir_folder_icon = {
-        icon = "",
-        color = "#7ebae4",
-        name = "LirFolderNode",
+        icon = '',
+        color = '#7ebae4',
+        name = 'LirFolderNode',
     },
 })
 
-vim.keymap.set("n", "<leader>e", "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "-", "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>e', "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '-', "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
 
 vim.cmd([[
 augroup test

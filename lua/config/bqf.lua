@@ -1,3 +1,3 @@
-require("bqf").setup({
+require('bqf').setup({
     auto_resize_height = true,
 })

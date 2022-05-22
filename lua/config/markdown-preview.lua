@@ -8,8 +8,4 @@ endfunction
 
 vim.g.mkdp_browserfunc = 'g:OpenUrl'
 
-vim.keymap.set(
-    "n",
-    "<leader>p",
-    "<Plug>MarkdownPreviewToggle"
-)
+vim.keymap.set('n', '<leader>p', '<Plug>MarkdownPreviewToggle')

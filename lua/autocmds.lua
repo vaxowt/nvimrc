@@ -2,20 +2,20 @@ local api = vim.api
 
 -- jump to last position when reading a file
 api.nvim_create_autocmd(
-    "BufReadPost",
+    'BufReadPost',
     { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
 )
 
 -- show cursor line only in active window
-local grp_cursorline = api.nvim_create_augroup("grp_cursorline", { clear = true })
-api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-    pattern = "*",
-    command = "set cursorline",
+local grp_cursorline = api.nvim_create_augroup('grp_cursorline', { clear = true })
+api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
+    pattern = '*',
+    command = 'set cursorline',
     group = grp_cursorline,
 })
 api.nvim_create_autocmd(
-    { "InsertEnter", "WinLeave" },
-    { pattern = "*", command = "set nocursorline", group = grp_cursorline }
+    { 'InsertEnter', 'WinLeave' },
+    { pattern = '*', command = 'set nocursorline', group = grp_cursorline }
 )
 
 -- override highlights

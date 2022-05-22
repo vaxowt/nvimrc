@@ -3,37 +3,37 @@ vim.o.completeopt = 'menu,menuone,noselect'
 local cmp = require('cmp')
 
 local kind_icons = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "ﴯ",
-    Interface = "",
-    Module = "",
-    Property = "ﰠ",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
-    TypeParameter = ""
+    Text = '',
+    Method = '',
+    Function = '',
+    Constructor = '',
+    Field = '',
+    Variable = '',
+    Class = 'ﴯ',
+    Interface = '',
+    Module = '',
+    Property = 'ﰠ',
+    Unit = '',
+    Value = '',
+    Enum = '',
+    Keyword = '',
+    Snippet = '',
+    Color = '',
+    File = '',
+    Reference = '',
+    Folder = '',
+    EnumMember = '',
+    Constant = '',
+    Struct = '',
+    Event = '',
+    Operator = '',
+    TypeParameter = '',
 }
 
 cmp.setup({
     snippet = {
         expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
+            vim.fn['vsnip#anonymous'](args.body)
         end,
     },
     window = {
@@ -51,18 +51,18 @@ cmp.setup({
     }),
     formatting = {
         format = function(entry, vim_item)
-            vim_item.kind = kind_icons[vim_item.kind] or ""
+            vim_item.kind = kind_icons[vim_item.kind] or ''
             vim_item.menu = ({
-                buffer = "[B]",
-                path = "[P]",
-                vsnip = "[S]",
-                nvim_lsp = "[LSP]",
-                calc = "[calc]",
-                dictionary = "[D]",
-                tmux = "[tmux]"
+                buffer = '[B]',
+                path = '[P]',
+                vsnip = '[S]',
+                nvim_lsp = '[LSP]',
+                calc = '[calc]',
+                dictionary = '[D]',
+                tmux = '[tmux]',
             })[entry.source.name]
             return vim_item
-        end
+        end,
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -70,43 +70,48 @@ cmp.setup({
         { name = 'nvim_lsp_signature_help' },
         { name = 'vsnip' },
     }, {
-        { name = 'buffer', option = { get_bufnrs = function()
-            local bufs = {}
-            for _, win in ipairs(vim.api.nvim_list_wins()) do
-                bufs[vim.api.nvim_win_get_buf(win)] = true
-            end
-            return vim.tbl_keys(bufs)
-        end } },
+        {
+            name = 'buffer',
+            option = {
+                get_bufnrs = function()
+                    local bufs = {}
+                    for _, win in ipairs(vim.api.nvim_list_wins()) do
+                        bufs[vim.api.nvim_win_get_buf(win)] = true
+                    end
+                    return vim.tbl_keys(bufs)
+                end,
+            },
+        },
         { name = 'path' },
         { name = 'calc' },
         { name = 'tmux' },
         { name = 'emoji' },
         { name = 'greek' },
         { name = 'dictionary', keyword_length = 2 },
-    })
+    }),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        { name = 'buffer' }
-    }
+        { name = 'buffer' },
+    },
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'path' }
+        { name = 'path' },
     }, {
-        { name = 'cmdline' }
-    })
+        { name = 'cmdline' },
+    }),
 })
 
-require("cmp_dictionary").setup({
+require('cmp_dictionary').setup({
     dic = {
-        ["*"] = { "/usr/share/dict/words" },
+        ['*'] = { '/usr/share/dict/words' },
     },
     first_case_insensitive = true,
     async = true,

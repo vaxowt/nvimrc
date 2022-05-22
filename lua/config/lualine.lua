@@ -10,12 +10,16 @@ require('lualine').setup({
     },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', { 'diagnostics', symbols = { Error = "", Warn = "", Hint = "", Info = "" }, colored = false } },
+        lualine_b = {
+            'branch',
+            'diff',
+            { 'diagnostics', symbols = { Error = '', Warn = '', Hint = '', Info = '' }, colored = false },
+        },
 
         lualine_c = { 'filename' },
-        lualine_x = { 'encoding', 'fileformat', {'filetype', colored=false}},
+        lualine_x = { 'encoding', 'fileformat', { 'filetype', colored = false } },
         lualine_y = { 'progress' },
-        lualine_z = { 'location' }
+        lualine_z = { 'location' },
     },
     inactive_sections = {
         lualine_a = {},
@@ -23,8 +27,8 @@ require('lualine').setup({
         lualine_c = { 'filename' },
         lualine_x = { 'location' },
         lualine_y = {},
-        lualine_z = {}
+        lualine_z = {},
     },
     tabline = {},
-    extensions = {}
+    extensions = {},
 })

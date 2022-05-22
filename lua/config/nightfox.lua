@@ -1,7 +1,7 @@
 require('nightfox').setup({
-    options ={
+    options = {
         styles = {
             comments = 'italic',
-        }
-    }
+        },
+    },
 })

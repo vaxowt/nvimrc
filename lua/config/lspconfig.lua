@@ -1,24 +1,24 @@
 -- setup lsp-installer before lspconfig
-require("nvim-lsp-installer").setup {
+require('nvim-lsp-installer').setup({
     automatic_installation = true,
     ui = {
         icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗",
+            server_installed = '✓',
+            server_pending = '➜',
+            server_uninstalled = '✗',
         },
     },
-}
+})
 
 local border = {
-    { "┌", "NormalFloat" },
-    { "─", "NormalFloat" },
-    { "┐", "NormalFloat" },
-    { "│", "NormalFloat" },
-    { "┘", "NormalFloat" },
-    { "─", "NormalFloat" },
-    { "└", "NormalFloat" },
-    { "│", "NormalFloat" },
+    { '┌', 'NormalFloat' },
+    { '─', 'NormalFloat' },
+    { '┐', 'NormalFloat' },
+    { '│', 'NormalFloat' },
+    { '┘', 'NormalFloat' },
+    { '─', 'NormalFloat' },
+    { '└', 'NormalFloat' },
+    { '│', 'NormalFloat' },
 }
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -28,9 +28,9 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = { Error = '', Warn = '', Hint = '', Info = '' }
 for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
+    local hl = 'DiagnosticSign' .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
@@ -64,22 +64,22 @@ end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig')['pyright'].setup {
+require('lspconfig')['pyright'].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-require('lspconfig')['texlab'].setup {
+require('lspconfig')['texlab'].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-require('lspconfig')['clangd'].setup {
+require('lspconfig')['clangd'].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-require('lspconfig')['sumneko_lua'].setup {
+require('lspconfig')['sumneko_lua'].setup({
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -90,7 +90,7 @@ require('lspconfig')['sumneko_lua'].setup {
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = vim.api.nvim_get_runtime_file('', true),
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
@@ -98,4 +98,4 @@ require('lspconfig')['sumneko_lua'].setup {
             },
         },
     },
-}
+})
