@@ -1,0 +1,58 @@
+{
+  "ds": {
+    "prefix": "ds",
+    "description": "Collpasable block",
+    "body": [
+      "<details><summary>$1</summary>",
+      "",
+      "$2",
+      "</details>"
+    ]
+  },
+  "eqa": {
+    "prefix": "eqa",
+    "description": "Equation array",
+    "body": [
+      "\\left\\\\{",
+      "\\begin{array}{${1:l}}",
+      "$2",
+      "\\end{array}",
+      "\\right."
+    ]
+  },
+  "fig": {
+    "prefix": "fig",
+    "description": "Styled figure",
+    "body": [
+      "<figure style=\"text-align:${1:center}\">",
+      "<img src=\"$2\" alt=\"$3\" width=\"${4:62%}\">",
+      "</figure>"
+    ]
+  },
+  "figc": {
+    "prefix": "figc",
+    "description": "Styled figure with caption",
+    "body": [
+      "<figure style=\"text-align:${1:center}\">",
+      "<img src=\"$2\" alt=\"$3\" width=\"${4:62%}\">",
+      "<figcaption>$5</figcaption>",
+      "</figure>"
+    ]
+  },
+  "sc": {
+    "prefix": "sc",
+    "description": "Hugo shortcode {{< >}}",
+    "body": [
+      "{{< $1 >}}"
+    ]
+  },
+  "scp": {
+    "prefix": "scp",
+    "description": "Hugo paired shortcode {{< / >}}",
+    "body": [
+      "{{< $1 >}}",
+      "$2",
+      "{{< /$1 >}}"
+    ]
+  }
+}

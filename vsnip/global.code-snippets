@@ -1,0 +1,9 @@
+{
+  "disot": {
+    "prefix": "disot",
+    "description": "ISO format datetime with 'T'",
+    "body": [
+      "`!v strftime(\"%Y-%m-%dT%H:%M:%S%z\")`"
+    ]
+  }
+}

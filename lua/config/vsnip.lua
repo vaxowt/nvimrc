@@ -1,3 +1,5 @@
+vim.g.vsnip_snippet_dir = vim.fn.stdpath('config') .. '/vsnip'
+
 vim.keymap.set(
     { 'i', 's' },
     '<C-j>',
