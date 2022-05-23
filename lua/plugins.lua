@@ -81,6 +81,8 @@ packer.startup({
             'nvim-telescope/telescope.nvim',
             requires = {
                 { 'nvim-lua/plenary.nvim' },
+                -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+                { 'nvim-telescope/telescope-symbols.nvim' },
             },
             config = get_config('telescope'),
         })

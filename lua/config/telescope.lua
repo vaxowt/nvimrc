@@ -11,6 +11,12 @@ telescope.setup({
             ignore_current_buffer = true,
             sort_mru = true,
         },
+        builtin = {
+            include_extensions = true,
+        },
+    },
+    extensions = {
+        -- fzf = {}
     },
     defaults = {
         file_ignore_patterns = { 'node_modules', '%.git' },
@@ -37,7 +43,7 @@ telescope.setup({
                 ['<C-v>'] = actions.select_vertical,
                 ['<C-s>'] = actions.select_horizontal,
                 ['<C-t>'] = actions.select_tab,
-                ['<C-/>'] = action_layout.toggle_preview,
+                ['<C-\\>'] = action_layout.toggle_preview,
                 ['<C-n>'] = actions.cycle_history_next,
                 ['<C-p>'] = actions.cycle_history_prev,
             },
@@ -45,13 +51,16 @@ telescope.setup({
         sorting_strategy = 'ascending',
         scroll_strategy = 'cycle',
         layout_strategy = 'flex',
-        results_title = '',
+        results_title = false,
+        dynamic_preview_title = true,
         color_devicons = true,
         layout_config = {
             prompt_position = 'top',
         },
     },
 })
+
+-- require('telescope').load_extension('fzf')
 
 vim.keymap.set(
     'n',
