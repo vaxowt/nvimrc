@@ -90,10 +90,12 @@ require('nvim-web-devicons').set_icon({
 vim.keymap.set('n', '<leader>e', "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '-', "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
 
-vim.cmd([[
-augroup test
-    autocmd!
-    autocmd ColorScheme * highlight LirTransparentCursor gui=strikethrough blend=100 
-    autocmd ColorScheme * highlight def link LirFloatBorder TelescopeBorder
-augroup END
-]])
+local lir_highlights = vim.api.nvim_create_augroup('lir_highlights', { clear = true })
+vim.api.nvim_create_autocmd('ColorScheme', {
+    command = [[highlight! LirTransparentCursor gui=strikethrough blend=100]],
+    group = lir_highlights,
+})
+vim.api.nvim_create_autocmd('ColorScheme', {
+    command = [[highlight! def link LirFloatBorder TelescopeBorder]],
+    group = lir_highlights,
+})
