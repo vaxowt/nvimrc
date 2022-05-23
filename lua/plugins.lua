@@ -185,6 +185,12 @@ packer.startup({
         })
 
         use({
+            'akinsho/bufferline.nvim',
+            requires = 'kyazdani42/nvim-web-devicons',
+            config = get_config('bufferline'),
+        })
+
+        use({
             'lewis6991/gitsigns.nvim',
             config = get_config('gitsigns'),
         })
