@@ -94,6 +94,12 @@ packer.startup({
         })
 
         use({
+            'olimorris/persisted.nvim',
+            --module = "persisted", -- For lazy loading
+            config = get_config('persisted'),
+        })
+
+        use({
             'EdenEast/nightfox.nvim',
             config = get_config('nightfox'),
         })
