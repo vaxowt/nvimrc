@@ -51,7 +51,7 @@ packer.startup({
                 { 'hrsh7th/cmp-nvim-lsp' },
                 { 'hrsh7th/cmp-nvim-lsp-signature-help' },
                 { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
-                { 'hrsh7th/cmp-vsnip' },
+                { 'dcampos/cmp-snippy' },
                 { 'hrsh7th/cmp-buffer' },
                 { 'hrsh7th/cmp-path' },
                 { 'hrsh7th/cmp-cmdline' },
@@ -71,11 +71,11 @@ packer.startup({
         })
 
         use({
-            'hrsh7th/vim-vsnip',
-            config = get_config('vsnip'),
+            'dcampos/nvim-snippy',
+            config = get_config('snippy'),
         })
 
-        use('rafamadriz/friendly-snippets')
+        use('honza/vim-snippets')
 
         use({
             'nvim-telescope/telescope.nvim',

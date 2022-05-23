@@ -33,7 +33,7 @@ local kind_icons = {
 cmp.setup({
     snippet = {
         expand = function(args)
-            vim.fn['vsnip#anonymous'](args.body)
+            require('snippy').expand_snippet(args.body)
         end,
     },
     window = {
@@ -55,7 +55,7 @@ cmp.setup({
             vim_item.menu = ({
                 buffer = '[B]',
                 path = '[P]',
-                vsnip = '[S]',
+                snippy = '[S]',
                 nvim_lsp = '[LSP]',
                 calc = '[calc]',
                 dictionary = '[D]',
@@ -68,7 +68,7 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_document_symbol' },
         { name = 'nvim_lsp_signature_help' },
-        { name = 'vsnip' },
+        { name = 'snippy' },
     }, {
         {
             name = 'buffer',

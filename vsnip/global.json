@@ -1,7 +1,0 @@
-{
-  "disot": {
-    "prefix": "disot",
-    "description": "ISO format datetime with 'T'",
-    "body": "${VIM:strftime('%Y-%m-%dT%H:%M:%S%z')}"
-  }
-}
