@@ -2,20 +2,12 @@
   "frame": {
     "prefix": "frame",
     "description": "frame environment",
-    "body": [
-      "\\begin{frame}[c]{${1:title}}",
-      "    $0",
-      "\\end{frame}"
-    ]
+    "body": ["\\begin{frame}[c]{${1:title}}", "    $0", "\\end{frame}"]
   },
   "mini": {
     "prefix": "mini",
     "description": "minipage environment",
-    "body": [
-      "\\begin{minipage}{$1\\linewidth}",
-      "    $0",
-      "\\end{minipage}"
-    ]
+    "body": ["\\begin{minipage}{$1\\linewidth}", "    $0", "\\end{minipage}"]
   },
   "minipage": {
     "prefix": "minipage",
@@ -41,22 +33,42 @@
   "qty": {
     "prefix": "qty",
     "description": "\\qty[<opts>]{<num>}{<unit>}",
-    "body": [
-      "\\qty{${1:${TM_SELECTED_TEXT}}}{${2}}"
-    ]
+    "body": "\\qty{${1:${TM_SELECTED_TEXT}}}{${2}}"
   },
   "qtyr": {
     "prefix": "qtyr",
     "description": "\\qtyrange[<opts>]{<num1>}{<num2>}{<unit>}",
-    "body": [
-      "\\qtyrange{$1}{$2}{$3}"
-    ]
+    "body": "\\qtyrange{$1}{$2}{$3}"
   },
   "ig": {
     "prefix": "ig",
     "description": "includegraphics",
+    "body": "\\includegraphics[width=${1:.8}\\linewidth]{$2}"
+  },
+  "fig": {
+    "prefix": "fig",
+    "description": "figure environment",
     "body": [
-      "\\includegraphics[width=${1:.8}\\linewidth]{$2}"
+      "\\begin{figure}[${1:htpb}]",
+      "    \\centering",
+      "    \\includegraphics[width=${2:0.8}\\textwidth]{figures/${3}}",
+      "    \\caption{${4:$3}}",
+      "    \\label{fig:${5:${3}}}",
+      "\\end{figure}"
+    ]
+  },
+  "col2": {
+    "prefix": "col2",
+    "description": "two-column environment",
+    "body": [
+      "\\begin{columns}",
+      "    \\begin{column}{0.5\\textwidth}",
+      "        ${1}",
+      "\\end{column}",
+      "    \\begin{column}{0.5\\textwidth}",
+      "        ${0}",
+      "    \\end{column}",
+      "\\end{columns}"
     ]
   },
   "doc": {

@@ -2,12 +2,7 @@
   "ds": {
     "prefix": "ds",
     "description": "Collpasable block",
-    "body": [
-      "<details><summary>$1</summary>",
-      "",
-      "$2",
-      "</details>"
-    ]
+    "body": ["<details><summary>$1</summary>", "", "$2", "</details>"]
   },
   "eqa": {
     "prefix": "eqa",
@@ -42,17 +37,11 @@
   "sc": {
     "prefix": "sc",
     "description": "Hugo shortcode {{< >}}",
-    "body": [
-      "{{< $1 >}}"
-    ]
+    "body": "{{< $1 >}}"
   },
   "scp": {
     "prefix": "scp",
     "description": "Hugo paired shortcode {{< / >}}",
-    "body": [
-      "{{< $1 >}}",
-      "$2",
-      "{{< /$1 >}}"
-    ]
+    "body": ["{{< $1 >}}", "$2", "{{< /$1 >}}"]
   }
 }
