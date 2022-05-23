@@ -208,11 +208,6 @@ packer.startup({
         })
 
         use({
-            'f-person/git-blame.nvim',
-            config = get_config('git-blame'),
-        })
-
-        use({
             'RRethy/vim-illuminate',
             config = get_config('illuminate'),
         })
