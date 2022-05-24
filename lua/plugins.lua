@@ -25,6 +25,14 @@ packer.startup({
         -- allows for expressive config
         use('wbthomason/packer.nvim')
 
+        use({
+            'lewis6991/impatient.nvim',
+            config = function()
+                -- require('impatient').enable_profile()
+                require('impatient')
+            end,
+        })
+
         -- Nvim Treesitter configurations and abstraction layer
         use({
             'nvim-treesitter/nvim-treesitter',
