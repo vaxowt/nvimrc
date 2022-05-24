@@ -113,12 +113,9 @@ packer.startup({
             'EdenEast/nightfox.nvim',
             config = get_config('nightfox'),
         })
+        use({ 'catppuccin/nvim', as = 'catppuccin' })
         use({
             'marko-cerovac/material.nvim',
-        })
-        use({
-            'rose-pine/neovim',
-            as = 'rose-pine',
         })
         use('projekt0n/github-nvim-theme')
         use('ful1e5/onedark.nvim')
