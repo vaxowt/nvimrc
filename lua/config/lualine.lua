@@ -13,8 +13,11 @@ require('lualine').setup({
         lualine_b = {
             'branch',
             'diff',
-            -- FIX: symbols different from lsp diagnostics signs
-            { 'diagnostics', colored = false },
+            {
+                'diagnostics',
+                symbols = { error = ' ', warn = ' ', info = ' ', hint = 'ﯦ ' },
+                colored = false,
+            },
         },
 
         lualine_c = { 'filename' },
