@@ -285,6 +285,9 @@ packer.startup({
             config = get_config('im-select'),
         })
 
+        use('chrisbra/csv.vim')
+        use('mtdl9/vim-log-highlighting')
+
         if Packer_bootstrap then
             packer.sync()
         end

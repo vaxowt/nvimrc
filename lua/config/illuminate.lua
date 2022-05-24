@@ -1,1 +1,1 @@
-vim.g.Illuminate_ftblacklist = { 'lir' }
+vim.g.Illuminate_ftblacklist = { 'lir', 'csv', 'log' }
