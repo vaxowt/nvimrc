@@ -91,6 +91,7 @@ packer.startup({
                 { 'nvim-lua/plenary.nvim' },
                 -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
                 { 'nvim-telescope/telescope-symbols.nvim' },
+                { 'cljoly/telescope-repo.nvim' },
             },
             config = get_config('telescope'),
         })
