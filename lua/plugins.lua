@@ -105,6 +105,7 @@ packer.startup({
 
         use({
             'olimorris/persisted.nvim',
+            requires = 'nvim-telescope/telescope.nvim',
             --module = "persisted", -- For lazy loading
             config = get_config('persisted'),
         })
