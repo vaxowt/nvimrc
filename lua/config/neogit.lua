@@ -1,5 +1,5 @@
 require('neogit').setup({
-    integration = {
+    integrations = {
         diffview = true,
     },
 })
