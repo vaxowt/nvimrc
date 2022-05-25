@@ -16,7 +16,7 @@ telescope.setup({
         },
     },
     extensions = {
-        -- fzf = {}
+        fzf = {}
     },
     defaults = {
         file_ignore_patterns = { 'node_modules', '%.git' },
@@ -60,7 +60,7 @@ telescope.setup({
     },
 })
 
--- require('telescope').load_extension('fzf')
+require('telescope').load_extension('fzf')
 require('telescope').load_extension('repo')
 
 vim.keymap.set(
