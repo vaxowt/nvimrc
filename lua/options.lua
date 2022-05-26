@@ -49,6 +49,10 @@ vim.o.pumheight = 30
 -- show special characters
 vim.o.list = true
 vim.o.listchars = 'tab:> ,trail:·,extends:>,precedes:<,nbsp:+'
+-- do not wrap around the end of the file when searching
+-- HACK: show both search count and wrap message would be better
+-- ref: https://github.com/neovim/neovim/issues/11243
+vim.o.wrapscan = false
 
 -- Python 3 executable path (faster startup)
 vim.g.python3_host_prog = 'python'
