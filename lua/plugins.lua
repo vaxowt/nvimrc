@@ -176,8 +176,8 @@ packer.startup({
         use('tpope/vim-repeat')
 
         use({
-            'ggandor/lightspeed.nvim',
-            config = get_config('lightspeed'),
+            'ggandor/leap.nvim',
+            config = get_config('leap'),
         })
 
         use({
