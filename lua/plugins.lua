@@ -33,6 +33,11 @@ packer.startup({
             end,
         })
 
+        use({
+            'luukvbaal/stabilize.nvim',
+            config = get_config('stabilize'),
+        })
+
         -- Nvim Treesitter configurations and abstraction layer
         use({
             'nvim-treesitter/nvim-treesitter',
