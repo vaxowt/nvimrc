@@ -13,7 +13,7 @@ vim.g.maplocalleader = ' '
 -- enable 24-bit RGB color in the TUI
 vim.o.termguicolors = true
 -- enable mouse support
-vim.o.mouse = 'ar'
+vim.o.mouse = 'a'
 -- ignore case in search patterns
 vim.o.ignorecase = true
 -- be case-sensitive if the search pattern contains upper case characters
