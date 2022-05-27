@@ -34,10 +34,30 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-vim.keymap.set('n', '<space>cd', '<Cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<space>q', '<Cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
+vim.keymap.set(
+    'n',
+    '<leader>cd',
+    '<Cmd>lua vim.diagnostic.open_float()<CR>',
+    { noremap = true, silent = true, desc = 'Open diagnostic float window' }
+)
+vim.keymap.set(
+    'n',
+    '[d',
+    '<Cmd>lua vim.diagnostic.goto_prev()<CR>',
+    { noremap = true, silent = true, desc = 'Goto previous diagnostic' }
+)
+vim.keymap.set(
+    'n',
+    ']d',
+    '<Cmd>lua vim.diagnostic.goto_next()<CR>',
+    { noremap = true, silent = true, desc = 'Goto next diagnostic' }
+)
+vim.keymap.set(
+    'n',
+    '<leader>q',
+    '<Cmd>lua vim.diagnostic.setloclist()<CR>',
+    { noremap = true, silent = true, desc = 'Add diagnostics to the location list' }
+)
 
 local on_attach = function(client, bufnr)
     -- vim-illuminate
