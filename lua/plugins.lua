@@ -137,6 +137,10 @@ packer.startup({
             'sainnhe/everforest',
             config = get_config('everforest'),
         })
+        use({
+            'sainnhe/edge',
+            config = get_config('edge'),
+        })
         -- An arctic, north-bluish clean and elegant Vim theme
         use('shaunsingh/nord.nvim')
 
