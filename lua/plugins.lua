@@ -308,6 +308,7 @@ packer.startup({
                     border = 'rounded',
                 })
             end,
+            show_all_info = false,
         },
     },
 })
