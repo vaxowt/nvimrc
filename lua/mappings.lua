@@ -20,3 +20,10 @@ vim.api.nvim_create_autocmd('OptionSet', {
     callback = set_mappings_for_curosr_move,
     group = grp_curosr_move_map,
 })
+
+-- <Space> is mapped as leader
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- move inside wrapped line
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

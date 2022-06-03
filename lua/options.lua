@@ -1,5 +1,5 @@
 -- interval for writing the swapfile to disk
-vim.o.updatetime = 500
+vim.o.updatetime = 300
 -- time to wait for a key code sequence to complete
 vim.o.ttimeoutlen = 0
 -- default split direction
@@ -53,6 +53,10 @@ vim.o.listchars = 'tab:> ,trail:·,extends:>,precedes:<,nbsp:+'
 -- HACK: show both search count and wrap message would be better
 -- ref: https://github.com/neovim/neovim/issues/11243
 vim.o.wrapscan = false
+-- indent wrapped line visually
+vim.o.breakindent = true
+-- persistent undo history
+vim.o.undofile = true
 
 -- Python 3 executable path (faster startup)
 vim.g.python3_host_prog = 'python'
