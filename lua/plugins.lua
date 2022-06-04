@@ -110,6 +110,12 @@ packer.startup({
         })
 
         use({
+            'gbprod/yanky.nvim',
+            requires = 'nvim-telescope/telescope.nvim',
+            config = get_config('yanky'),
+        })
+
+        use({
             'olimorris/persisted.nvim',
             requires = 'nvim-telescope/telescope.nvim',
             --module = "persisted", -- For lazy loading
