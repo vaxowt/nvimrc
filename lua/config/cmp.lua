@@ -85,8 +85,8 @@ cmp.setup({
         { name = 'path' },
         { name = 'calc' },
         { name = 'tmux' },
-        { name = 'emoji' },
         { name = 'greek' },
+        { name = 'emoji' },
         { name = 'dictionary', keyword_length = 2 },
     }),
 })
