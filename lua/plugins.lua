@@ -79,7 +79,7 @@ packer.startup({
 
         use({
             'nvim-lualine/lualine.nvim',
-            requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+            requires = { 'kyazdani42/nvim-web-devicons' },
             config = get_config('lualine'),
         })
 
@@ -109,17 +109,23 @@ packer.startup({
             config = get_config('project'),
         })
 
-        use({
-            'gbprod/yanky.nvim',
-            requires = 'nvim-telescope/telescope.nvim',
-            config = get_config('yanky'),
-        })
+        -- use({
+        --     'gbprod/yanky.nvim',
+        --     requires = 'nvim-telescope/telescope.nvim',
+        --     config = get_config('yanky'),
+        -- })
+
+        -- use({
+        --     'olimorris/persisted.nvim',
+        --     requires = 'nvim-telescope/telescope.nvim',
+        --     --module = "persisted", -- For lazy loading
+        --     config = get_config('persisted'),
+        -- })
 
         use({
-            'olimorris/persisted.nvim',
-            requires = 'nvim-telescope/telescope.nvim',
-            --module = "persisted", -- For lazy loading
-            config = get_config('persisted'),
+            'jedrzejboczar/possession.nvim',
+            requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+            config = get_config('possession'),
         })
 
         use({
@@ -164,6 +170,7 @@ packer.startup({
             'tamago324/lir.nvim',
             requires = {
                 'nvim-lua/plenary.nvim',
+                'kyazdani42/nvim-web-devicons',
             },
             config = get_config('lir'),
         })
@@ -295,8 +302,8 @@ packer.startup({
         })
 
         use({
-            'brglng/vim-im-select',
-            config = get_config('im-select'),
+            'alohaia/fcitx.nvim',
+            config = get_config('fcitx'),
         })
 
         use('chrisbra/csv.vim')
@@ -309,11 +316,11 @@ packer.startup({
     config = {
         -- max_jobs = 8,
         display = {
-            open_fn = function()
-                return require('packer.util').float({
-                    border = 'rounded',
-                })
-            end,
+            -- open_fn = function()
+            --     return require('packer.util').float({
+            --         border = 'rounded',
+            --     })
+            -- end,
             show_all_info = false,
         },
     },

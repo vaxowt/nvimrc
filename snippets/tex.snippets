@@ -2,11 +2,10 @@ priority 100
 
 snippet fig figure environment (includegraphics) b
 	\\begin{figure}
-	\\begin{center}
+		\\centering
 		\\includegraphics[width=${1:.8}\linewidth]{figures/${2}}
-	\\end{center}
-	\\caption{${3:${2}}}
-	\\label{fig:${4:${2}}}
+		\\caption{${3:${2}}}
+		\\label{fig:${4:${2}}}
 	\\end{figure}
 snippet frame "frame environment" b
 	\\begin{frame}[c]{${1:title}}

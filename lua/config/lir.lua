@@ -4,7 +4,10 @@ local clipboard_actions = require('lir.clipboard.actions')
 
 require('lir').setup({
     show_hidden_files = false,
-    devicons_enable = true,
+    devicons = {
+        enable = true,
+        highlight_dirname = false
+    },
     hide_cursor = true,
     mappings = {
         ['l'] = actions.edit,
