@@ -45,16 +45,23 @@ packer.startup({
             config = get_config('treesitter'),
         })
 
-        -- Neovim plugin that allows you to seamlessly manage LSP servers with :LspInstall
+        -- Portable package manager for Neovim that runs everywhere Neovim runs.
+        -- Easily install and manage LSP servers, DAP servers, linters, and formatters.
         use({
-            'williamboman/nvim-lsp-installer',
+            'williamboman/mason.nvim',
+            config = get_config('mason'),
+        })
+        use({
+            'williamboman/mason-lspconfig.nvim',
+            config = get_config('mason-lspconfig'),
+            after = { 'mason.nvim' },
         })
 
         -- Quickstart configurations for the Nvim LSP client
         use({
             'neovim/nvim-lspconfig',
             config = get_config('lspconfig'),
-            after = { 'nvim-lsp-installer', 'vim-illuminate' },
+            after = { 'mason-lspconfig.nvim', 'vim-illuminate' },
         })
 
         -- A completion plugin for neovim coded in Lua
