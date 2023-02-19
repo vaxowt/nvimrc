@@ -159,6 +159,8 @@ return {
     -- A (Neo)vim plugin for formatting code.
     {
         'sbdchd/neoformat',
+        cmd = 'Neoformat',
+        keys = { { '<leader>F', '<Cmd>Neoformat<CR>', desc = 'Neoformat' } },
         config = get_config('neoformat'),
     },
 
@@ -212,6 +214,7 @@ return {
     {
         'TimUntersberger/neogit',
         cmd = 'Neogit',
+        keys = { { '<leader>G', '<Cmd>Neogit<CR>', desc = 'Neogit' } },
         dependencies = 'nvim-lua/plenary.nvim',
         config = get_config('neogit'),
     },
