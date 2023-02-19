@@ -245,10 +245,13 @@ return {
         config = get_config('open-browser'),
     },
 
+    -- Markdown preview plugin for Neovim
     {
-        'iamcco/markdown-preview.nvim',
-        build = 'cd app && yarn install',
-        config = get_config('markdown-preview'),
+        'toppair/peek.nvim',
+        build = 'deno task --quiet build:fast',
+        cmd = { 'PeekOpen' },
+        keys = { { '<leader>p', '<Cmd>lua require("peek").open()<CR>', desc = 'PeekOpen' } },
+        config = get_config('peek'),
     },
 
     -- Asynchronous translating plugin for Vim/Neovim
