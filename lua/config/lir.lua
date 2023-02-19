@@ -6,7 +6,7 @@ require('lir').setup({
     show_hidden_files = false,
     devicons = {
         enable = true,
-        highlight_dirname = false
+        highlight_dirname = false,
     },
     hide_cursor = true,
     mappings = {
@@ -90,8 +90,18 @@ require('nvim-web-devicons').set_icon({
     },
 })
 
-vim.keymap.set('n', '<leader>e', "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
-vim.keymap.set('n', '-', "<Cmd>lua require('lir.float').toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set(
+    'n',
+    '<leader>e',
+    "<Cmd>lua require('lir.float').toggle()<CR>",
+    { noremap = true, silent = true, desc = 'Open lir file manager' }
+)
+vim.keymap.set(
+    'n',
+    '-',
+    "<Cmd>lua require('lir.float').toggle()<CR>",
+    { noremap = true, silent = true, desc = 'Open lir file manager' }
+)
 
 local lir_highlights = vim.api.nvim_create_augroup('lir_highlights', { clear = true })
 vim.api.nvim_create_autocmd('ColorScheme', {

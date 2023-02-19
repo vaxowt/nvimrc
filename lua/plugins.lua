@@ -1,31 +1,17 @@
--- bootstrap
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        'git',
-        'clone',
-        '--filter=blob:none',
-        'https://github.com/folke/lazy.nvim.git',
-        '--branch=stable', -- latest stable release
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
 local function get_config(name)
-    return load(string.format('require("config/%s")', name))
+    return function()
+        require(string.format('config/%s', name))
+    end
 end
 
-require('lazy').setup({
-    {
-        'luukvbaal/stabilize.nvim',
-        config = get_config('stabilize'),
-    },
+return {
+    'luukvbaal/stabilize.nvim',
 
     -- Nvim Treesitter configurations and abstraction layer
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
+        dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
         config = get_config('treesitter'),
     },
 
@@ -98,19 +84,6 @@ require('lazy').setup({
         dependencies = 'nvim-telescope/telescope.nvim',
         config = get_config('project'),
     },
-
-    -- {
-    --     'gbprod/yanky.nvim',
-    --     dependencies = 'nvim-telescope/telescope.nvim',
-    --     config = get_config('yanky'),
-    -- },
-
-    -- {
-    --     'olimorris/persisted.nvim',
-    --     dependencies = 'nvim-telescope/telescope.nvim',
-    --     --module = "persisted", -- For lazy loading
-    --     config = get_config('persisted'),
-    -- },
 
     {
         'jedrzejboczar/possession.nvim',
@@ -210,7 +183,7 @@ require('lazy').setup({
     {
         'folke/todo-comments.nvim',
         dependencies = 'nvim-lua/plenary.nvim',
-        config = get_config('todo-comments'),
+        config = true,
     },
 
     {
@@ -232,7 +205,8 @@ require('lazy').setup({
     {
         'sindrets/diffview.nvim',
         dependencies = 'nvim-lua/plenary.nvim',
-        config = get_config('diffview'),
+        config = true,
+        cmd = { 'DiffviewOpen' },
     },
 
     {
@@ -259,11 +233,6 @@ require('lazy').setup({
     {
         'lervag/vimtex',
         config = get_config('vimtex'),
-    },
-
-    {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        config = get_config('treesitter-textobjects'),
     },
 
     {
@@ -314,5 +283,5 @@ require('lazy').setup({
     },
 
     { 'chrisbra/csv.vim', ft = 'csv' },
-    { 'mtdl9/vim-log-highlighting' },
-})
+    { 'mtdl9/vim-log-highlighting', ft = 'log' },
+}

@@ -1,7 +1,4 @@
--- HACK: lazy.nvim requires to set `mapleader` first
-vim.g.mapleader = ' '
-
-require('plugins')
+require('bootstrap')
 require('options')
 require('mappings')
 require('autocmds')
