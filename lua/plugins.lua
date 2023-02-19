@@ -77,7 +77,7 @@ return {
         config = get_config('telescope'),
     },
 
-    { 'dstein64/vim-startuptime', lazy = true },
+    { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
     {
         'ahmedkhalf/project.nvim',
