@@ -77,6 +77,18 @@ return {
         config = get_config('telescope'),
     },
 
+    {
+        'mfussenegger/nvim-dap',
+        module = true,
+        config = get_config('dap'),
+    },
+
+    {
+        'rcarriga/nvim-dap-ui',
+        dependencies = {'mfussenegger/nvim-dap'},
+        config = get_config('dapui'),
+    },
+
     { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
     {
@@ -182,6 +194,7 @@ return {
         config = get_config('leap'),
     },
 
+    -- FIX: neovim startup screen not showing
     {
         'folke/todo-comments.nvim',
         dependencies = 'nvim-lua/plenary.nvim',
