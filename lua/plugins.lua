@@ -209,6 +209,12 @@ return {
     },
 
     {
+        'gorbit99/codewindow.nvim',
+        cmd = 'Minimap',
+        config = get_config('codewindow'),
+    },
+
+    {
         'akinsho/bufferline.nvim',
         dependencies = 'kyazdani42/nvim-web-devicons',
         config = get_config('bufferline'),
