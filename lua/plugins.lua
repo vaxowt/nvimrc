@@ -177,8 +177,8 @@ return {
     },
 
     {
-        'machakann/vim-sandwich',
-        config = get_config('sandwich'),
+        'kylechui/nvim-surround',
+        config = true,
     },
 
     --  A Vim alignment plugin
