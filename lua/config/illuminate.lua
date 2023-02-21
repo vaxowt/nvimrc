@@ -1,1 +1,3 @@
-vim.g.Illuminate_ftblacklist = { 'lir', 'csv', 'log', 'text' }
+require('illuminate').configure({
+    filetypes_denylist = { 'hex', 'lir', 'csv', 'log', 'text' }
+})
