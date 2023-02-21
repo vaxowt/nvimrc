@@ -85,7 +85,7 @@ return {
 
     {
         'rcarriga/nvim-dap-ui',
-        dependencies = {'mfussenegger/nvim-dap'},
+        dependencies = { 'mfussenegger/nvim-dap' },
         config = get_config('dapui'),
     },
 
@@ -203,6 +203,8 @@ return {
 
     {
         'simrat39/symbols-outline.nvim',
+        cmd = 'SymbolsOutline',
+        keys = { { '<leader>]', '<Cmd>SymbolsOutline<CR>' } },
         config = get_config('symbols-outline'),
     },
 
