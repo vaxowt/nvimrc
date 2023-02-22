@@ -16,7 +16,8 @@ return {
     },
 
     -- Portable package manager for Neovim that runs everywhere Neovim runs.
-    -- Easily install and manage LSP servers, DAP servers, linters, and formatters.
+    -- Easily install and manage LSP servers, DAP servers, linters, and
+    -- formatters.
     {
         'williamboman/mason.nvim',
         config = get_config('mason'),
@@ -100,7 +101,10 @@ return {
 
     {
         'jedrzejboczar/possession.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
         config = get_config('possession'),
     },
 
@@ -268,6 +272,7 @@ return {
         config = get_config('vimtex'),
     },
 
+    -- Indent guides for Neovim
     {
         'lukas-reineke/indent-blankline.nvim',
         config = get_config('indent-blankline'),
@@ -283,7 +288,13 @@ return {
         'toppair/peek.nvim',
         build = 'deno task --quiet build:fast',
         cmd = { 'PeekOpen' },
-        keys = { { '<leader>p', '<Cmd>lua require("peek").open()<CR>', desc = 'PeekOpen' } },
+        keys = {
+            {
+                '<leader>p',
+                '<Cmd>lua require("peek").open()<CR>',
+                desc = 'PeekOpen',
+            },
+        },
         config = get_config('peek'),
     },
 
@@ -293,21 +304,26 @@ return {
         config = get_config('translator'),
     },
 
+    -- Neovim plugin to expand incrementing/decrementing to more formats.
     {
         'zegervdv/nrpattern.nvim',
         config = get_config('nrpattern'),
     },
 
+    -- Toogle comma(,), semicolon(;) or other character in neovim
     {
         'saifulapm/chartoggle.nvim',
         config = get_config('chartoggle'),
     },
 
+    -- Post selections or buffers to online paste bins. Save the URL to a
+    -- register, or dont.
     {
         'rktjmp/paperplanes.nvim',
         config = get_config('paperplanes'),
     },
 
+    -- Better quickfix window in Neovim, polish old quickfix window.
     {
         'kevinhwang91/nvim-bqf',
         config = get_config('bqf'),
