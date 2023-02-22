@@ -62,6 +62,14 @@ telescope.setup({
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('repo')
+require('telescope').load_extension('neoclip')
+
+vim.keymap.set(
+    'n',
+    '<leader>fy',
+    "<Cmd>Telescope neoclip<CR>",
+    { noremap = true, silent = true, desc = 'Telescope neoclip' }
+)
 
 vim.keymap.set(
     'n',

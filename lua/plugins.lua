@@ -73,6 +73,7 @@ return {
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
             { 'nvim-telescope/telescope-symbols.nvim' },
             { 'cljoly/telescope-repo.nvim' },
+            { 'AckslD/nvim-neoclip.lua', config = true },
         },
         config = get_config('telescope'),
     },
