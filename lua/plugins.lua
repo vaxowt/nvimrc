@@ -241,9 +241,17 @@ return {
         config = get_config('neogit'),
     },
 
+    -- (Neo)Vim plugin for automatically highlighting other uses of the word
+    -- under the cursor using either LSP, Tree-sitter, or regex matching.
     {
         'RRethy/vim-illuminate',
         config = get_config('illuminate'),
+    },
+
+    -- A Neovim plugin hiding your colorcolumn when unneeded.
+    {
+        'm4xshen/smartcolumn.nvim',
+        config = true,
     },
 
     {
