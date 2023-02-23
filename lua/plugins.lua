@@ -255,7 +255,9 @@ return {
     -- A Neovim plugin hiding your colorcolumn when unneeded.
     {
         'm4xshen/smartcolumn.nvim',
-        config = true,
+        opts = {
+            disabled_filetypes = { 'lazy' },
+        },
     },
 
     {
