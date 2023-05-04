@@ -199,10 +199,12 @@ return {
         config = get_config('leap'),
     },
 
-    -- FIX: neovim startup screen not showing
     {
         'folke/todo-comments.nvim',
         dependencies = 'nvim-lua/plenary.nvim',
+        -- HACK: prevent breaking start screen.
+        -- https://github.com/folke/todo-comments.nvim/issues/133#issuecomment-1533670710
+        event = 'VimEnter',
         config = true,
     },
 
