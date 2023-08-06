@@ -15,7 +15,7 @@ require('lualine').setup({
             'diff',
             {
                 'diagnostics',
-                symbols = { error = ' ', warn = ' ', info = ' ', hint = 'ﯦ ' },
+                symbols = { error = ' ', warn = ' ', hint = ' ', info = ' ' },
                 colored = false,
             },
         },
