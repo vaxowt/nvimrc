@@ -211,7 +211,7 @@ return {
     {
         'simrat39/symbols-outline.nvim',
         cmd = 'SymbolsOutline',
-        keys = { { '<leader>]', '<Cmd>SymbolsOutline<CR>' } },
+        keys = { { '<leader>]', '<Cmd>SymbolsOutline<CR>', desc = 'SymbolsOutline' } },
         config = get_config('symbols-outline'),
     },
 

@@ -17,7 +17,7 @@ require('gitsigns').setup({
                 gs.next_hunk()
             end)
             return '<Ignore>'
-        end, { expr = true })
+        end, { expr = true, desc = '[git] Goto next hunk' })
 
         map('n', '[c', function()
             if vim.wo.diff then
@@ -27,18 +27,19 @@ require('gitsigns').setup({
                 gs.prev_hunk()
             end)
             return '<Ignore>'
-        end, { expr = true })
+        end, { expr = true, desc = '[git] goto previous hunk' })
 
         -- actions
-        map('n', '<leader>gp', gs.preview_hunk)
+        map('n', '<leader>gr', gs.reset_hunk, { desc = '[git] reset hunk' })
+        map('n', '<leader>gp', gs.preview_hunk, { desc = '[git] preview hunk' })
         map('n', '<leader>gb', function()
             gs.blame_line({ full = true })
-        end)
-        map('n', '<leader>gB', gs.toggle_current_line_blame)
-        map('n', '<leader>gd', gs.diffthis)
+        end, { desc = '[git] blame line' })
+        map('n', '<leader>gB', gs.toggle_current_line_blame, { desc = '[git] toggle current line blame' })
+        map('n', '<leader>gd', gs.diffthis, { desc = '[git] diffthis' })
         map('n', '<leader>gD', function()
             gs.diffthis('~')
-        end)
+        end, { desc = '[git] diffthis file' })
 
         -- text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
