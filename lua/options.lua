@@ -49,10 +49,8 @@ vim.o.pumheight = 30
 -- show special characters
 vim.o.list = true
 vim.o.listchars = 'tab:> ,trail:·,extends:>,precedes:<,nbsp:+'
--- do not wrap around the end of the file when searching
--- HACK: show both search count and wrap message would be better
--- ref: https://github.com/neovim/neovim/issues/11243
-vim.o.wrapscan = false
+-- show 'hit top/bottom' message
+vim.opt.shortmess:append({ S = true, })
 -- indent wrapped line visually
 vim.o.breakindent = true
 -- persistent undo history

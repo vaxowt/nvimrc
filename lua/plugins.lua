@@ -170,8 +170,11 @@ return {
         config = get_config('lir'),
     },
 
-    -- Auto-toggle hlsearch, and show number of matches
-    { 'romainl/vim-cool' },
+    -- Hlsearch Lens for Neovim 
+    {
+        'kevinhwang91/nvim-hlslens',
+        config = get_config('hlslens'),
+    },
 
     -- A (Neo)vim plugin for formatting code.
     {
