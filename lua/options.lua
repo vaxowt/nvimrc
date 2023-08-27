@@ -59,6 +59,9 @@ vim.o.undofile = true
 -- Python 3 executable path (faster startup)
 vim.g.python3_host_prog = 'python'
 
+-- file encodings: chinese, english
+vim.o.fileencodings = 'ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1'
+
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
