@@ -1,5 +1,8 @@
 local dap = require('dap')
 
+vim.cmd([[autocmd FileType dap-float nnoremap <buffer><silent> q <cmd>close!<CR>]])
+vim.cmd([[autocmd FileType dap-float nnoremap <buffer><silent> <Esc> <cmd>close!<CR>]])
+
 vim.keymap.set('n', '<F5>', function()
     require('dap').continue()
 end, { desc = '[dap] continue' })
@@ -42,6 +45,30 @@ vim.keymap.set('n', '<Leader>ds', function()
     widgets.centered_float(widgets.scopes)
 end, { desc = '[dap] scopes ui' })
 
+local function load_config(opts)
+    local config_file = vim.fn.getcwd() .. '/' .. 'dap-config.lua'
+    if opts.args ~= '' then
+        config_file = opts.args
+    end
+    if vim.fn.filereadable(config_file) ~= 0 then
+        local config = require(vim.fn.fnamemodify(config_file, ':t:r'))
+        dap.configurations[vim.bo.filetype] = config
+        print('Config file loaded: ' .. config_file)
+    else
+        print('Config file not found: ' .. config_file)
+    end
+end
+
+vim.api.nvim_create_user_command('DapLoadConfig', function(opts)
+    load_config(opts)
+end, { nargs = '?', complete = 'file' })
+
+local function get_program()
+    return function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end
+end
+
 dap.adapters.codelldb = {
     type = 'server',
     port = '${port}',
@@ -54,18 +81,54 @@ dap.adapters.codelldb = {
     },
 }
 
+dap.adapters.cppdbg = {
+    id = 'cppdbg',
+    type = 'executable',
+    command = 'OpenDebugAD7',
+    options = {
+        -- detached = false,
+    },
+}
+
 dap.configurations.cpp = {
     {
         name = 'Launch file',
         type = 'codelldb',
         request = 'launch',
-        program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
+        program = get_program(),
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
     },
 }
 
-dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
+
+dap.configurations.c = {
+    {
+        name = 'Launch (codelldb)',
+        type = 'codelldb',
+        request = 'launch',
+        program = get_program(),
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+    },
+    {
+        name = 'Launch (cpptools)',
+        type = 'cppdbg',
+        request = 'launch',
+        program = get_program(),
+        cwd = '${workspaceFolder}',
+        stopAtEntry = true,
+    },
+    {
+        name = 'Remote attach gdb (cpptools)',
+        type = 'cppdbg',
+        request = 'launch',
+        MIMode = 'gdb',
+        miDebuggerServerAddress = 'localhost:3333',
+        miDebuggerPath = 'arm-none-eabi-gdb',
+        cwd = '${workspaceFolder}',
+        program = get_program(),
+        stopAtEntry = false,
+    },
+}
