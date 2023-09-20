@@ -90,6 +90,31 @@ dap.adapters.cppdbg = {
     },
 }
 
+dap.adapters.python = function(cb, config)
+    if config.request == 'attach' then
+        ---@diagnostic disable-next-line: undefined-field
+        local port = (config.connect or config).port
+        ---@diagnostic disable-next-line: undefined-field
+        local host = (config.connect or config).host or '127.0.0.1'
+        cb({
+            type = 'server',
+            port = assert(port, '`connect.port` is required for a python `attach` configuration'),
+            host = host,
+            options = {
+                source_filetype = 'python',
+            },
+        })
+    else
+        cb({
+            type = 'executable',
+            command = 'debugpy-adapter',
+            options = {
+                source_filetype = 'python',
+            },
+        })
+    end
+end
+
 dap.configurations.cpp = {
     {
         name = 'Launch file',
@@ -130,5 +155,28 @@ dap.configurations.c = {
         cwd = '${workspaceFolder}',
         program = get_program(),
         stopAtEntry = false,
+    },
+}
+
+dap.configurations.python = {
+    {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch file',
+
+        -- Options below are for debugpy, see
+        -- https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
+        program = '${file}',
+        pythonPath = 'python',
+    },
+    {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch file with arguments',
+        program = '${file}',
+        pythonPath = 'python',
+        args = function()
+            return { vim.fn.input('Arguments: ') }
+        end,
     },
 }
