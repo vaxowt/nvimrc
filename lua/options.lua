@@ -50,7 +50,7 @@ vim.o.pumheight = 30
 vim.o.list = true
 vim.o.listchars = 'tab:> ,trail:·,extends:>,precedes:<,nbsp:+'
 -- show 'hit top/bottom' message
-vim.opt.shortmess:append({ S = true, })
+vim.opt.shortmess:append({ S = true })
 -- indent wrapped line visually
 vim.o.breakindent = true
 -- persistent undo history
