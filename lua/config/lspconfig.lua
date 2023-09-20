@@ -67,7 +67,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     vim.keymap.set('n', '<leader>cr', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.keymap.set('n', '<leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.keymap.set('n', '<leader>cf', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    vim.keymap.set('n', '<leader>cf', '<Cmd>lua vim.lsp.buf.format({async = true})<CR>', opts)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -81,7 +81,7 @@ for _, server in pairs(servers) do
     })
 end
 
-require('lspconfig').lua_ls.setup {
+require('lspconfig').lua_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -92,11 +92,11 @@ require('lspconfig').lua_ls.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
+                globals = { 'vim' },
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = vim.api.nvim_get_runtime_file('', true),
                 checkThirdParty = false,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
@@ -105,4 +105,4 @@ require('lspconfig').lua_ls.setup {
             },
         },
     },
-}
+})

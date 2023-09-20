@@ -26,12 +26,28 @@ return {
         'williamboman/mason-lspconfig.nvim',
         config = get_config('mason-lspconfig'),
     },
+    {
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = get_config('mason-null-ls'),
+    },
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        config = get_config('mason-dap'),
+    },
 
     -- Quickstart configurations for the Nvim LSP client
     {
         'neovim/nvim-lspconfig',
         config = get_config('lspconfig'),
         dependencies = { 'mason-lspconfig.nvim', 'vim-illuminate' },
+    },
+
+    -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP
+    -- diagnostics, code actions, and more via Lua.
+    {
+        'nvimtools/none-ls.nvim',
+        config = get_config('null-ls'),
     },
 
     -- A completion plugin for neovim coded in Lua
@@ -74,7 +90,7 @@ return {
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
             { 'nvim-telescope/telescope-symbols.nvim' },
             { 'cljoly/telescope-repo.nvim' },
-            { 'AckslD/nvim-neoclip.lua', config = true },
+            { 'AckslD/nvim-neoclip.lua',                  config = true },
         },
         config = get_config('telescope'),
     },
@@ -170,7 +186,7 @@ return {
         config = get_config('lir'),
     },
 
-    -- Hlsearch Lens for Neovim 
+    -- Hlsearch Lens for Neovim
     {
         'kevinhwang91/nvim-hlslens',
         config = get_config('hlslens'),
@@ -271,7 +287,7 @@ return {
     },
 
     -- 『盘古之白』中文排版自动规范化的 Vim 插件
-    { 'hotoo/pangu.vim', cmd = 'Pangu' },
+    { 'hotoo/pangu.vim',            cmd = 'Pangu' },
 
     -- A modern vim plugin for editing LaTeX files.
     {
@@ -341,6 +357,6 @@ return {
         config = get_config('fcitx'),
     },
 
-    { 'chrisbra/csv.vim', ft = 'csv' },
+    { 'chrisbra/csv.vim',           ft = 'csv' },
     { 'mtdl9/vim-log-highlighting', ft = 'log' },
 }
