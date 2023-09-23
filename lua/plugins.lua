@@ -354,6 +354,9 @@ return {
 
     {
         'alohaia/fcitx.nvim',
+        enabled = function()
+            return vim.env.DISPLAY ~= nil
+        end,
         config = get_config('fcitx'),
     },
 
