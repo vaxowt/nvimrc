@@ -176,7 +176,11 @@ dap.configurations.python = {
         program = '${file}',
         pythonPath = 'python',
         args = function()
-            return { vim.fn.input('Arguments: ') }
+            local input = vim.fn.input('Arguments: ')
+            for k, v in pairs(vim.split(input, ' ')) do
+                print(v)
+            end
+            return vim.split(input, ' ')
         end,
     },
 }
