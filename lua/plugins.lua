@@ -298,6 +298,7 @@ return {
     -- Indent guides for Neovim
     {
         'lukas-reineke/indent-blankline.nvim',
+        main = 'ibl',
         config = get_config('indent-blankline'),
     },
 
