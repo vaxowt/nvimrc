@@ -18,7 +18,7 @@ local completion = null_ls.builtins.completion
 null_ls.setup({
     sources = {
         -- general
-        completion.spell,
+        -- completion.spell,
         -- lua
         formatting.stylua,
         -- python
