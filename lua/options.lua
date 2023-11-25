@@ -65,8 +65,3 @@ vim.o.fileencodings = 'ucs-bom,utf-8,gbk,big5,gb18030,utf-16,latin1'
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- enable Lua filetype detection
-vim.g.do_filetype_lua = 1
--- TODO: vim filetype detection may be disabled in the future
--- vim.g.did_load_filetypes = 0
