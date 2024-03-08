@@ -1,4 +1,5 @@
 require('bootstrap')
 require('options')
+require('settings')
 require('mappings')
 require('autocmds')
