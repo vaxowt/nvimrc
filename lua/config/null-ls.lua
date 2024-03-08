@@ -24,7 +24,6 @@ null_ls.setup({
         -- python
         formatting.yapf,
         formatting.isort,
-        diagnostics.ruff,
         -- diagnostics.pydocstyle,
         -- diagnostics.pycodestyle,
         -- shell
