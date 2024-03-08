@@ -1,5 +1,6 @@
--- HACK: lazy.nvim requires to set `mapleader` first
+-- HACK: lazy.nvim requires to set `mapleader` and `maplocalleader` first
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 -- lazy.nvim bootstrap
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
