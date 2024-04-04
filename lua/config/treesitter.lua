@@ -1,6 +1,7 @@
 require('nvim-treesitter.configs').setup({
-    ensure_installed = 'all',
+    ensure_installed = {},
     ignore_install = { 'latex' },
+    auto_install = true,
     sync_install = false,
     highlight = {
         enable = true,
