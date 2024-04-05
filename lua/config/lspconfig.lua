@@ -72,7 +72,7 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local servers = { 'pyright', 'clangd', 'bashls', 'texlab', 'yamlls', 'jsonls' }
+local servers = { 'pyright', 'bashls', 'texlab', 'yamlls', 'jsonls' }
 
 for _, server in pairs(servers) do
     require('lspconfig')[server].setup({

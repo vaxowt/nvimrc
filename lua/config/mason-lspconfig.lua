@@ -1,3 +1,3 @@
 require('mason-lspconfig').setup({
-    automatic_installation = true
+    automatic_installation = { exclude = { 'clangd' } },
 })
