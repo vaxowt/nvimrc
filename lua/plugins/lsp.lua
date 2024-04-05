@@ -27,7 +27,7 @@ return {
             'mason-org/mason.nvim',
         },
         opts = {
-            automatic_installation = true,
+            automatic_installation = { exclude = { 'clangd' } },
         },
     },
 
