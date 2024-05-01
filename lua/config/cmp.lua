@@ -30,6 +30,8 @@ local kind_icons = {
     TypeParameter = '',
 }
 
+require('cmp-browser-source').start_server()
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -88,6 +90,7 @@ cmp.setup({
         { name = 'greek' },
         { name = 'emoji' },
         { name = 'dictionary', keyword_length = 2 },
+        { name = 'browser' },
     }),
 })
 

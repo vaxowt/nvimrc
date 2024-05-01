@@ -66,6 +66,7 @@ return {
             { 'uga-rosa/cmp-dictionary' },
             { 'andersevenrud/cmp-tmux' },
             { 'max397574/cmp-greek' },
+            { 'wxxxcxx/cmp-browser-source' },
         },
         config = get_config('cmp'),
     },
