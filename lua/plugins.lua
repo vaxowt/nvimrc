@@ -338,6 +338,9 @@ return {
     -- Toogle comma(,), semicolon(;) or other character in neovim
     {
         'saifulapm/commasemi.nvim',
+        init = function()
+            vim.g.commasemi_disable_commands = true
+        end,
         config = get_config('commasemi'),
     },
 
