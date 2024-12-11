@@ -337,8 +337,8 @@ return {
 
     -- Toogle comma(,), semicolon(;) or other character in neovim
     {
-        'saifulapm/chartoggle.nvim',
-        config = get_config('chartoggle'),
+        'saifulapm/commasemi.nvim',
+        config = get_config('commasemi'),
     },
 
     -- Post selections or buffers to online paste bins. Save the URL to a
