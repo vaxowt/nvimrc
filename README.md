@@ -12,7 +12,7 @@
 
 ## Get Started
 
-* Use `:Lazy` (or <kbd>SPACE-z</kbd>) to manage plugins with lazy.nvim
+* Use `:Lazy` (or <kbd>SPACE-Z</kbd>) to manage plugins with lazy.nvim
 * Use `:Mason` to manage LSPs, DAPs, linters and formatters
 * Use `:TSxxxx` commands (e.g., `:TSInstallInfo`) to manage treesitter parsers
 * Use <kbd>-</kbd> to manage files with lir.nvim.
