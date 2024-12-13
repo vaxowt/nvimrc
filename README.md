@@ -23,5 +23,5 @@
 
 | Mode | Keymap | Description |
 |--|--|--|
-| i | <kbd>CTRL<kbd></kbd>h</kbd>/<kbd>CTRL<kbd></kbd>l</kbd> | move cursor left/right |
-| i,n | <kbd>ALT<kbd></kbd>z</kbd> | toggle terminal |
+| i | <kbd>CTRL</kbd><kbd>h</kbd>/<kbd>CTRL</kbd><kbd>l</kbd> | move cursor left/right |
+| i,n | <kbd>ALT</kbd><kbd>z</kbd> | toggle terminal |
