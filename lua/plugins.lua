@@ -367,7 +367,7 @@ return {
 
     {
         'vaxowt/aimswitcher.nvim',
-        enabled = vim.fn.has('win32'),
+        enabled = vim.fn.has('win32') == 1,
         config = get_config('aimswitcher'),
     },
 
