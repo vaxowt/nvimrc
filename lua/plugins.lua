@@ -365,6 +365,12 @@ return {
         config = get_config('fcitx'),
     },
 
+    {
+        'vaxowt/aimswitcher.nvim',
+        enabled = vim.fn.has('win32'),
+        config = get_config('aimswitcher'),
+    },
+
     { 'chrisbra/csv.vim', ft = 'csv' },
     { 'mtdl9/vim-log-highlighting', ft = 'log' },
 }
