@@ -17,7 +17,7 @@
 * Use `:Lazy` (or <kbd>SPACE</kbd><kbd>Z</kbd>) to manage plugins with lazy.nvim
 * Use `:Mason` to manage LSPs, DAPs, linters and formatters
 * Use `:TSxxxx` commands (e.g., `:TSInstallInfo`) to manage treesitter parsers
-* Use <kbd></kbd><kbd></kbd> to manage files with lir.nvim.
+* Use <kbd>-</kbd> to manage files with lir.nvim.
 * Use <kbd>SPACE</kbd><kbd>f</kbd><kbd>M</kbd> to find the custom keymaps.
 * Some *magic* keymaps:
 
