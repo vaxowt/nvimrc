@@ -3,7 +3,9 @@
 ## Requirements
 
 * [fzf](https://github.com/junegunn/fzf): required by nvim-telescope/telescope-fzf-native.nvim
+* make, gcc: required by nvim-telescope/telescope-fzf-native.nvim
 * [deno](https://deno.com/): required by toppair/peek.nvim
+* [ripgrep](https://github.com/BurntSushi/ripgrep): required nvim-telescope/telescope.nvim
 
 ## Installation
 
