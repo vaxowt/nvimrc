@@ -114,7 +114,7 @@ dap.adapters.python = function(cb, config)
         local command = vim.fn.exepath('debugpy-adapter')
         local args = nil
         -- HACK: debugpy-adapter.cmd not work
-        if vim.fn.has('win32') then
+        if vim.fn.has('win32') == 1 then
             local mason_registry = require('mason-registry')
             local debugpy_path = mason_registry.get_package('debugpy'):get_install_path()
             command = debugpy_path .. '/venv/Scripts/python.exe'
