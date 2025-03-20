@@ -50,13 +50,19 @@ local function load_config(opts)
     if opts.args ~= '' then
         config_file = opts.args
     end
-    if vim.fn.filereadable(config_file) ~= 0 then
-        local config = require(vim.fn.fnamemodify(config_file, ':t:r'))
-        dap.configurations[vim.bo.filetype] = config
-        print('Config file loaded: ' .. config_file)
-    else
-        print('Config file not found: ' .. config_file)
+    local config_env = {}
+    local f, err = loadfile(config_file, 't', config_env)
+    if not f then
+        print('Can not load file: ' .. err)
+        return
     end
+    local ok, ret = pcall(f)
+    if not ok then
+        print('Can not load file: ' .. ret)
+        return
+    end
+    dap.configurations[vim.bo.filetype] = ret
+    print('Config file loaded: ' .. config_file)
 end
 
 vim.api.nvim_create_user_command('DapLoadConfig', function(opts)
@@ -105,9 +111,19 @@ dap.adapters.python = function(cb, config)
             },
         })
     else
+        local command = vim.fn.exepath('debugpy-adapter')
+        local args = nil
+        -- HACK: debugpy-adapter.cmd not work
+        if vim.fn.has('win32') then
+            local mason_registry = require('mason-registry')
+            local debugpy_path = mason_registry.get_package('debugpy'):get_install_path()
+            command = debugpy_path .. '/venv/Scripts/python.exe'
+            args = { '-m', 'debugpy.adapter' }
+        end
         cb({
             type = 'executable',
-            command = 'debugpy-adapter',
+            command = command,
+            args = args,
             options = {
                 source_filetype = 'python',
             },
