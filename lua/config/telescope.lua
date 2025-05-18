@@ -19,7 +19,7 @@ telescope.setup({
         fzf = {},
     },
     defaults = {
-        file_ignore_patterns = { 'node_modules', '%.git' },
+        file_ignore_patterns = { 'node_modules', '%.git', '__pycache__' },
         -- used for grep_string and live_grep
         vimgrep_arguments = {
             'rg',
@@ -148,4 +148,10 @@ vim.keymap.set(
     '<leader>f/',
     "<Cmd>lua require('telescope.builtin').search_history()<CR>",
     { noremap = true, silent = true, desc = 'Telescope search_history' }
+)
+vim.keymap.set(
+    'n',
+    '<leader>fd',
+    "<Cmd>lua require('telescope.builtin').diagnostics()<CR>",
+    { noremap = true, silent = true, desc = 'Telescope diagnostics' }
 )

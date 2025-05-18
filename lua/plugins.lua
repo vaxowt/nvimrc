@@ -40,7 +40,7 @@ return {
     {
         'neovim/nvim-lspconfig',
         config = get_config('lspconfig'),
-        dependencies = { 'mason-lspconfig.nvim', 'vim-illuminate' },
+        dependencies = { 'mason-lspconfig.nvim' },
     },
 
     -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP
