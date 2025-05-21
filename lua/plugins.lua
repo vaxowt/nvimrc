@@ -67,8 +67,15 @@ return {
             { 'andersevenrud/cmp-tmux' },
             { 'max397574/cmp-greek' },
             { 'wxxxcxx/cmp-browser-source' },
+            { 'Exafunction/windsurf.nvim' },
         },
         config = get_config('cmp'),
+    },
+
+    {
+        'Exafunction/windsurf.nvim',
+        config = get_config('windsurf'),
+        dependencies = { 'nvim-lua/plenary.nvim' },
     },
 
     {

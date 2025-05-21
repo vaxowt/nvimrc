@@ -28,6 +28,7 @@ local kind_icons = {
     Event = '',
     Operator = '',
     TypeParameter = '',
+    Codeium = '',
 }
 
 require('cmp-browser-source').start_server()
@@ -62,6 +63,7 @@ cmp.setup({
                 calc = '[calc]',
                 dictionary = '[D]',
                 tmux = '[tmux]',
+                codeium = '[AI]',
             })[entry.source.name]
             return vim_item
         end,
@@ -91,6 +93,7 @@ cmp.setup({
         { name = 'emoji' },
         { name = 'dictionary', keyword_length = 2 },
         { name = 'browser' },
+        { name = 'codeium' },
     }),
 })
 
