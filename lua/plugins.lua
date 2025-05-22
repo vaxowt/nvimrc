@@ -159,10 +159,22 @@ return {
         config = get_config('gruvbox-material'),
     },
     -- Comfortable & Pleasant Color Scheme for Vim
+    -- {
+    --     'sainnhe/everforest',
+    --     lazy = false,
+    --     config = get_config('everforest'),
+    -- },
     {
-        'sainnhe/everforest',
+        'neanias/everforest-nvim',
+        version = false,
         lazy = false,
-        config = get_config('everforest'),
+        priority = 1000, -- make sure to load this before all the other start plugins
+        -- Optional; default configuration will be used if setup isn't called.
+        config = function()
+            require('everforest').setup({
+                italicc = true,
+            })
+        end,
     },
     {
         'sainnhe/edge',
