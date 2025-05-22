@@ -330,6 +330,17 @@ return {
         config = get_config('peek'),
     },
 
+    -- Plugin to improve viewing Markdown files in Neovim
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons',
+        },
+        config = get_config('render-markdown'),
+        cmd = 'RenderMarkdown',
+    },
+
     -- Asynchronous translating plugin for Vim/Neovim
     {
         'voldikss/vim-translator',
