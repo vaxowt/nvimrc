@@ -194,6 +194,18 @@ return {
         config = get_config('lir'),
     },
 
+    -- A file explorer tree for neovim written in lua
+    {
+        'nvim-tree/nvim-tree.lua',
+        config = get_config('nvim-tree'),
+        cmd = {
+            'NvimTreeOpen',
+            'NvimTreeToggle',
+            'NvimTreeFindFile',
+            'NvimTreeFindFileToggle',
+        },
+    },
+
     -- Hlsearch Lens for Neovim
     {
         'kevinhwang91/nvim-hlslens',
