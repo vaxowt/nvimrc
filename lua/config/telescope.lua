@@ -1,4 +1,5 @@
 local telescope = require('telescope')
+local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local action_layout = require('telescope.actions.layout')
 
@@ -40,9 +41,6 @@ telescope.setup({
                 ['<C-k>'] = actions.move_selection_previous,
                 ['<PageUp>'] = actions.results_scrolling_up,
                 ['<PageDown>'] = actions.results_scrolling_down,
-                ['<C-v>'] = actions.select_vertical,
-                ['<C-s>'] = actions.select_horizontal,
-                ['<C-t>'] = actions.select_tab,
                 ['<C-\\>'] = action_layout.toggle_preview,
                 ['<C-n>'] = actions.cycle_history_next,
                 ['<C-p>'] = actions.cycle_history_prev,
@@ -67,7 +65,7 @@ require('telescope').load_extension('neoclip')
 vim.keymap.set(
     'n',
     '<leader>fy',
-    "<Cmd>Telescope neoclip<CR>",
+    '<Cmd>Telescope neoclip<CR>',
     { noremap = true, silent = true, desc = 'Telescope neoclip' }
 )
 
@@ -80,78 +78,28 @@ vim.keymap.set(
 vim.keymap.set(
     'n',
     '<leader>fG',
-    "<Cmd>lua require('telescope.builtin').grep_string()<CR>",
+    builtin.grep_string,
     { noremap = true, silent = true, desc = 'Telescope grep_string' }
 )
-vim.keymap.set(
-    'n',
-    '<leader>fg',
-    "<Cmd>lua require('telescope.builtin').live_grep()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope live_grep' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>fb',
-    "<Cmd>lua require('telescope.builtin').buffers()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope buffers' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>fh',
-    "<Cmd>lua require('telescope.builtin').help_tags()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope help_tags' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>fH',
-    "<Cmd>lua require('telescope.builtin').man_pages()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope man_pages' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>ff',
-    "<Cmd>lua require('telescope.builtin').find_files()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope find_files' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>fF',
-    "<Cmd>lua require('telescope.builtin').git_files()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope git_files' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>fr',
-    "<Cmd>lua require('telescope.builtin').resume()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope resume' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>fc',
-    "<Cmd>lua require('telescope.builtin').commands()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope commands' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>fm',
-    "<Cmd>lua require('telescope.builtin').oldfiles()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope oldfiles' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>fM',
-    "<Cmd>lua require('telescope.builtin').keymaps()<CR>",
-    { noremap = true, silent = true, desc = 'Telescope man_pages' }
-)
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { noremap = true, silent = true, desc = 'Telescope live_grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { noremap = true, silent = true, desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { noremap = true, silent = true, desc = 'Telescope help_tags' })
+vim.keymap.set('n', '<leader>fH', builtin.man_pages, { noremap = true, silent = true, desc = 'Telescope man_pages' })
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { noremap = true, silent = true, desc = 'Telescope find_files' })
+vim.keymap.set('n', '<leader>fF', builtin.git_files, { noremap = true, silent = true, desc = 'Telescope git_files' })
+vim.keymap.set('n', '<leader>fr', builtin.resume, { noremap = true, silent = true, desc = 'Telescope resume' })
+vim.keymap.set('n', '<leader>fc', builtin.commands, { noremap = true, silent = true, desc = 'Telescope commands' })
+vim.keymap.set('n', '<leader>fm', builtin.oldfiles, { noremap = true, silent = true, desc = 'Telescope oldfiles' })
+vim.keymap.set('n', '<leader>fM', builtin.keymaps, { noremap = true, silent = true, desc = 'Telescope man_pages' })
 vim.keymap.set(
     'n',
     '<leader>f/',
-    "<Cmd>lua require('telescope.builtin').search_history()<CR>",
+    builtin.search_history,
     { noremap = true, silent = true, desc = 'Telescope search_history' }
 )
 vim.keymap.set(
     'n',
     '<leader>fd',
-    "<Cmd>lua require('telescope.builtin').diagnostics()<CR>",
+    builtin.diagnostics,
     { noremap = true, silent = true, desc = 'Telescope diagnostics' }
 )

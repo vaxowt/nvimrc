@@ -11,7 +11,7 @@ require('lir').setup({
     hide_cursor = true,
     mappings = {
         ['l'] = actions.edit,
-        ['<C-s>'] = actions.split,
+        ['<C-x>'] = actions.split,
         ['<C-v>'] = actions.vsplit,
         ['<C-t>'] = actions.tabedit,
 
@@ -93,15 +93,10 @@ require('nvim-web-devicons').set_icon({
 vim.keymap.set(
     'n',
     '<leader>e',
-    "<Cmd>lua require('lir.float').toggle()<CR>",
+    require('lir.float').toggle,
     { noremap = true, silent = true, desc = 'Open lir file manager' }
 )
-vim.keymap.set(
-    'n',
-    '-',
-    "<Cmd>lua require('lir.float').toggle()<CR>",
-    { noremap = true, silent = true, desc = 'Open lir file manager' }
-)
+vim.keymap.set('n', '-', require('lir.float').toggle, { noremap = true, silent = true, desc = 'Open lir file manager' })
 
 local lir_highlights = vim.api.nvim_create_augroup('lir_highlights', { clear = true })
 vim.api.nvim_create_autocmd('ColorScheme', {

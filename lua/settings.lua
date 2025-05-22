@@ -56,23 +56,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
             )
         end
 
-        map('gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Jumps to the declaration of the symbol under the cursor')
-        map('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Jumps to the definition of the symbol under the cursor')
-        map(
-            'gy',
-            '<Cmd>lua vim.lsp.buf.type_definition()<CR>',
-            'Jumps to the definition of the type of the symbol under the cursor'
-        )
-        map(
-            '<leader>wa',
-            '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
-            'Add the folder at path to the workspace folders'
-        )
-        map(
-            '<leader>wr',
-            '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-            'Remove the folder at path from the workspace folders'
-        )
+        map('gD', vim.lsp.buf.declaration, 'Jumps to the declaration of the symbol under the cursor')
+        map('gd', vim.lsp.buf.definition, 'Jumps to the definition of the symbol under the cursor')
+        map('gy', vim.lsp.buf.type_definition, 'Jumps to the definition of the type of the symbol under the cursor')
+        map('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Add the folder at path to the workspace folders')
+        map('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Remove the folder at path from the workspace folders')
         map(
             '<leader>wl',
             '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
@@ -83,7 +71,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             '<Cmd>lua vim.lsp.buf.format({async = true})<CR>',
             'Formats a buffer using the attached (and optionally filtered) language server clients'
         )
-        map('<leader>cd', '<Cmd>lua vim.diagnostic.open_float()<CR>', 'Show diagnostics in a floating window')
+        map('<leader>cd', vim.diagnostic.open_float, 'Show diagnostics in a floating window')
         -- default mappings (:help [d) won't open float
         map('[d', '<Cmd>lua vim.diagnostic.jump({count=-1, float=true})<CR>', 'Jump to the previous diagnostic')
         map(']d', '<Cmd>lua vim.diagnostic.jump({count=1, float=true})<CR>', 'Jump to the next diagnostic')
