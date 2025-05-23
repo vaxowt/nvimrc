@@ -14,6 +14,13 @@ require('nvim-tree').setup({
         -- show hidden files count
         hidden_display = 'all',
     },
+    actions = {
+        file_popup = {
+          open_win_config = {
+            border = "none",
+          },
+        },
+    },
     filters = {
         -- hide dotfiles by default
         dotfiles = true,
