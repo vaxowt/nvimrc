@@ -210,6 +210,10 @@ return {
     {
         'nvim-tree/nvim-tree.lua',
         config = get_config('nvim-tree'),
+        keys = {
+            { '<leader>[', '<Cmd>NvimTreeToggle<CR>' },
+            { '<leader>{', '<Cmd>NvimTreeFindFile<CR>' },
+        },
         cmd = {
             'NvimTreeOpen',
             'NvimTreeToggle',
