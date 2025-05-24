@@ -229,8 +229,13 @@ return {
     -- Hlsearch Lens for Neovim
     {
         'kevinhwang91/nvim-hlslens',
-        config = function()
-            require('hlslens').setup()
+        opts = {
+            -- vim-cool is not needed anymore
+            calm_down = true,
+            nearest_only = true,
+        },
+        config = function(_, opts)
+            require('hlslens').setup(opts)
 
             local kopts = { noremap = true, silent = true }
 
