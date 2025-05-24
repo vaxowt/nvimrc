@@ -1,3 +1,8 @@
+local function map(keys, func, desc, mode)
+    mode = mode or 'n'
+    vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = 'Telescope: ' .. desc })
+end
+
 local function config_telescope()
     local telescope = require('telescope')
     local builtin = require('telescope.builtin')
@@ -63,11 +68,6 @@ local function config_telescope()
     require('telescope').load_extension('repo')
     require('telescope').load_extension('neoclip')
 
-    local function map(keys, func, desc, mode)
-        mode = mode or 'n'
-        vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = 'Telescope ' .. desc })
-    end
-
     map('<leader>fy', '<Cmd>Telescope neoclip<CR>', 'neoclip')
     map('<leader>fs', builtin.builtin, 'builtin')
     map('<leader>fG', builtin.grep_string, 'grep_string')
@@ -111,12 +111,7 @@ return {
 
             require('telescope').load_extension('projects')
 
-            vim.keymap.set(
-                'n',
-                '<leader>fp',
-                require('telescope').extensions.projects.projects,
-                { noremap = true, silent = true, desc = 'Telescope projects' }
-            )
+            map('<leader>fp', require('telescope').extensions.projects.projects, 'projects')
         end,
     },
 }

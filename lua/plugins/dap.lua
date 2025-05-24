@@ -1,54 +1,38 @@
+local map = function(keys, func, desc, mode)
+    mode = mode or 'n'
+    vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = 'dap: ' .. desc })
+end
+
 return {
     {
         'mfussenegger/nvim-dap',
         module = true,
         config = function()
             local dap = require('dap')
+            local widgets = require('dap.ui.widgets')
 
             vim.cmd([[autocmd FileType dap-float nnoremap <buffer><silent> q <cmd>close!<CR>]])
             vim.cmd([[autocmd FileType dap-float nnoremap <buffer><silent> <Esc> <cmd>close!<CR>]])
 
-            vim.keymap.set('n', '<F5>', function()
-                require('dap').continue()
-            end, { desc = '[dap] continue' })
-            vim.keymap.set('n', '<F10>', function()
-                require('dap').step_over()
-            end, { desc = '[dap] step_over' })
-            vim.keymap.set('n', '<F11>', function()
-                require('dap').step_into()
-            end, { desc = '[dap] step_into' })
-            vim.keymap.set('n', '<F12>', function()
-                require('dap').step_out()
-            end, { desc = '[dap] step_out' })
-            vim.keymap.set('n', '<Leader>b', function()
-                require('dap').toggle_breakpoint()
-            end, { desc = '[dap] toggle breakpoint' })
-            vim.keymap.set('n', '<Leader>B', function()
-                require('dap').set_breakpoint()
-            end, { desc = '[dap] set breakpoint' })
-            vim.keymap.set('n', '<Leader>lp', function()
-                require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
-            end, { desc = '[dap] set breakpoint with log' })
-            vim.keymap.set('n', '<Leader>dr', function()
-                require('dap').repl.open()
-            end, { desc = '[dap] open repl' })
-            vim.keymap.set('n', '<Leader>dl', function()
-                require('dap').run_last()
-            end, { desc = '[dap] run last' })
-            vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function()
-                require('dap.ui.widgets').hover()
-            end, { desc = '[dap] hover info' })
-            vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
-                require('dap.ui.widgets').preview()
-            end, { desc = '[dap] preview' })
-            vim.keymap.set('n', '<Leader>df', function()
-                local widgets = require('dap.ui.widgets')
+            map('<F5>', dap.continue, 'contiune')
+            map('<F10>', dap.step_over, 'step_over')
+            map('<F11>', dap.step_into, 'step_into')
+            map('<F12>', dap.step_out, 'step_out')
+            map('<Leader>b', dap.toggle_breakpoint, 'toggle breakpoint')
+            map('<Leader>B', dap.set_breakpoint, 'set breakpoint')
+            map('<Leader>lp', function()
+                dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+            end, 'set breakpoint with log')
+            map('<Leader>dr', dap.repl.open, 'open repl')
+            map('<Leader>dl', dap.run_last, 'run last')
+            map('<Leader>dh', widgets.hover, 'hover info', { 'n', 'v' })
+            map('<Leader>dp', widgets.preview, 'preview', { 'n', 'v' })
+            map('<Leader>df', function()
                 widgets.centered_float(widgets.frames)
-            end, { desc = '[dap] frames ui' })
-            vim.keymap.set('n', '<Leader>ds', function()
-                local widgets = require('dap.ui.widgets')
+            end, 'frames ui')
+            map('<Leader>ds', function()
                 widgets.centered_float(widgets.scopes)
-            end, { desc = '[dap] scopes ui' })
+            end, 'scopes ui')
 
             local function load_config(opts)
                 local config_file = vim.fn.getcwd() .. '/' .. 'dap-config.lua'
@@ -198,7 +182,7 @@ return {
                     pythonPath = 'python',
                     args = function()
                         local input = vim.fn.input('Arguments: ')
-                        for k, v in pairs(vim.split(input, ' ')) do
+                        for _, v in pairs(vim.split(input, ' ')) do
                             print(v)
                         end
                         return vim.split(input, ' ')
@@ -227,9 +211,7 @@ return {
                 dapui.close()
             end
 
-            vim.keymap.set('n', '<Leader>du', function()
-                require('dapui').toggle()
-            end, { desc = '[dap] toggle dapui' })
+            map('<leader>du', dapui.toggle, 'toggle dapui')
         end,
     },
 }

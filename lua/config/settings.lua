@@ -21,7 +21,7 @@ end
 vim.keymap.set(
     'n',
     '<leader>q',
-    '<Cmd>lua vim.diagnostic.setloclist()<CR>',
+    vim.diagnostic.setloclist,
     { noremap = true, silent = true, desc = 'Add diagnostics to the location list' }
 )
 
@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set('n', '<leader>cr', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
         -- vim.keymap.set('n', '<leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-        local map = function(keys, func, desc, mode)
+        local function map(keys, func, desc, mode)
             mode = mode or 'n'
             vim.keymap.set(
                 mode,
@@ -49,20 +49,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('gy', vim.lsp.buf.type_definition, 'Jumps to the definition of the type of the symbol under the cursor')
         map('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Add the folder at path to the workspace folders')
         map('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Remove the folder at path from the workspace folders')
-        map(
-            '<leader>wl',
-            '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-            'Print workspace folders'
-        )
-        map(
-            '<leader>cf',
-            '<Cmd>lua vim.lsp.buf.format({async = true})<CR>',
-            'Formats a buffer using the attached (and optionally filtered) language server clients'
-        )
+        map('<leader>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, 'Print workspace folders')
+        map('<leader>cf', function()
+            vim.lsp.buf.format({ async = true })
+        end, 'Formats a buffer using the attached (and optionally filtered) language server clients')
         map('<leader>cd', vim.diagnostic.open_float, 'Show diagnostics in a floating window')
         -- default mappings (:help [d) won't open float
-        map('[d', '<Cmd>lua vim.diagnostic.jump({count=-1, float=true})<CR>', 'Jump to the previous diagnostic')
-        map(']d', '<Cmd>lua vim.diagnostic.jump({count=1, float=true})<CR>', 'Jump to the next diagnostic')
+        map('[d', function()
+            vim.diagnostic.jump({ count = -1, float = true })
+        end, 'Jump to the previous diagnostic')
+        map(']d', function()
+            vim.diagnostic.jump({ count = 1, float = true })
+        end, 'Jump to the next diagnostic')
     end,
 })
 

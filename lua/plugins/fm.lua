@@ -98,18 +98,14 @@ return {
                 },
             })
 
-            vim.keymap.set(
-                'n',
-                '<leader>e',
-                require('lir.float').toggle,
-                { noremap = true, silent = true, desc = 'Open lir file manager' }
-            )
-            vim.keymap.set(
-                'n',
-                '-',
-                require('lir.float').toggle,
-                { noremap = true, silent = true, desc = 'Open lir file manager' }
-            )
+            for i, key in ipairs({ '<leader>e', '-' }) do
+                vim.keymap.set(
+                    'n',
+                    key,
+                    require('lir.float').toggle,
+                    { noremap = true, silent = true, desc = 'Open lir file manager' }
+                )
+            end
 
             local lir_highlights = vim.api.nvim_create_augroup('lir_highlights', { clear = true })
             vim.api.nvim_create_autocmd('ColorScheme', {

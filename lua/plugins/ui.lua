@@ -65,17 +65,28 @@ return {
     {
         'akinsho/bufferline.nvim',
         dependencies = 'kyazdani42/nvim-web-devicons',
-        config = function()
-            require('bufferline').setup({
-                options = {
-                    mode = 'tabs',
-                    show_close_icon = false,
-                    always_show_bufferline = false,
-                },
-            })
+        opts = {
+            options = {
+                mode = 'tabs',
+                show_close_icon = false,
+                always_show_bufferline = false,
+            },
+        },
+        config = function(_, opts)
+            require('bufferline').setup(opts)
 
-            vim.keymap.set('n', '<leader>gt', '<Cmd>BufferLinePick<CR>', { noremap = true, silent = true })
-            vim.keymap.set('n', '<leader>gT', '<Cmd>BufferLinePickClose<CR>', { noremap = true, silent = true })
+            vim.keymap.set(
+                'n',
+                '<leader>gt',
+                '<Cmd>BufferLinePick<CR>',
+                { noremap = true, silent = true, desc = 'Pick a buffer by typing the character' }
+            )
+            vim.keymap.set(
+                'n',
+                '<leader>gT',
+                '<Cmd>BufferLinePickClose<CR>',
+                { noremap = true, silent = true, desc = 'Close a buffer by typing the character' }
+            )
         end,
     },
 
@@ -218,9 +229,8 @@ return {
     -- Hlsearch Lens for Neovim
     {
         'kevinhwang91/nvim-hlslens',
-        opts = {},
-        config = function(_, opts)
-            require('hlslens').setup(opts)
+        config = function()
+            require('hlslens').setup()
 
             local kopts = { noremap = true, silent = true }
 
