@@ -3,7 +3,9 @@ return {
     -- Easily install and manage LSP servers, DAP servers, linters, and
     -- formatters.
     {
-        'williamboman/mason.nvim',
+        'mason-org/mason.nvim',
+        cmd = 'Mason',
+        keys = { { '<leader>M', '<cmd>Mason<cr>', desc = 'Mason' } },
         opts = {
             ui = {
                 icons = {
@@ -14,21 +16,36 @@ return {
             },
         },
     },
+
     {
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason-lspconfig.nvim',
+        dependencies = {
+            'mason-org/mason.nvim',
+            'neovim/nvim-lspconfig',
+        },
         opts = {
             automatic_installation = true,
         },
     },
+
     {
         'jay-babu/mason-null-ls.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = {
+            'mason-org/mason.nvim',
+            'nvimtools/none-ls.nvim',
+        },
         opts = {
             automatic_installation = true,
         },
     },
+
     {
         'jay-babu/mason-nvim-dap.nvim',
+        dependencies = {
+            'mason-org/mason.nvim',
+            'mfussenegger/nvim-dap',
+        },
         opts = {
             automatic_installation = true,
         },

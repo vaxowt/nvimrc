@@ -3,6 +3,8 @@ return {
     -- A completion plugin for neovim coded in Lua
     {
         'hrsh7th/nvim-cmp',
+        -- BUG: cmdline not work
+        -- event = 'InsertEnter',
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lsp-signature-help' },
@@ -170,11 +172,13 @@ return {
     {
         'Exafunction/windsurf.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
+        cmd = 'Codeium',
+        event = 'InsertEnter',
         main = 'codeium',
         opts = {
             virtual_text = {
                 enable = true,
-            }
+            },
         },
     },
 }
