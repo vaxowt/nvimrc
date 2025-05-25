@@ -43,13 +43,12 @@ return {
     },
 
     {
-        'simrat39/symbols-outline.nvim',
-        cmd = 'SymbolsOutline',
-        keys = { { '<leader>]', '<Cmd>SymbolsOutline<CR>', desc = 'SymbolsOutline' } },
-        opts = {
-            -- auto_preview = false,
-            -- show_symbol_details = true,
+        'hedyhli/outline.nvim',
+        cmd = { 'Outline', 'OutlineOpen' },
+        keys = {
+            { '<leader>]', '<cmd>Outline<CR>', desc = 'Toggle outline' },
         },
+        opts = {},
     },
 
     {
