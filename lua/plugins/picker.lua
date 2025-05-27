@@ -66,9 +66,10 @@ local function config_telescope()
 
     require('telescope').load_extension('fzf')
     require('telescope').load_extension('repo')
-    require('telescope').load_extension('neoclip')
+    require('telescope').load_extension('jsonfly')
+    require('telescope').load_extension('helpgrep')
+    require('telescope').load_extension('hierarchy')
 
-    map('<leader>fy', '<Cmd>Telescope neoclip<CR>', 'neoclip')
     map('<leader>fs', builtin.builtin, 'builtin')
     map('<leader>fG', builtin.grep_string, 'grep_string')
     map('<leader>fg', builtin.live_grep, 'live_grep')
@@ -92,12 +93,34 @@ return {
             { 'nvim-lua/plenary.nvim' },
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
             { 'nvim-telescope/telescope-symbols.nvim' },
+            -- Jump into the repositories (git, mercurial…) of your filesystem with telescope.nvim, without any setup
             { 'cljoly/telescope-repo.nvim' },
-            { 'AckslD/nvim-neoclip.lua', config = true },
+            -- Fly through your JSON / XML / YAML files with ease. Search blazingly fast for keys via Telescope.
+            { 'Myzel394/jsonfly.nvim' },
+            -- Telescope extension that uses Telescope builtins (live_grep or grep_string) to grep through help files
+            { 'catgoose/telescope-helpgrep.nvim' },
+            -- A Telescope.nvim extension for viewing & navigating the call hierarchy
+            { 'jmacadie/telescope-hierarchy.nvim' },
         },
         config = config_telescope,
     },
 
+    -- Clipboard manager neovim plugin with telescope integration
+    {
+        'AckslD/nvim-neoclip.lua',
+        dependencies = 'nvim-telescope/telescope.nvim',
+        lazy = false,
+        opts = {},
+        config = function(_, opts)
+            require('neoclip').setup(opts)
+            require('telescope').load_extension('neoclip')
+        end,
+        keys = {
+            { '<leader>fy', '<Cmd>Telescope neoclip<CR>', desc = 'neoclip' },
+        },
+    },
+
+    -- The superior project management solution for neovim.
     {
         'ahmedkhalf/project.nvim',
         dependencies = 'nvim-telescope/telescope.nvim',
