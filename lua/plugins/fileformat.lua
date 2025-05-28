@@ -42,9 +42,10 @@ return {
             -- enabled = false,
         },
         cmd = 'RenderMarkdown',
+        ft = { 'codecompanion' },
     },
 
-    { 'chrisbra/csv.vim', ft = 'csv' },
+    { 'chrisbra/csv.vim',           ft = 'csv' },
 
     { 'mtdl9/vim-log-highlighting', ft = 'log' },
 }
