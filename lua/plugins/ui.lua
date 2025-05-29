@@ -174,7 +174,7 @@ return {
     {
         'm4xshen/smartcolumn.nvim',
         opts = {
-            disabled_filetypes = { 'lazy', 'mason' },
+            disabled_filetypes = { 'lazy', 'mason', 'null-ls-info' },
         },
     },
 
