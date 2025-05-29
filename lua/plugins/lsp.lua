@@ -86,10 +86,15 @@ return {
                     -- lua
                     formatting.stylua,
                     -- python
-                    formatting.yapf,
                     formatting.isort,
+                    formatting.yapf,
                     -- shell
                     hover.printenv,
+                    formatting.shfmt,
+                    -- C/C++
+                    formatting.clang_format,
+                    -- web
+                    formatting.prettierd,
                 },
             })
         end,
