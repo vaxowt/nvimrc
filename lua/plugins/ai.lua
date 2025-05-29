@@ -5,7 +5,7 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-treesitter/nvim-treesitter',
-            { 'zbirenbaum/copilot.lua', opts = {} },
+            { 'zbirenbaum/copilot.lua', opts = {}, cmd = 'Copilot' },
         },
         keys = {
             { '<leader>aa', '<CMD>CodeCompanion<CR>',     mode = { 'n', 'v' }, desc = 'Code Companion' },
