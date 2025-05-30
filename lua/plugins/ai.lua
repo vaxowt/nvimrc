@@ -8,7 +8,7 @@ return {
             { 'zbirenbaum/copilot.lua', opts = {}, cmd = 'Copilot' },
         },
         keys = {
-            { '<leader>aa', '<CMD>CodeCompanion<CR>',     mode = { 'n', 'v' }, desc = 'Code Companion' },
+            { '<leader>aa', '<CMD>CodeCompanion<CR>', mode = { 'n', 'v' }, desc = 'Code Companion' },
             {
                 '<leader>ae',
                 '<CMD>CodeCompanion /explain<CR>',

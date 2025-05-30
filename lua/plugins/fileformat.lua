@@ -3,7 +3,7 @@ return {
     -- A modern vim plugin for editing LaTeX files.
     {
         'lervag/vimtex',
-        config = function()
+        init = function()
             vim.g.vimtex_view_general_viewer = 'okular'
             vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
         end,
@@ -49,3 +49,4 @@ return {
 
     { 'mtdl9/vim-log-highlighting', ft = 'log' },
 }
+

@@ -1,6 +1,7 @@
 return {
     {
         'windwp/nvim-autopairs',
+        event = 'InsertEnter',
         opts = {},
     },
 
@@ -16,7 +17,7 @@ return {
         'sbdchd/neoformat',
         cmd = 'Neoformat',
         keys = { { '<leader>F', '<Cmd>Neoformat<CR>', desc = 'Neoformat' } },
-        config = function()
+        init = function()
             vim.g.neoformat_basic_format_align = 1
             vim.g.neoformat_basic_format_trim = 1
             vim.g.neoformat_basic_format_retab = 1

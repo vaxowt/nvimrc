@@ -21,31 +21,32 @@ return {
                 migrate = 'Smigrate',
             },
         },
+        cmd = { 'Ssave', 'Sload', 'Sdelete', 'Sshow', 'Slist', 'Smigrate' },
         config = function(_, opts)
             require('possession').setup(opts)
 
             require('telescope').load_extension('possession')
-            vim.keymap.set(
-                'n',
-                '<leader>fP',
-                require('telescope').extensions.possession.list,
-                { desc = 'Telescope sessions' }
-            )
         end,
+        keys = {
+            { '<leader>fP', '<CMD>Telescope possession<CR>', desc = 'Telescope: sessions' },
+        },
     },
 
     {
         'tyru/open-browser.vim',
-        config = function()
+        init = function()
             vim.g.netrw_nogx = 1
-            vim.keymap.set({ 'n', 'v' }, 'gx', '<Plug>(openbrowser-smart-search)', { desc = 'Open link in browser' })
         end,
+        keys = {
+            { 'gx', '<Plug>(openbrowser-smart-search)', mode = { 'n', 'v' }, desc = 'Open link in browser' },
+        },
     },
 
     -- Post selections or buffers to online paste bins. Save the URL to a
     -- register, or dont.
     {
         'rktjmp/paperplanes.nvim',
+        cmd = 'PP',
         opts = {
             register = '+',
             provider = '0x0.st',
@@ -57,14 +58,16 @@ return {
     -- Asynchronous translating plugin for Vim/Neovim
     {
         'voldikss/vim-translator',
-        config = function()
+        init = function()
             vim.g.translator_history_enable = true
             vim.g.translator_default_engines = { 'haici', 'youdao' }
-
-            vim.keymap.set('n', '<leader>t', '<Plug>TranslateW', { desc = 'Translate the word under the cursor' })
-
-            vim.keymap.set('v', '<leader>t', '<Plug>TranslateWV', { desc = 'Translate the selection' })
-
+        end,
+        cmd = { 'Translate', 'TranslateW', 'TranslateR', 'TranslateH', 'TranslateL' },
+        keys = {
+            { '<leader>t', '<Plug>TranslateW', mode = 'n', desc = 'Translate the word under the cursor' },
+            { '<leader>t', '<Plug>TranslateWV', mode = 'v', desc = 'Translate the selection' },
+        },
+        config = function()
             local grp_translator_colors = vim.api.nvim_create_augroup('grp_translator_colors', { clear = true })
             vim.api.nvim_create_autocmd('ColorScheme', {
                 pattern = '*',

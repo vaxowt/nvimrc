@@ -71,22 +71,19 @@ return {
                 always_show_bufferline = false,
             },
         },
-        config = function(_, opts)
-            require('bufferline').setup(opts)
-
-            vim.keymap.set(
-                'n',
+        event = 'BufWinEnter',
+        keys = {
+            {
                 '<leader>gt',
                 '<Cmd>BufferLinePick<CR>',
-                { noremap = true, silent = true, desc = 'Pick a buffer by typing the character' }
-            )
-            vim.keymap.set(
-                'n',
+                desc = 'Pick a buffer by typing the character',
+            },
+            {
                 '<leader>gT',
                 '<Cmd>BufferLinePickClose<CR>',
-                { noremap = true, silent = true, desc = 'Close a buffer by typing the character' }
-            )
-        end,
+                desc = 'Close a buffer by typing the character',
+            },
+        },
     },
 
     {
@@ -143,7 +140,7 @@ return {
     {
         'sindrets/diffview.nvim',
         dependencies = 'nvim-lua/plenary.nvim',
-        config = true,
+        opts = {},
         cmd = { 'DiffviewOpen' },
     },
 

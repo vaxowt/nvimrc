@@ -17,17 +17,18 @@ return {
                 -- end,
             },
             incremental_selection = {
-                enable = false,
+                enable = true,
                 keymaps = {
-                    init_selection = 'gnn',
-                    node_incremental = 'grn',
-                    scope_incremental = 'grc',
-                    node_decremental = 'grm',
+                    init_selection = '<leader>si',
+                    node_incremental = '<leader>sn',
+                    scope_incremental = '<leader>ss',
+                    node_decremental = '<leader>sd',
                 },
             },
             textobjects = {
                 select = {
                     enable = true,
+                    lookahead = true,
                     keymaps = {
                         ['af'] = '@function.outer',
                         ['if'] = '@function.inner',
@@ -35,15 +36,15 @@ return {
                         ['ic'] = '@class.inner',
                         ['a,'] = '@parameter.outer',
                         ['i,'] = '@parameter.inner',
+                        ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'Select language scope' },
                     },
                 },
             },
         },
-        config = function(_, opts)
-            require('nvim-treesitter.configs').setup(opts)
-
+        main = 'nvim-treesitter.configs',
+        init = function()
             vim.o.foldmethod = 'expr'
-            vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+            vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
             -- open folds by default
             vim.o.foldlevel = 99
             -- vim.o.fillchars = 'fold: '

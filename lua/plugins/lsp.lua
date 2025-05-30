@@ -4,6 +4,7 @@ return {
     -- formatters.
     {
         'mason-org/mason.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
         cmd = 'Mason',
         keys = { { '<leader>M', '<cmd>Mason<cr>', desc = 'Mason' } },
         opts = {
@@ -19,9 +20,9 @@ return {
 
     {
         'mason-org/mason-lspconfig.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'mason-org/mason.nvim',
-            'neovim/nvim-lspconfig',
         },
         opts = {
             automatic_installation = true,
@@ -33,7 +34,6 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'mason-org/mason.nvim',
-            'nvimtools/none-ls.nvim',
         },
         opts = {
             automatic_installation = true,
@@ -42,9 +42,9 @@ return {
 
     {
         'jay-babu/mason-nvim-dap.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'mason-org/mason.nvim',
-            'mfussenegger/nvim-dap',
         },
         opts = {
             automatic_installation = true,
@@ -54,7 +54,6 @@ return {
     -- Quickstart configurations for the Nvim LSP client
     {
         'neovim/nvim-lspconfig',
-        dependencies = { 'mason-lspconfig.nvim' },
     },
 
     -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP
@@ -102,6 +101,7 @@ return {
 
     {
         'dcampos/nvim-snippy',
+        event = 'InsertEnter',
         opts = {
             mappings = {
                 is = {

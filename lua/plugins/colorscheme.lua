@@ -27,14 +27,14 @@ return {
         lazy = true,
     },
 
-    { 'ful1e5/onedark.nvim' },
+    { 'ful1e5/onedark.nvim', lazy = true },
 
     -- Gruvbox with Material Palette
     {
         'sainnhe/gruvbox-material',
         lazy = true,
         -- load config first
-        config = function()
+        init = function()
             vim.g.gruvbox_material_sign_column_background = 'none'
             vim.g.gruvbox_material_better_performance = 1
         end,
@@ -43,18 +43,16 @@ return {
     -- Comfortable & Pleasant Color Scheme for Vim
     {
         'sainnhe/everforest',
-        lazy = false,
-        config = function ()
+        init = function()
             vim.g.everforest_sign_column_background = 'none'
             vim.g.everforest_better_performance = 1
             vim.g.everforest_enable_italic = 1
-        end
+        end,
     },
 
     -- {
     --     'neanias/everforest-nvim',
     --     version = false,
-    --     lazy = false,
     --     priority = 1000, -- make sure to load this before all the other start plugins
     --     main = 'everforest',
     --     -- Optional; default configuration will be used if setup isn't called.
@@ -65,8 +63,7 @@ return {
 
     {
         'sainnhe/edge',
-        lazy = false,
-        config = function()
+        init = function()
             vim.g.edge_sign_column_background = 'none'
             vim.g.edge_better_performance = 1
         end,
@@ -75,6 +72,5 @@ return {
     -- An arctic, north-bluish clean and elegant Vim theme
     {
         'shaunsingh/nord.nvim',
-        lazy = false,
     },
 }
