@@ -1,5 +1,5 @@
 return {
-    'luukvbaal/stabilize.nvim',
+
     { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
     {

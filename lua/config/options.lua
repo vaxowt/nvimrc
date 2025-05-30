@@ -55,6 +55,8 @@ vim.opt.shortmess:append({ S = true })
 vim.o.breakindent = true
 -- persistent undo history
 vim.o.undofile = true
+-- stablize window view when open/close/resize horizontal splits
+vim.o.splitkeep = 'screen'
 
 -- Python 3 executable path (faster startup)
 vim.g.python3_host_prog = 'python'
