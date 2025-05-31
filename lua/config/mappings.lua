@@ -25,5 +25,32 @@ vim.api.nvim_create_autocmd('OptionSet', {
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- move inside wrapped line
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ 'n', 'v' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
+vim.keymap.set({ 'n', 'v' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
+
+-- terminal keymaps
+local function set_terminal_keymaps()
+    local function opts(desc)
+        return { buffer = 0, desc = desc }
+    end
+    vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts('Move to the left window'))
+    vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts('Move to the below window'))
+    vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts('Move to the up window'))
+    vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts('Move to the right window'))
+    vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts('Send <C-w> like in normal mode'))
+
+    local exclude_filetypes = {
+        yazi = false,
+    }
+
+    local filetype = vim.api.nvim_get_option_value('filetype', { buf = 0 })
+    if exclude_filetypes[filetype] == nil then
+        vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts('Switch to normal mode'))
+        vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts('Switch to normal mode'))
+    end
+end
+
+vim.api.nvim_create_autocmd('TermOpen', {
+    pattern = 'term://*',
+    callback = set_terminal_keymaps,
+})
