@@ -98,14 +98,16 @@ return {
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
+
                     -- close cmp menu with <esc>
-                    ['<Esc>'] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.abort()
-                        else
-                            fallback()
-                        end
-                    end, { 'i', 's' }),
+                    -- NOTE: not very convenient
+                    -- ['<Esc>'] = cmp.mapping(function(fallback)
+                    --     if cmp.visible() then
+                    --         cmp.abort()
+                    --     else
+                    --         fallback()
+                    --     end
+                    -- end, { 'i', 's' }),
 
                     ['<Tab>'] = cmp.mapping(function(fallback)
                         if cmp.visible() then
