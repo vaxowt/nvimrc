@@ -217,7 +217,7 @@ return {
             -- use lir.nvim instead
             open_for_directories = false,
             keymaps = {
-                show_help = '?',
+                show_help = 'g?',
             },
         },
     },
