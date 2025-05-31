@@ -98,19 +98,4 @@ return {
             })
         end,
     },
-
-    {
-        'dcampos/nvim-snippy',
-        event = 'InsertEnter',
-        opts = {
-            mappings = {
-                is = {
-                    ['<C-j>'] = 'expand_or_advance',
-                    ['<C-k>'] = 'previous',
-                },
-            },
-        },
-    },
-
-    { 'honza/vim-snippets' },
 }

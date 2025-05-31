@@ -1,10 +1,30 @@
+local has_words_before = function()
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+end
+
 return {
+
+    {
+        'dcampos/nvim-snippy',
+        event = 'InsertEnter',
+        opts = {
+            mappings = {
+                is = {
+                    ['<C-j>'] = 'expand_or_advance',
+                    ['<C-k>'] = 'previous',
+                },
+            },
+        },
+    },
+
+    { 'honza/vim-snippets' },
 
     -- A completion plugin for neovim coded in Lua
     {
         'hrsh7th/nvim-cmp',
-        -- BUG: cmdline not work
-        -- event = 'InsertEnter',
+        event = { 'InsertEnter', 'CmdlineEnter' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lsp-signature-help' },
@@ -78,8 +98,46 @@ return {
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
-                    ['<Tab>'] = cmp.mapping.select_next_item(),
-                    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+                    -- close cmp menu with <esc>
+                    ['<Esc>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.abort()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }),
+
+                    ['<Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            if #cmp.get_entries() == 1 then
+                                -- Confirm candidate on TAB immediately when there's only one completion entry
+                                cmp.confirm({ select = true })
+                            else
+                                cmp.select_next_item()
+                            end
+                        elseif require('snippy').can_expand_or_advance() then
+                            require('snippy').expand_or_advance()
+                        elseif has_words_before() then
+                            cmp.complete()
+                            if #cmp.get_entries() == 1 then
+                                -- Confirm candidate on TAB immediately when there's only one completion entry
+                                cmp.confirm({ select = true })
+                            end
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }),
+
+                    ['<S-Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif require('snippy').can_jump(-1) then
+                            require('snippy').previous()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }),
+
                     -- safely select entries with <CR>
                     ['<CR>'] = cmp.mapping({
                         i = function(fallback)
