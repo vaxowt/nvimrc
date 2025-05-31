@@ -86,6 +86,41 @@ return {
         },
     },
 
+    -- BUG: not compatible with codecompanion
+    -- -- Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
+    -- {
+    --     'folke/noice.nvim',
+    --     event = 'VeryLazy',
+    --     opts = {
+    --         -- add any options here
+    --     },
+    --     dependencies = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         'MunifTanjim/nui.nvim',
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         'rcarriga/nvim-notify',
+    --     },
+    -- },
+
+    {
+        {
+            'Bekaboo/dropbar.nvim',
+            -- optional, but required for fuzzy finder support
+            dependencies = {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make',
+            },
+            config = function()
+                local dropbar_api = require('dropbar.api')
+                vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
+                vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
+                vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
+            end,
+        },
+    },
+
     {
         'lewis6991/gitsigns.nvim',
         opts = {
