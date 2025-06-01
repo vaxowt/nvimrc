@@ -15,6 +15,12 @@ return {
                 mode = { 'n', 'v' },
                 desc = 'Code Companion /explain',
             },
+            {
+                '<leader>am',
+                '<CMD>CodeCompanion /commit<CR>',
+                mode = { 'n', 'v' },
+                desc = 'Code Companion /commit',
+            },
             { '<leader>ac', '<CMD>CodeCompanionChat<CR>', mode = { 'n', 'v' }, desc = 'Code Companion Chat' },
             {
                 '<leader>ai',
