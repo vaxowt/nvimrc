@@ -6,6 +6,7 @@
 * make, gcc: required by nvim-telescope/telescope-fzf-native.nvim
 * [deno](https://deno.com/): required by toppair/peek.nvim
 * [ripgrep](https://github.com/BurntSushi/ripgrep): required nvim-telescope/telescope.nvim
+* [yazi](https://github.com/sxyazi/yazi): required by mikavilpas/yazi.nvim
 
 ## Installation
 

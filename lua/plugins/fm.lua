@@ -98,14 +98,12 @@ return {
                 },
             })
 
-            for i, key in ipairs({ '<leader>e', '-' }) do
-                vim.keymap.set(
-                    'n',
-                    key,
-                    require('lir.float').toggle,
-                    { noremap = true, silent = true, desc = 'Open lir file manager' }
-                )
-            end
+            vim.keymap.set(
+                'n',
+                '-',
+                require('lir.float').toggle,
+                { noremap = true, silent = true, desc = 'Open lir file manager' }
+            )
 
             local lir_highlights = vim.api.nvim_create_augroup('lir_highlights', { clear = true })
             vim.api.nvim_create_autocmd('ColorScheme', {
@@ -192,10 +190,11 @@ return {
             -- check the installation instructions at
             -- https://github.com/folke/snacks.nvim
             'folke/snacks.nvim',
+            { 'MagicDuck/grug-far.nvim', opts = {} },
         },
         keys = {
             {
-                '<leader>-',
+                '<leader>e',
                 '<cmd>Yazi<cr>',
                 mode = { 'n', 'v' },
                 desc = 'Open yazi at the current file',
@@ -207,18 +206,35 @@ return {
                 desc = "Open the file manager in nvim's working directory",
             },
             {
-                '<c-up>',
+                '<leader>E',
                 '<cmd>Yazi toggle<cr>',
                 desc = 'Resume the last yazi session',
             },
         },
-        ---@type YaziConfig | {}
         opts = {
             -- use lir.nvim instead
             open_for_directories = false,
             keymaps = {
                 show_help = 'g?',
+                cycle_open_buffers = 'b',
+                grep_in_directory = 'G',
             },
+            floating_window_scaling_factor = 0.8,
+            -- highlight_groups = {
+            --     -- See https://github.com/mikavilpas/yazi.nvim/pull/180
+            --     hovered_buffer = nil,
+            --     -- See https://github.com/mikavilpas/yazi.nvim/pull/351
+            --     hovered_buffer_in_same_directory = nil,
+            -- },
+            -- highlight buffers in the same directory as the hovered buffer
+            highlight_hovered_buffers_in_same_directory = false,
         },
+        init = function()
+            local yazi_highlights = vim.api.nvim_create_augroup('yazi_highlights', { clear = true })
+            vim.api.nvim_create_autocmd('ColorScheme', {
+                command = [[highlight! def link YaziFloatBorder TelescopeBorder]],
+                group = yazi_highlights,
+            })
+        end,
     },
 }
