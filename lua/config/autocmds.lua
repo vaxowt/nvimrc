@@ -18,22 +18,15 @@ api.nvim_create_autocmd(
     { pattern = '*', command = 'set nocursorline', group = grp_cursorline }
 )
 
--- override highlights
--- ref: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
--- local function override_hls()
---     vim.cmd([[
---     highlight! link FloatBorder Normal
---     ]])
--- end
-
--- local grp_my_colors = api.nvim_create_augroup("grp_my_colors", { clear = true })
+-- -- override highlights
+-- -- ref: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
+-- local floatborder_highlights = api.nvim_create_augroup("floatborder_highlights", { clear = true })
 -- api.nvim_create_autocmd("ColorScheme", {
---     pattern = '*',
---     callback = override_hls,
---     group = grp_my_colors,
+--     command = [[highlight! def link FloatBorder TelescopeBorder]],
+--     group = floatborder_highlights,
 -- })
 
--- auto-source config
+-- -- auto-source config
 -- local grp_auto_source = api.nvim_create_augroup("grp_auto_source", {clear=true})
 -- api.nvim_create_autocmd("BufWritePost", {
 --     pattern = vim.env.MYVIMRC,
