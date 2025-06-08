@@ -9,6 +9,28 @@ local function config_telescope()
     local actions = require('telescope.actions')
     local action_layout = require('telescope.actions.layout')
 
+    require('telescope.pickers.layout_strategies').flex_merged = function(picker, max_columns, max_lines, layout_config)
+        local layout =
+            require('telescope.pickers.layout_strategies').flex(picker, max_columns, max_lines, layout_config)
+
+        -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        -- { '─', '│', '─', '│', '┌', '┐', '┘', '└' }
+        -- layout.prompt.title = ''
+        layout.prompt.borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' }
+
+        layout.results.title = ''
+        layout.results.borderchars = { '─', '│', '─', '│', '├', '┤', '╯', '╰' }
+        layout.results.line = layout.results.line - 1
+        layout.results.height = layout.results.height + 1
+
+        if layout.preview then
+            layout.preview.title = ''
+            layout.preview.borderchars = layout.prompt.borderchars
+        end
+
+        return layout
+    end
+
     telescope.setup({
         pickers = {
             find_files = {
@@ -54,7 +76,7 @@ local function config_telescope()
             },
             sorting_strategy = 'ascending',
             scroll_strategy = 'cycle',
-            layout_strategy = 'flex',
+            layout_strategy = 'flex_merged',
             results_title = false,
             dynamic_preview_title = true,
             color_devicons = true,
