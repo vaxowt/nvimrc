@@ -3,7 +3,7 @@ priority 100
 snippet impnp "import numpy as np"
 	import numpy as np
 
-snippet implt "import matplotlib.pyplot as plt"
+snippet impplt "import matplotlib.pyplot as plt"
 	import matplotlib.pyplot as plt
 
 snippet fig "matplotlib figure"
@@ -15,10 +15,9 @@ snippet fig "matplotlib figure"
 	plt.tight_layout()
 
 snippet subplots "matplotlib subplots"
-	fig, axes = plt.subplots($1, $2)
+	fig, axes = plt.subplots($1, $2, layout='tight')
 	plt.plot($3)
 	plt.xlabel('$4')
 	plt.ylabel('$5')
 	plt.grid(ls='--')
-	plt.tight_layout()
 
