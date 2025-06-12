@@ -68,6 +68,19 @@ vim.o.fileencodings = 'ucs-bom,utf-8,gbk,big5,gb18030,utf-16,latin1'
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+if vim.fn.has('win32') == 1 then
+    if vim.fn.executable('pwsh') == 1 then
+        vim.o.shell = 'pwsh'
+    else
+        vim.o.shell = 'powershell'
+    end
+    vim.o.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';$PSStyle.OutputRendering='plaintext';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
+    vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+	vim.o.shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+    vim.o.shellquote = ''
+    vim.o.shellxquote = ''
+end
+
 local hour = tonumber(os.date('%H'))
 if hour >= 7 and hour < 20 then
     vim.o.background = 'light'
