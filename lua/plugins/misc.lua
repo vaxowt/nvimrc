@@ -88,4 +88,17 @@ return {
             notifier = { enabled = true },
         },
     },
+
+    {
+        'propet/toggle-fullscreen.nvim',
+        keys = {
+            {
+                '<leader>wm',
+                function()
+                    require('toggle-fullscreen'):toggle_fullscreen()
+                end,
+                desc = 'toggle-fullscreen',
+            },
+        },
+    },
 }
