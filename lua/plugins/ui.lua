@@ -215,6 +215,17 @@ return {
         opts = {
             open_mapping = [[<M-z>]],
             hide_numbers = true,
+            -- direction = 'float',
+            float_opts = {
+                border = 'curved',
+            },
+            winbar = {
+                enabled = true,
+                --  term: toggle.terminal.Terminal
+                name_formatter = function(term)
+                    return string.format('[%d]', term.id)
+                end,
+            },
         },
     },
 
