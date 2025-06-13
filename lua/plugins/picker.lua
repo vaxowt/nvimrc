@@ -65,4 +65,20 @@ return {
             -- stylua: ignore stop
         },
     },
+
+    -- Clipboard manager neovim plugin with telescope integration
+    -- TODO: migrate to snacks.nvim
+    {
+        'AckslD/nvim-neoclip.lua',
+        dependencies = 'nvim-telescope/telescope.nvim',
+        lazy = false,
+        opts = {},
+        config = function(_, opts)
+            require('neoclip').setup(opts)
+            require('telescope').load_extension('neoclip')
+        end,
+        keys = {
+            { '<leader>sy', '<Cmd>Telescope neoclip<CR>', desc = 'neoclip' },
+        },
+    },
 }
