@@ -120,14 +120,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         -- stylua: ignore start
-        map('gD', vim.lsp.buf.declaration, 'Jumps to the declaration')
-        map('gd', vim.lsp.buf.definition, 'Jumps to the definition')
-        map('gy', vim.lsp.buf.type_definition, 'Jumps to the definition of the type')
-        map('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Add the folder at path to the workspace folders')
-        map('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Remove the folder at path from the workspace folders')
-        map('<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Print workspace folders')
-        map('<leader>cf', function() lsp_formatting(bufnr) end, 'Formats buffer', { 'n', 'v' })
-        map('<leader>cd', vim.diagnostic.open_float, 'Show diagnostics in a floating window')
+        -- map('gD', vim.lsp.buf.declaration, 'Jumps to the declaration')
+        -- map('gd', vim.lsp.buf.definition, 'Jumps to the definition')
+        -- map('gy', vim.lsp.buf.type_definition, 'Jumps to the definition of the type')
+        map('<leader>la', vim.lsp.buf.add_workspace_folder, 'Add the folder at path to the workspace folders')
+        map('<leader>lr', vim.lsp.buf.remove_workspace_folder, 'Remove the folder at path from the workspace folders')
+        map('<leader>lw', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Print workspace folders')
+        map('<leader>lf', function() lsp_formatting(bufnr) end, 'Formats buffer', { 'n', 'v' })
+        map('<leader>ld', vim.diagnostic.open_float, 'Show diagnostics in a floating window')
         -- default mappings (:help [d) won't open float
         map('[d', function() vim.diagnostic.jump({ count = -1, float = true }) end, 'Jump to the previous diagnostic')
         map(']d', function() vim.diagnostic.jump({ count = 1, float = true }) end, 'Jump to the next diagnostic')

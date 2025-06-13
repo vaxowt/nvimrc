@@ -3,32 +3,43 @@ return {
     { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
     {
-        'jedrzejboczar/possession.nvim',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim',
-        },
-        opts = {
-            autosave = {
-                current = true,
-            },
-            commands = {
-                save = 'Ssave',
-                load = 'Sload',
-                delete = 'Sdelete',
-                show = 'Sshow',
-                list = 'Slist',
-                migrate = 'Smigrate',
-            },
-        },
-        cmd = { 'Ssave', 'Sload', 'Sdelete', 'Sshow', 'Slist', 'Smigrate' },
-        config = function(_, opts)
-            require('possession').setup(opts)
+        'stevearc/resession.nvim',
+        config = function()
+            local resession = require('resession')
+            resession.setup({})
 
-            require('telescope').load_extension('possession')
+            -- Automatically save sessions on by working directory on exit
+            vim.api.nvim_create_autocmd('VimLeavePre', {
+                callback = function()
+                    resession.save(vim.fn.getcwd(), { notify = true })
+                end,
+            })
+
+            -- -- Automatically load sessions on startup by working directory
+            -- vim.api.nvim_create_autocmd('VimEnter', {
+            --     callback = function()
+            --         -- Only load the session if nvim was started with no args
+            --         if vim.fn.argc(-1) == 0 then
+            --             resession.load(vim.fn.getcwd(), { silence_errors = true })
+            --         end
+            --     end,
+            --     nested = true,
+            -- })
         end,
+    },
+
+    {
+        'scottmckendry/pick-resession.nvim',
+        dependencies = { 'folke/snacks.nvim' },
         keys = {
-            { '<leader>fP', '<CMD>Telescope possession<CR>', desc = 'Telescope: sessions' },
+            {
+                '<leader>sr',
+                function()
+                    require('pick-resession').pick()
+                end,
+                mode = { 'n', 'v' },
+                desc = 'Pick a resession to load',
+            },
         },
     },
 

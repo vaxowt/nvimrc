@@ -1,162 +1,68 @@
-local function map(keys, func, desc, mode)
-    mode = mode or 'n'
-    vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = 'Telescope: ' .. desc })
-end
-
-local function config_telescope()
-    local telescope = require('telescope')
-    local builtin = require('telescope.builtin')
-    local actions = require('telescope.actions')
-    local action_layout = require('telescope.actions.layout')
-
-    require('telescope.pickers.layout_strategies').flex_merged = function(picker, max_columns, max_lines, layout_config)
-        local layout =
-            require('telescope.pickers.layout_strategies').flex(picker, max_columns, max_lines, layout_config)
-
-        -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-        -- { '─', '│', '─', '│', '┌', '┐', '┘', '└' }
-        -- layout.prompt.title = ''
-        layout.prompt.borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' }
-
-        layout.results.title = ''
-        layout.results.borderchars = { '─', '│', '─', '│', '├', '┤', '╯', '╰' }
-        layout.results.line = layout.results.line - 1
-        layout.results.height = layout.results.height + 1
-
-        if layout.preview then
-            layout.preview.title = ''
-            layout.preview.borderchars = layout.prompt.borderchars
-        end
-
-        return layout
-    end
-
-    telescope.setup({
-        pickers = {
-            find_files = {
-                hidden = true,
-            },
-            buffers = {
-                ignore_current_buffer = true,
-                sort_mru = true,
-            },
-            builtin = {
-                include_extensions = true,
-            },
-        },
-        extensions = {
-            fzf = {},
-        },
-        defaults = {
-            file_ignore_patterns = { 'node_modules', '%.git', '__pycache__' },
-            -- used for grep_string and live_grep
-            vimgrep_arguments = {
-                'rg',
-                '--follow',
-                '--color=never',
-                '--no-heading',
-                '--with-filename',
-                '--line-number',
-                '--column',
-                '--smart-case',
-                '--no-ignore',
-                '--trim',
-            },
-            mappings = {
-                i = {
-                    ['<esc>'] = actions.close,
-                    ['<C-j>'] = actions.move_selection_next,
-                    ['<C-k>'] = actions.move_selection_previous,
-                    ['<PageUp>'] = actions.results_scrolling_up,
-                    ['<PageDown>'] = actions.results_scrolling_down,
-                    ['<C-\\>'] = action_layout.toggle_preview,
-                    ['<C-n>'] = actions.cycle_history_next,
-                    ['<C-p>'] = actions.cycle_history_prev,
-                },
-            },
-            sorting_strategy = 'ascending',
-            scroll_strategy = 'cycle',
-            layout_strategy = 'flex_merged',
-            results_title = false,
-            dynamic_preview_title = true,
-            color_devicons = true,
-            layout_config = {
-                prompt_position = 'top',
-            },
-        },
-    })
-
-    require('telescope').load_extension('fzf')
-    require('telescope').load_extension('repo')
-    require('telescope').load_extension('jsonfly')
-    require('telescope').load_extension('helpgrep')
-    require('telescope').load_extension('hierarchy')
-
-    map('<leader>fs', builtin.builtin, 'builtin')
-    map('<leader>fG', builtin.grep_string, 'grep_string')
-    map('<leader>fg', builtin.live_grep, 'live_grep')
-    map('<leader>fb', builtin.buffers, 'buffers')
-    map('<leader>fh', builtin.help_tags, 'help_tags')
-    map('<leader>fH', builtin.man_pages, 'man_pages')
-    map('<leader>ff', builtin.find_files, 'find_files')
-    map('<leader>fF', builtin.git_files, 'git_files')
-    map('<leader>fr', builtin.resume, 'resume')
-    map('<leader>fc', builtin.commands, 'commands')
-    map('<leader>fm', builtin.oldfiles, 'oldfiles')
-    map('<leader>fM', builtin.keymaps, 'man_pages')
-    map('<leader>f/', builtin.search_history, 'search_history')
-    map('<leader>fd', builtin.diagnostics, 'diagnostics')
-end
-
 return {
-    {
-        'nvim-telescope/telescope.nvim',
-        dependencies = {
-            { 'nvim-lua/plenary.nvim' },
-            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-            { 'nvim-telescope/telescope-symbols.nvim' },
-            -- Jump into the repositories (git, mercurial…) of your filesystem with telescope.nvim, without any setup
-            { 'cljoly/telescope-repo.nvim' },
-            -- Fly through your JSON / XML / YAML files with ease. Search blazingly fast for keys via Telescope.
-            { 'Myzel394/jsonfly.nvim' },
-            -- Telescope extension that uses Telescope builtins (live_grep or grep_string) to grep through help files
-            { 'catgoose/telescope-helpgrep.nvim' },
-            -- A Telescope.nvim extension for viewing & navigating the call hierarchy
-            { 'jmacadie/telescope-hierarchy.nvim' },
-        },
-        config = config_telescope,
-    },
 
-    -- Clipboard manager neovim plugin with telescope integration
     {
-        'AckslD/nvim-neoclip.lua',
-        dependencies = 'nvim-telescope/telescope.nvim',
-        lazy = false,
-        opts = {},
-        config = function(_, opts)
-            require('neoclip').setup(opts)
-            require('telescope').load_extension('neoclip')
-        end,
-        keys = {
-            { '<leader>fy', '<Cmd>Telescope neoclip<CR>', desc = 'neoclip' },
-        },
-    },
-
-    -- The superior project management solution for neovim.
-    {
-        'ahmedkhalf/project.nvim',
-        dependencies = 'nvim-telescope/telescope.nvim',
+        'folke/snacks.nvim',
         opts = {
-            show_hidden = true,
-            -- FIX: LSP detection method not working. https://github.com/ahmedkhalf/project.nvim/issues/169
-            detection_methods = { 'pattern', 'lsp' },
+            picker = {},
         },
-        config = function(_, opts)
-            require('project_nvim').setup(opts)
-
-            require('telescope').load_extension('projects')
-
-            map('<leader>fp', require('telescope').extensions.projects.projects, 'projects')
-        end,
+        keys = {
+        -- stylua: ignore start
+        -- Top Pickers
+        { "<leader><space>", function() Snacks.picker.resume() end, desc = "Resume" },
+        { "<leader>.", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
+        { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+        { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+        { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+        -- find
+        { "<leader>fb", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
+        { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+        { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+        { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+        { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+        { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+        -- git
+        { "<leader>gB", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+        { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+        { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+        { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+        { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+        -- { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+        { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+        -- Grep
+        { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+        { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+        { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+        { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+        -- search
+        { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+        { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
+        { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+        { "<leader>sc", function() Snacks.picker.commands() end, desc = "Commands" },
+        { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+        { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+        { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+        { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
+        { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
+        { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+        { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+        { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+        { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+        { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
+        { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
+        { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+        { "<leader>ss", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+        { '<leader>sS', function() Snacks.picker.pickers() end, desc = "Pickers" },
+        { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
+        { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+        -- LSP
+        { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+        { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+        { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+        { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+        { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+        { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+        { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+            -- stylua: ignore stop
+        },
     },
 }

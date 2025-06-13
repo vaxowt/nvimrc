@@ -107,11 +107,6 @@ return {
     {
         {
             'Bekaboo/dropbar.nvim',
-            -- optional, but required for fuzzy finder support
-            dependencies = {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make',
-            },
             config = function()
                 local dropbar_api = require('dropbar.api')
                 vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
@@ -160,7 +155,6 @@ return {
                 map('n', '<leader>gb', function()
                     gs.blame_line({ full = true })
                 end, { desc = '[git] blame line' })
-                map('n', '<leader>gB', gs.toggle_current_line_blame, { desc = '[git] toggle current line blame' })
                 map('n', '<leader>gd', gs.diffthis, { desc = '[git] diffthis' })
                 map('n', '<leader>gD', function()
                     gs.diffthis('~')
