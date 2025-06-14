@@ -111,7 +111,7 @@ return {
                 group = lir_highlights,
             })
             vim.api.nvim_create_autocmd('ColorScheme', {
-                command = [[highlight! def link LirFloatBorder TelescopeBorder]],
+                command = [[highlight! def link LirFloatBorder Grey]],
                 group = lir_highlights,
             })
         end,
@@ -232,7 +232,7 @@ return {
         init = function()
             local yazi_highlights = vim.api.nvim_create_augroup('yazi_highlights', { clear = true })
             vim.api.nvim_create_autocmd('ColorScheme', {
-                command = [[highlight! def link YaziFloatBorder TelescopeBorder]],
+                command = [[highlight! def link YaziFloatBorder Grey]],
                 group = yazi_highlights,
             })
         end,

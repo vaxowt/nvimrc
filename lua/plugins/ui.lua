@@ -234,22 +234,6 @@ return {
         },
     },
 
-    -- -- Indent guides for Neovim
-    -- {
-    --     'lukas-reineke/indent-blankline.nvim',
-    --     event = 'BufReadPost',
-    --     main = 'ibl',
-    --     opts = {
-    --         indent = {
-    --             char = '┆',
-    --             -- highlight = { 'Function', 'Label' },
-    --         },
-    --         scope = {
-    --             -- highlight = { 'Function', 'Label' },
-    --         },
-    --     },
-    -- },
-
     -- Better quickfix window in Neovim, polish old quickfix window.
     {
         'kevinhwang91/nvim-bqf',

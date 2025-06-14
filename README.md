@@ -2,10 +2,9 @@
 
 ## Requirements
 
-* [fzf](https://github.com/junegunn/fzf): required by nvim-telescope/telescope-fzf-native.nvim
-* make, gcc: required by nvim-telescope/telescope-fzf-native.nvim
 * [deno](https://deno.com/): required by toppair/peek.nvim
-* [ripgrep](https://github.com/BurntSushi/ripgrep): required nvim-telescope/telescope.nvim
+* [ripgrep](https://github.com/BurntSushi/ripgrep): required by vim.health, grug-far.nvim, snacks.nvim
+* [fd](https://github.com/sharkdp/fd): required by snacks.nvim
 * [yazi](https://github.com/sxyazi/yazi): required by mikavilpas/yazi.nvim
 
 ## Installation

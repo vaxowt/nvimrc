@@ -22,7 +22,7 @@ api.nvim_create_autocmd(
 -- -- ref: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 -- local floatborder_highlights = api.nvim_create_augroup("floatborder_highlights", { clear = true })
 -- api.nvim_create_autocmd("ColorScheme", {
---     command = [[highlight! def link FloatBorder TelescopeBorder]],
+--     command = [[highlight! def link FloatBorder Grey]],
 --     group = floatborder_highlights,
 -- })
 
