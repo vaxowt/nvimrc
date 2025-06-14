@@ -3,7 +3,14 @@ return {
     {
         'folke/snacks.nvim',
         opts = {
-            picker = {},
+            ---@class snacks.picker.Config
+            picker = {
+                layout = {
+                    preset = function()
+                        return vim.fn.winheight(0) * 2 < vim.fn.winwidth(0) and 'default' or 'vertical'
+                    end,
+                },
+            },
         },
         keys = {
         -- stylua: ignore start
