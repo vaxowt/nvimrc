@@ -26,6 +26,24 @@ return {
             --     nested = true,
             -- })
         end,
+        keys = {
+            {
+                '<C-s>',
+                function()
+                    -- local name = vim.fn.input({ prompt = 'Session name: ', cancelreturn = nil })
+                    -- vim.notify(vim.inspect(name == nil))
+                    -- name = name == '' and vim.fn.getcwd()
+                    -- if name ~= nil then
+                    --     require('resession').save()
+                    -- end
+                    vim.ui.input({prompt = 'Session name: '}, function(input)
+                        local name = input == '' and vim.fn.getcwd() or input
+                        require('resession').save(name)
+                    end)
+                end,
+                desc = 'Save session',
+            },
+        },
     },
 
     {
