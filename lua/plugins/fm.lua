@@ -19,7 +19,7 @@ return {
                 hide_cursor = true,
                 mappings = {
                     ['l'] = actions.edit,
-                    ['<C-x>'] = actions.split,
+                    ['<C-s>'] = actions.split,
                     ['<C-v>'] = actions.vsplit,
                     ['<C-t>'] = actions.tabedit,
 
@@ -158,6 +158,8 @@ return {
                 vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
                 vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
                 vim.keymap.del('n', '<C-k>', { buffer = bufnr })
+                vim.keymap.del('n', '<C-x>', { buffer = bufnr })
+                vim.keymap.set('n', '<C-s>', api.node.open.horizontal, opts('Open: Horizontal Split'))
                 vim.keymap.set('n', 'K', api.node.show_info_popup, opts('Info'))
                 vim.keymap.set('n', ']d', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
                 vim.keymap.set('n', '[d', api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
@@ -218,6 +220,7 @@ return {
                 show_help = 'g?',
                 cycle_open_buffers = 'b',
                 grep_in_directory = 'G',
+                open_file_in_horizontal_split = '<C-s>',
             },
             floating_window_scaling_factor = 0.8,
             -- highlight_groups = {
@@ -228,6 +231,10 @@ return {
             -- },
             -- highlight buffers in the same directory as the hovered buffer
             highlight_hovered_buffers_in_same_directory = false,
+            integrations = {
+                grep_in_directory = 'snacks.picker',
+                grep_in_selected_files = 'snacks.picker',
+            },
         },
         init = function()
             local yazi_highlights = vim.api.nvim_create_augroup('yazi_highlights', { clear = true })
