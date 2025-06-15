@@ -85,8 +85,9 @@ return {
                 Unit          = ' ',
                 Unknown       = ' ',
                 Value         = ' ',
-                Variable      = '󰀫 ',
-                Codeium       = ' ',
+                Variable      = '󰫧 ',
+
+                Codeium       = ' ',
                 -- stylua: ignore stop
             }
 
