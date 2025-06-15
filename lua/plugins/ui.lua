@@ -176,7 +176,7 @@ return {
     {
         'TimUntersberger/neogit',
         cmd = 'Neogit',
-        keys = { { '<leader>G', '<Cmd>Neogit<CR>', desc = 'Neogit' } },
+        keys = { { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'Neogit' } },
         dependencies = 'nvim-lua/plenary.nvim',
         opts = {
             integrations = {

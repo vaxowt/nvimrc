@@ -120,17 +120,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         -- stylua: ignore start
-        -- map('gD', vim.lsp.buf.declaration, 'Jumps to the declaration')
-        -- map('gd', vim.lsp.buf.definition, 'Jumps to the definition')
-        -- map('gy', vim.lsp.buf.type_definition, 'Jumps to the definition of the type')
-        map('<leader>la', vim.lsp.buf.add_workspace_folder, 'Add the folder at path to the workspace folders')
-        map('<leader>lr', vim.lsp.buf.remove_workspace_folder, 'Remove the folder at path from the workspace folders')
-        map('<leader>lw', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'Print workspace folders')
-        map('<leader>lf', function() lsp_formatting(bufnr) end, 'Formats buffer', { 'n', 'v' })
-        map('<leader>ld', vim.diagnostic.open_float, 'Show diagnostics in a floating window')
+        -- some LSP keymaps are defined in: ../plugins/picker.lua
+        map('<leader>lr', vim.lsp.buf.rename, 'rename')
+        map('<leader>lc', vim.lsp.buf.code_action, 'code action', {'n', 'x'})
+        map('<leader>la', vim.lsp.buf.add_workspace_folder, 'add workspace folder')
+        map('<leader>lR', vim.lsp.buf.remove_workspace_folder, 'remove workspace folder')
+        map('<leader>lw', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'print workspace folders')
+        map('<leader>lf', function() lsp_formatting(bufnr) end, 'formats buffer', { 'n', 'v' })
+        map('<leader>ld', vim.diagnostic.open_float, 'show diagnostics under cursor')
         -- default mappings (:help [d) won't open float
-        map('[d', function() vim.diagnostic.jump({ count = -1, float = true }) end, 'Jump to the previous diagnostic')
-        map(']d', function() vim.diagnostic.jump({ count = 1, float = true }) end, 'Jump to the next diagnostic')
+        map('[d',         function() vim.diagnostic.jump({ count = -1, float = true }) end, 'jump to the previous diagnostic')
+        map(']d',         function() vim.diagnostic.jump({ count = 1, float = true }) end, 'jump to the next diagnostic')
         -- stylua: ignore end
     end,
 })
