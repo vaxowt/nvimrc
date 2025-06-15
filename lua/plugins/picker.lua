@@ -78,8 +78,8 @@ return {
     {
         'AckslD/nvim-neoclip.lua',
         dependencies = 'nvim-telescope/telescope.nvim',
-        lazy = false,
         opts = {},
+        cmds = { 'Telescope' },
         config = function(_, opts)
             require('neoclip').setup(opts)
             require('telescope').load_extension('neoclip')
