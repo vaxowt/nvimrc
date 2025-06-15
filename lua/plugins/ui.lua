@@ -19,13 +19,18 @@ return {
                     'diff',
                     {
                         'diagnostics',
-                        symbols = { error = " ", warn  = " ", hint  = " ", info  = " " },
+                        symbols = { error = ' ', warn = ' ', hint = ' ', info = ' ' },
                         colored = false,
                     },
                 },
 
                 lualine_c = { 'filename' },
-                lualine_x = { 'encoding', 'fileformat', { 'filetype', colored = false } },
+                lualine_x = {
+                    { 'lsp_status', icon = '' },
+                    'encoding',
+                    'fileformat',
+                    { 'filetype', colored = false },
+                },
                 lualine_y = { 'progress' },
                 lualine_z = { 'location' },
             },
@@ -38,7 +43,16 @@ return {
                 lualine_z = {},
             },
             tabline = {},
-            extensions = {},
+            extensions = {
+                'quickfix',
+                'lazy',
+                'mason',
+                'nvim-dap-ui',
+                'nvim-tree',
+                'symbols-outline',
+                'toggleterm',
+                -- TODO: codecompanion
+            },
         },
     },
 
