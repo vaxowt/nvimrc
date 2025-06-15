@@ -19,7 +19,7 @@ return {
                     'diff',
                     {
                         'diagnostics',
-                        symbols = { Error = " ", Warn  = " ", Hint  = " ", Info  = " " },
+                        symbols = { error = " ", warn  = " ", hint  = " ", info  = " " },
                         colored = false,
                     },
                 },
