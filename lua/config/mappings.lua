@@ -28,6 +28,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set({ 'n', 'v' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
+-- close tab
+vim.keymap.set('n', '<C-w>c', '<CMD>tabclose<CR>', { noremap = true, silent = true })
+
 -- terminal keymaps
 local function set_terminal_keymaps()
     local function opts(desc)
