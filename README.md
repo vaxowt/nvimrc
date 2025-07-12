@@ -9,7 +9,7 @@
 
 ## Installation
 
-* Clone into `${XGD_CONFIG_HOME}/nvim`
+* Clone into `${XDG_CONFIG_HOME}/nvim`
 * Open neovim, wait for Installation
 
 ## Get Started
