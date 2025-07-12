@@ -185,6 +185,7 @@ return {
         keys = { { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'Neogit' } },
         dependencies = 'nvim-lua/plenary.nvim',
         opts = {
+            graph_style = 'unicode',
             integrations = {
                 diffview = true,
             },
