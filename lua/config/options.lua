@@ -68,11 +68,13 @@ vim.o.fileencodings = 'ucs-bom,utf-8,gbk,big5,gb18030,utf-16,latin1'
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-local hour = tonumber(os.date('%H'))
-if hour >= 7 and hour < 20 then
-    vim.o.background = 'light'
-    vim.cmd.colorscheme('edge')
-else
-    vim.o.background = 'dark'
-    vim.cmd.colorscheme('everforest')
-end
+-- local hour = tonumber(os.date('%H'))
+-- if hour >= 7 and hour < 20 then
+--     vim.o.background = 'light'
+--     vim.cmd.colorscheme('edge')
+-- else
+--     vim.o.background = 'dark'
+--     vim.cmd.colorscheme('everforest')
+-- end
+vim.o.background = 'dark'
+vim.cmd.colorscheme('everforest')
