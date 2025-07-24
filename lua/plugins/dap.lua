@@ -60,7 +60,7 @@ return {
 
             local function get_program()
                 return function()
-                    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                    return vim.fn.input('Path to executable: ', vim.fn.fnamemodify(vim.fn.getcwd(), ':p'), 'file')
                 end
             end
 
@@ -68,20 +68,20 @@ return {
                 type = 'server',
                 port = '${port}',
                 executable = {
-                    command = 'codelldb',
+                    command = vim.fn.has('win32') == 1 and 'codelldb.cmd' or 'codelldb',
                     args = { '--port', '${port}' },
 
-                    -- On windows you may have to uncomment this:
-                    -- detached = false,
+                    detached = vim.fn.has('win32') ~= 1,
                 },
             }
 
             dap.adapters.cppdbg = {
                 id = 'cppdbg',
                 type = 'executable',
-                command = 'OpenDebugAD7',
+                command = vim.fn.has('win32') == 1 and 'OpenDebugAD7.cmd' or 'OpenDebugAD7',
                 options = {
-                    -- detached = false,
+                    -- detached = true not work on Windows
+                    detached = vim.fn.has('win32') ~= 1,
                 },
             }
 
@@ -104,8 +104,7 @@ return {
                     local args = nil
                     -- HACK: debugpy-adapter.cmd not work
                     if vim.fn.has('win32') == 1 then
-                        local mason_registry = require('mason-registry')
-                        local debugpy_path = mason_registry.get_package('debugpy'):get_install_path()
+                        local debugpy_path = vim.fn.stdpath('data') .. '/mason/packages/debugpy'
                         command = debugpy_path .. '/venv/Scripts/python.exe'
                         args = { '-m', 'debugpy.adapter' }
                     end
@@ -156,10 +155,21 @@ return {
                     request = 'launch',
                     MIMode = 'gdb',
                     miDebuggerServerAddress = 'localhost:3333',
-                    miDebuggerPath = 'arm-none-eabi-gdb',
+                    miDebuggerPath = 'gdb',
                     cwd = '${workspaceFolder}',
                     program = get_program(),
                     stopAtEntry = false,
+                },
+                {
+                    name = 'Remote attach arm-none-eabi-gdb (cpptools)',
+                    type = 'cppdbg',
+                    request = 'launch',
+                    MIMode = 'gdb',
+                    miDebuggerServerAddress = 'localhost:3333',
+                    miDebuggerPath = 'arm-none-eabi-gdb',
+                    cwd = '${workspaceFolder}',
+                    program = get_program(),
+                    stopAtEntry = true,
                 },
             }
 
