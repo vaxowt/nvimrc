@@ -40,6 +40,7 @@ return {
             { 'max397574/cmp-greek' },
             { 'wxxxcxx/cmp-browser-source' },
             { 'Exafunction/windsurf.nvim' },
+            { 'teramako/cmp-cmdline-prompt.nvim' },
         },
         config = function()
             vim.o.completeopt = 'menu,menuone,noselect'
@@ -235,11 +236,10 @@ return {
                 matching = { disallow_symbol_nonprefix_matching = false },
             })
 
-            -- HACK: completion not work for input() after installing nvim-cmp
-            -- https://github.com/hrsh7th/nvim-cmp/discussions/1073
             cmp.setup.cmdline('@', {
+                mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
-                    { name = 'path' },
+                    { name = 'cmdline-prompt' },
                 }),
             })
 
