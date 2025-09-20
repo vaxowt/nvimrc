@@ -40,7 +40,6 @@ return {
             { 'max397574/cmp-greek' },
             { 'wxxxcxx/cmp-browser-source' },
             { 'Exafunction/windsurf.nvim' },
-            { 'teramako/cmp-cmdline-prompt.nvim' },
         },
         config = function()
             vim.o.completeopt = 'menu,menuone,noselect'
@@ -234,13 +233,6 @@ return {
                     { name = 'cmdline' },
                 }),
                 matching = { disallow_symbol_nonprefix_matching = false },
-            })
-
-            cmp.setup.cmdline('@', {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = 'cmdline-prompt' },
-                }),
             })
 
             require('cmp_dictionary').setup({

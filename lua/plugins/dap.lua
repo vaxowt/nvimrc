@@ -64,6 +64,26 @@ return {
                 end
             end
 
+            local function get_program_ui()
+                return function()
+                    return coroutine.create(function(co)
+                        vim.ui.input({
+                            prompt = 'Path to executable',
+                            default = vim.fn.fnamemodify(vim.fn.getcwd(), ':p'),
+                            completion = 'file',
+                            icon = '>', -- require Snacks.input
+                        }, function(input)
+                            if input == nil or input == '' then
+                                coroutine.resume(co, nil)
+                            else
+                                coroutine.resume(co, input)
+                            end
+                        end)
+                        coroutine.yield()
+                    end)
+                end
+            end
+
             dap.adapters.codelldb = {
                 type = 'server',
                 port = '${port}',
@@ -124,7 +144,7 @@ return {
                     name = 'Launch file',
                     type = 'codelldb',
                     request = 'launch',
-                    program = get_program(),
+                    program = get_program_ui(),
                     cwd = '${workspaceFolder}',
                     stopOnEntry = false,
                 },
@@ -137,7 +157,7 @@ return {
                     name = 'Launch (codelldb)',
                     type = 'codelldb',
                     request = 'launch',
-                    program = get_program(),
+                    program = get_program_ui(),
                     cwd = '${workspaceFolder}',
                     stopOnEntry = false,
                 },
@@ -145,7 +165,7 @@ return {
                     name = 'Launch (cpptools)',
                     type = 'cppdbg',
                     request = 'launch',
-                    program = get_program(),
+                    program = get_program_ui(),
                     cwd = '${workspaceFolder}',
                     stopAtEntry = true,
                 },
@@ -157,7 +177,7 @@ return {
                     miDebuggerServerAddress = 'localhost:3333',
                     miDebuggerPath = 'gdb',
                     cwd = '${workspaceFolder}',
-                    program = get_program(),
+                    program = get_program_ui(),
                     stopAtEntry = false,
                 },
                 {
@@ -168,7 +188,7 @@ return {
                     miDebuggerServerAddress = 'localhost:3333',
                     miDebuggerPath = 'arm-none-eabi-gdb',
                     cwd = '${workspaceFolder}',
-                    program = get_program(),
+                    program = get_program_ui(),
                     stopAtEntry = true,
                 },
             }
