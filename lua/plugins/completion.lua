@@ -235,6 +235,14 @@ return {
                 matching = { disallow_symbol_nonprefix_matching = false },
             })
 
+            -- HACK: completion not work for input() after installing nvim-cmp
+            -- https://github.com/hrsh7th/nvim-cmp/discussions/1073
+            cmp.setup.cmdline('@', {
+                sources = cmp.config.sources({
+                    { name = 'path' },
+                }),
+            })
+
             require('cmp_dictionary').setup({
                 dic = {
                     ['*'] = { '/usr/share/dict/words' },
