@@ -57,8 +57,7 @@ return {
         { "<leader>sM",      function() Snacks.picker.man() end, desc = "picker: man pages" },
         { "<leader>sp",      function() Snacks.picker.lazy() end, desc = "picker: search for plugin spec" },
         { "<leader>sq",      function() Snacks.picker.qflist() end, desc = "picker: quickfix list" },
-        { "<leader>ss",      function() Snacks.picker.smart() end, desc = "picker: smart find files" },
-        { '<leader>sS',      function() Snacks.picker.pickers() end, desc = "picker: pickers" },
+        { '<leader>ss',      function() Snacks.picker.pickers() end, desc = "picker: pickers" },
         { "<leader>su",      function() Snacks.picker.undo() end, desc = "picker: undo history" },
         { "<leader>uC",      function() Snacks.picker.colorschemes() end, desc = "picker: colorschemes" },
         -- LSP
