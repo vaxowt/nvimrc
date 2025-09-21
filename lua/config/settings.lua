@@ -13,10 +13,10 @@ vim.filetype.add({
 
 -- change diagnostic signs
 local signs = {
-      Error = " ",
-      Warn  = " ",
-      Hint  = " ",
-      Info  = " ",
+    Error = ' ',
+    Warn = ' ',
+    Hint = ' ',
+    Info = ' ',
 }
 for type, icon in pairs(signs) do
     local hl = 'DiagnosticSign' .. type
@@ -107,9 +107,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         local bufnr = args.buf
 
-        -- Ensure null-ls.nvim does not interfere with formatexpr behavior
+        local function map(keys, func, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, func, { buffer = bufnr, noremap = true, silent = true, desc = 'lsp: ' .. desc })
+        end
+
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client ~= nil then
+            -- Ensure null-ls.nvim does not interfere with formatexpr behavior
             if client.server_capabilities.documentFormattingProvider then
                 if client.name == 'null-ls' and is_none_ls_formatting_enabled(bufnr) or client.name ~= 'null-ls' then
                     vim.bo[bufnr].formatexpr = 'v:lua.vim.lsp.formatexpr()'
@@ -117,11 +122,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
                     vim.bo[bufnr].formatexpr = nil
                 end
             end
-        end
 
-        local function map(keys, func, desc, mode)
-            mode = mode or 'n'
-            vim.keymap.set(mode, keys, func, { buffer = bufnr, noremap = true, silent = true, desc = 'lsp: ' .. desc })
+            if client.name == 'clangd' then
+                map('<leader>lh', '<cmd>LspClangdSwitchSourceHeader<cr>', 'lsp: switch source/header (clangd)')
+            end
         end
 
         -- stylua: ignore start
