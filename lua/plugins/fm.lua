@@ -6,12 +6,15 @@ return {
             'kyazdani42/nvim-web-devicons',
         },
         config = function()
+            local lir = require('lir')
+            local utils = require('lir.utils')
             local actions = require('lir.actions')
             local mark_actions = require('lir.mark.actions')
             local clipboard_actions = require('lir.clipboard.actions')
 
             require('lir').setup({
                 show_hidden_files = false,
+                ignore = {},
                 devicons = {
                     enable = true,
                     highlight_dirname = false,
@@ -36,6 +39,49 @@ return {
                     ['Y'] = actions.yank_path,
                     ['.'] = actions.toggle_show_hidden,
                     ['D'] = actions.delete,
+
+                    ['A'] = function()
+                        vim.ui.input({
+                            prompt = 'Create (append / for folder)',
+                            completion = 'dir',
+                        }, function(input)
+                            if input == nil or input == '' then
+                                return
+                            end
+
+                            if input == '.' or input == '..' then
+                                utils.error('Invalid directory name: ' .. input)
+                                return
+                            end
+
+                            local ctx = lir.get_context()
+                            local path = ctx.dir .. '/' .. input
+
+                            if vim.fn.isdirectory(path) == 1 then
+                                utils.error('Directory exists')
+                                return
+                            elseif vim.fn.filereadable(path) == 1 then
+                                utils.error('File exists')
+                                return
+                            end
+
+                            if input:sub(-1) == '/' then
+                                -- Create directory
+                                vim.fn.mkdir(path, 'p')
+                            else
+                                -- Ensure parent directory exists
+                                local parent = vim.fn.fnamemodify(path, ':h')
+                                vim.fn.mkdir(parent, 'p')
+                                -- Create file
+                                local fd = io.open(path, 'w')
+                                if fd then
+                                    fd:close()
+                                end
+                            end
+
+                            actions.reload()
+                        end)
+                    end,
 
                     ['J'] = function()
                         mark_actions.toggle_mark('n')
@@ -87,6 +133,7 @@ return {
                     -- echo cwd
                     -- vim.api.nvim_echo({ { vim.fn.expand('%:p'), 'Normal' } }, false, {})
                 end,
+                get_filters = nil,
             })
 
             -- custom folder icon
