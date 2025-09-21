@@ -56,6 +56,13 @@ return {
         'neovim/nvim-lspconfig',
     },
 
+    -- Clangd's off-spec features for neovim's LSP client
+    {
+        'https://git.sr.ht/~p00f/clangd_extensions.nvim',
+        ft = { 'c', 'cpp', 'objc', 'objcpp' },
+        keys = { { '<leader>lh', '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'lsp: switch source/header (clangd)' } },
+    },
+
     -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP
     -- diagnostics, code actions, and more via Lua.
     {
