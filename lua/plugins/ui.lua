@@ -182,7 +182,27 @@ return {
     {
         'TimUntersberger/neogit',
         cmd = 'Neogit',
-        keys = { { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'Neogit' } },
+        keys = {
+            { '<leader>gG', '<Cmd>Neogit<CR>', desc = 'Neogit (cwd repo)' },
+            {
+                '<leader>gg',
+                function()
+                    local filepath = vim.api.nvim_buf_get_name(0)
+                    if filepath == '' then
+                        vim.cmd('Neogit')
+                        return
+                    end
+                    local git_dir = vim.fs.find('.git', { upward = true, path = filepath })[1]
+                    if git_dir then
+                        local git_root = vim.fs.dirname(git_dir)
+                        vim.cmd('Neogit cwd=' .. vim.fn.fnameescape(git_root))
+                    else
+                        vim.notify('Not inside a git repository', vim.log.levels.WARN, { title = 'Neogit' })
+                    end
+                end,
+                desc = 'Neogit (buffer repo)',
+            },
+        },
         dependencies = 'nvim-lua/plenary.nvim',
         opts = {
             graph_style = 'unicode',
