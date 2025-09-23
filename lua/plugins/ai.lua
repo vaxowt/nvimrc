@@ -19,6 +19,28 @@ return {
             },
             adapters = {
                 http = {
+                    ark = function()
+                        return require('codecompanion.adapters').extend('openai_compatible', {
+                            name = 'Ark',
+                            formatted_name = 'Ark',
+                            url = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions',
+                            env = {
+                                api_key = function()
+                                    return os.getenv('ARK_API_KEY')
+                                end,
+                            },
+                            schema = {
+                                model = {
+                                    default = 'deepseek-v3-1-250821',
+                                    choices = {
+                                        'deepseek-v3-1-250821',
+                                        'doubao-seed-1-6-250615',
+                                        'doubao-seed-1-6-flash-250828',
+                                    },
+                                },
+                            },
+                        })
+                    end,
                     siliconflow_ds = function()
                         return require('codecompanion.adapters').extend('deepseek', {
                             name = 'siliconflow_ds',
