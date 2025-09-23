@@ -12,6 +12,10 @@ return {
             local mark_actions = require('lir.mark.actions')
             local clipboard_actions = require('lir.clipboard.actions')
 
+            -- HACK: the `hide_cursor` option hides the curosr of vim.ui.input.
+            -- save the default cursor setting to restore it when needed
+            local default_guicursor = vim.o.guicursor
+
             require('lir').setup({
                 show_hidden_files = false,
                 ignore = {},
@@ -41,6 +45,8 @@ return {
                     ['D'] = actions.delete,
 
                     ['A'] = function()
+                        -- HACK: restore the default cursor
+                        vim.opt_local.guicursor = default_guicursor
                         vim.ui.input({
                             prompt = 'Create (append / for folder)',
                             completion = 'dir',
