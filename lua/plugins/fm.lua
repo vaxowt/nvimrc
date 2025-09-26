@@ -1,173 +1,49 @@
 return {
+
+    -- Neovim file explorer: edit your filesystem like a buffer
     {
-        'tamago324/lir.nvim',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'kyazdani42/nvim-web-devicons',
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {
+            delete_to_trash = true,
+            keymaps = {
+                ['<C-l>'] = { 'actions.select', mode = 'n' },
+                ['<C-v>'] = { 'actions.select', opts = { vertical = true } },
+                ['<C-s>'] = { 'actions.select', opts = { horizontal = true } },
+                ['q'] = { 'actions.close', mode = 'n' },
+                ['<C-c>'] = { 'actions.close', mode = 'n' },
+                ['<C-r>'] = 'actions.refresh',
+                ['<C-h>'] = { 'actions.parent', mode = 'n' },
+                ['gd'] = {
+                    desc = 'Toggle file detail view',
+                    callback = function()
+                        detail = not detail
+                        if detail then
+                            require('oil').set_columns({ 'permissions', 'size', 'mtime', 'icon' })
+                        else
+                            require('oil').set_columns({ 'icon' })
+                        end
+                    end,
+                },
+            },
+            float = {
+                max_width = 0.8,
+                max_height = 0.8,
+            },
         },
-        config = function()
-            local lir = require('lir')
-            local utils = require('lir.utils')
-            local actions = require('lir.actions')
-            local mark_actions = require('lir.mark.actions')
-            local clipboard_actions = require('lir.clipboard.actions')
-
-            -- HACK: the `hide_cursor` option hides the curosr of vim.ui.input.
-            -- save the default cursor setting to restore it when needed
-            local default_guicursor = vim.o.guicursor
-
-            require('lir').setup({
-                show_hidden_files = false,
-                ignore = {},
-                devicons = {
-                    enable = true,
-                    highlight_dirname = false,
-                },
-                hide_cursor = true,
-                mappings = {
-                    ['l'] = actions.edit,
-                    ['<C-s>'] = actions.split,
-                    ['<C-v>'] = actions.vsplit,
-                    ['<C-t>'] = actions.tabedit,
-
-                    ['h'] = actions.up,
-                    ['-'] = actions.up,
-                    ['q'] = actions.quit,
-                    ['<esc>'] = actions.quit,
-
-                    ['cd'] = actions.cd,
-
-                    ['K'] = actions.mkdir,
-                    ['N'] = actions.newfile,
-                    ['R'] = actions.rename,
-                    ['Y'] = actions.yank_path,
-                    ['.'] = actions.toggle_show_hidden,
-                    ['D'] = actions.delete,
-
-                    ['A'] = function()
-                        -- HACK: restore the default cursor
-                        vim.opt_local.guicursor = default_guicursor
-                        vim.ui.input({
-                            prompt = 'Create (append / for folder)',
-                            completion = 'dir',
-                        }, function(input)
-                            if input == nil or input == '' then
-                                return
-                            end
-
-                            if input == '.' or input == '..' then
-                                utils.error('Invalid directory name: ' .. input)
-                                return
-                            end
-
-                            local ctx = lir.get_context()
-                            local path = ctx.dir .. '/' .. input
-
-                            if vim.fn.isdirectory(path) == 1 then
-                                utils.error('Directory exists')
-                                return
-                            elseif vim.fn.filereadable(path) == 1 then
-                                utils.error('File exists')
-                                return
-                            end
-
-                            if input:sub(-1) == '/' then
-                                -- Create directory
-                                vim.fn.mkdir(path, 'p')
-                            else
-                                -- Ensure parent directory exists
-                                local parent = vim.fn.fnamemodify(path, ':h')
-                                vim.fn.mkdir(parent, 'p')
-                                -- Create file
-                                local fd = io.open(path, 'w')
-                                if fd then
-                                    fd:close()
-                                end
-                            end
-
-                            actions.reload()
-                        end)
-                    end,
-
-                    ['J'] = function()
-                        mark_actions.toggle_mark('n')
-                        vim.cmd('normal! j')
-                    end,
-                    ['C'] = clipboard_actions.copy,
-                    ['X'] = clipboard_actions.cut,
-                    ['P'] = clipboard_actions.paste,
-                },
-                float = {
-                    winblend = 0,
-                    curdir_window = {
-                        enable = true,
-                        highlight_dirname = true,
-                    },
-
-                    -- You can define a function that returns a table to be passed as the third
-                    -- argument of nvim_open_win().
-                    win_opts = function()
-                        local width = math.floor(vim.o.columns * 0.6)
-                        local height = math.floor(vim.o.lines * 0.6)
-                        return {
-                            border = {
-                                '╭',
-                                '─',
-                                '╮',
-                                '│',
-                                '╯',
-                                '─',
-                                '╰',
-                                '│',
-                            },
-                            width = width,
-                            height = height,
-                            row = math.floor((vim.o.lines - height) / 2),
-                            col = math.floor((vim.o.columns - width) / 2),
-                        }
-                    end,
-                },
-                on_init = function()
-                    -- use visual mode
-                    vim.keymap.set(
-                        'x',
-                        'J',
-                        [[:<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>]],
-                        { noremap = true, silent = true, buffer = true }
-                    )
-
-                    -- echo cwd
-                    -- vim.api.nvim_echo({ { vim.fn.expand('%:p'), 'Normal' } }, false, {})
-                end,
-                get_filters = nil,
-            })
-
-            -- custom folder icon
-            require('nvim-web-devicons').set_icon({
-                lir_folder_icon = {
-                    icon = '',
-                    color = '#7ebae4',
-                    name = 'LirFolderNode',
-                },
-            })
-
-            vim.keymap.set(
-                'n',
-                '-',
-                require('lir.float').toggle,
-                { noremap = true, silent = true, desc = 'Open lir file manager' }
-            )
-
-            local lir_highlights = vim.api.nvim_create_augroup('lir_highlights', { clear = true })
-            vim.api.nvim_create_autocmd('ColorScheme', {
-                command = [[highlight! LirTransparentCursor gui=strikethrough blend=100]],
-                group = lir_highlights,
-            })
-            vim.api.nvim_create_autocmd('ColorScheme', {
-                command = [[highlight! def link LirFloatBorder Grey]],
-                group = lir_highlights,
-            })
-        end,
+        -- Optional dependencies
+        -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            { 'JezerM/oil-lsp-diagnostics.nvim', opts = {} },
+            'benomahony/oil-git.nvim',
+        }, -- use if you prefer nvim-web-devicons
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
+        keys = {
+            { '-', '<cmd>Oil --float<cr>', { desc = 'Oil' } },
+        },
     },
 
     -- A file explorer tree for neovim written in lua
