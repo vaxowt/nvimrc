@@ -3,6 +3,9 @@ return {
     -- Neovim file explorer: edit your filesystem like a buffer
     {
         'stevearc/oil.nvim',
+        -- Lazy loading is not recommended because it is very tricky to
+        -- make it work correctly in all situations.
+        lazy = false,
         ---@module 'oil'
         ---@type oil.SetupOpts
         opts = {
@@ -15,6 +18,13 @@ return {
                 ['<C-c>'] = { 'actions.close', mode = 'n' },
                 ['<C-r>'] = 'actions.refresh',
                 ['<C-h>'] = { 'actions.parent', mode = 'n' },
+                ['yp'] = {
+                    'actions.yank_entry',
+                    mode = 'n',
+                    opts = { modify = ':p:.' },
+                    desc = 'Yank the relative path',
+                },
+                ['yP'] = { 'actions.yank_entry', mode = 'n', opts = { modify = ':p' }, desc = 'Yank the absolute path' },
                 ['gd'] = {
                     desc = 'Toggle file detail view',
                     callback = function()
@@ -32,15 +42,12 @@ return {
                 max_height = 0.8,
             },
         },
-        -- Optional dependencies
-        -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
         dependencies = {
+            -- { 'echasnovski/mini.icons', opts = {} }
             'nvim-tree/nvim-web-devicons',
             { 'JezerM/oil-lsp-diagnostics.nvim', opts = {} },
             'benomahony/oil-git.nvim',
-        }, -- use if you prefer nvim-web-devicons
-        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-        lazy = false,
+        },
         keys = {
             { '-', '<cmd>Oil --float<cr>', { desc = 'Oil' } },
         },
