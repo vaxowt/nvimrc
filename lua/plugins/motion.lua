@@ -13,4 +13,18 @@ return {
             })
         end,
     },
+
+    -- A better user experience for viewing and interacting with Vim marks.
+    {
+        'chentoast/marks.nvim',
+        event = 'VeryLazy',
+        opts = {
+            mappings = {
+                next = ']m',
+                prev = '[m',
+                next_bookmark = ']M',
+                prev_bookmark = '[M',
+            },
+        },
+    },
 }
