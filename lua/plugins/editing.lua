@@ -123,4 +123,13 @@ return {
             commands = false,
         },
     },
+
+    --- (Do)cumentation (Ge)nerator for nearly 20 languages
+    {
+        'kkoomen/vim-doge',
+        build = ':call doge#install()',
+        init = function()
+            vim.g.doge_mapping = '<leader>dg'
+        end,
+    },
 }
