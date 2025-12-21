@@ -3,6 +3,8 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
+        -- TODO: migrate to main branch
+        branch = 'master',
         dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
         opts = {
             ensure_installed = {},
