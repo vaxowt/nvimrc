@@ -68,7 +68,7 @@ return {
         { "gy",              function() Snacks.picker.lsp_type_definitions() end, desc = "lsp: goto type definition" },
         { "<leader>ls",      function() Snacks.picker.lsp_symbols() end, desc = "lsp: symbols" },
         { "<leader>lS",      function() Snacks.picker.lsp_workspace_symbols() end, desc = "lsp: workspace symbols" },
-            -- stylua: ignore stop
+        -- stylua: ignore stop
         },
     },
 
