@@ -7,18 +7,30 @@ return {
                 -- log_level = 'DEBUG',
             },
             strategies = {
-                -- chat = {
-                --     adapter = 'siliconflow_qwen',
-                -- },
-                -- inline = {
-                --     adapter = 'siliconflow_qwen',
-                -- },
-                -- cmd = {
-                --     adapter = 'siliconflow_qwen',
-                -- },
+                chat = {
+                    adapter = 'copilot',
+                },
+                inline = {
+                    adapter = 'copilot',
+                },
+                cmd = {
+                    adapter = 'copilot',
+                },
             },
             adapters = {
                 http = {
+                    ollama = function()
+                        return require('codecompanion.adapters').extend('ollama', {
+                            schema = {
+                                model = {
+                                    default = 'qwen3-coder:latest',
+                                },
+                                num_ctx = {
+                                    default = 16384,
+                                },
+                            },
+                        })
+                    end,
                     ark = function()
                         return require('codecompanion.adapters').extend('openai_compatible', {
                             name = 'Ark',
