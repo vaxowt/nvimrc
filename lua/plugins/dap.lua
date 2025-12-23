@@ -181,6 +181,19 @@ return {
                     stopAtEntry = false,
                 },
                 {
+                    name = 'Remote attach gdb-multiarch (cpptools)',
+                    type = 'cppdbg',
+                    request = 'launch',
+                    MIMode = 'gdb',
+                    miDebuggerServerAddress = 'localhost:3333',
+                    miDebuggerPath = 'gdb-multiarch',
+                    cwd = '${workspaceFolder}',
+                    program = get_program_ui(),
+                    stopAtEntry = true,
+                },
+                {
+                    -- deprecated: official arm-none-eabi-gdb cannot stop at
+                    -- breakpoints, use gdb-multiarch instead
                     name = 'Remote attach arm-none-eabi-gdb (cpptools)',
                     type = 'cppdbg',
                     request = 'launch',
