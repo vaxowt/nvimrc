@@ -1,6 +1,6 @@
 return {
     {
-        'ggandor/leap.nvim',
+        'https://codeberg.org/andyg/leap.nvim',
         -- Leap already lazy-loads itself
         lazy = false,
         config = function()
