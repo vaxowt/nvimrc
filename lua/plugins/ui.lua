@@ -188,8 +188,7 @@ return {
 
     -- VSCode-style diff rendering with line and character highlighting.
     {
-        'esmuellert/vscode-diff.nvim',
-        dependencies = { 'MunifTanjim/nui.nvim' },
+        'esmuellert/codediff.nvim',
         cmd = 'CodeDiff',
     },
 
@@ -221,9 +220,10 @@ return {
         opts = {
             graph_style = 'unicode',
             integrations = {
-                -- TODO: wait for vscode-diff support
                 diffview = true,
+                codediff = true,
             },
+            diff_viewer = 'codediff',
         },
     },
 
