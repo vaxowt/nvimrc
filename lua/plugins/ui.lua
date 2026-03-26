@@ -56,6 +56,7 @@ return {
                 'mason',
                 'nvim-dap-ui',
                 'nvim-tree',
+                'oil',
                 'symbols-outline',
                 'toggleterm',
                 -- TODO: codecompanion
