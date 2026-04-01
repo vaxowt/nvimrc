@@ -23,10 +23,39 @@ return {
                         return require('codecompanion.adapters').extend('ollama', {
                             schema = {
                                 model = {
-                                    default = 'qwen3-coder:latest',
+                                    default = 'carstenuhlig/omnicoder-2-9b:latest',
+                                    choices = {
+                                        'carstenuhlig/omnicoder-2-9b:latest',
+                                        'qwen3-coder:latest',
+                                    },
                                 },
                                 num_ctx = {
                                     default = 16384,
+                                },
+                            },
+                        })
+                    end,
+                    openrouter = function()
+                        return require('codecompanion.adapters').extend('openai_compatible', {
+                            name = 'openrouter',
+                            formatted_name = 'OpenRouter',
+                            url = 'https://openrouter.ai/api/v1/chat/completions',
+                            env = {
+                                api_key = function()
+                                    return os.getenv('OPENROUTER_API_KEY')
+                                end,
+                            },
+                            schema = {
+                                model = {
+                                    default = 'stepfun/step-3.5-flash:free',
+                                    choices = {
+                                        'stepfun/step-3.5-flash:free',
+                                        'nvidia/nemotron-3-super-120b-a12b:free',
+                                        'qwen/qwen3.6-plus-preview:free',
+                                        'arcee-ai/trinity-large-preview:free',
+                                        'z-ai/glm-4.5-air:free',
+                                        'minimax/minimax-m2.5:free',
+                                    },
                                 },
                             },
                         })
