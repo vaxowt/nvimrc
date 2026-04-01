@@ -2,6 +2,7 @@
 
 ## Requirements
 
+* [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter): required by nvim-treesitter
 * [deno](https://deno.com/): required by toppair/peek.nvim
 * [ripgrep](https://github.com/BurntSushi/ripgrep): required by vim.health, grug-far.nvim, snacks.nvim
 * [fd](https://github.com/sharkdp/fd): required by snacks.nvim
@@ -16,8 +17,8 @@
 
 * Use `:Lazy` (or <kbd>SPACE</kbd><kbd>Z</kbd>) to manage plugins with lazy.nvim
 * Use `:Mason` to manage LSPs, DAPs, linters and formatters
-* Use `:TSxxxx` commands (e.g., `:TSInstallInfo`) to manage treesitter parsers
-* Use <kbd>-</kbd> to manage files with lir.nvim.
+* Use `:TSxxxx` commands (e.g., `:TSUpdate`) to manage treesitter parsers
+* Use <kbd>-</kbd> to manage files with oil.nvim.
 * Use <kbd>SPACE</kbd><kbd>f</kbd><kbd>M</kbd> to find the custom keymaps.
 * Some *magic* keymaps:
 
