@@ -10,7 +10,7 @@ return {
         },
         config = function(_, opts)
             local ts = require('nvim-treesitter')
-            ts.setup({ install_dir = vim.fn.stdpath('data') .. '/site' })
+            ts.setup({ install_dir = vim.fn.stdpath('data') .. '/site/nvim-treesitter' })
 
             if #opts.ensure_installed > 0 then
                 ts.install(opts.ensure_installed)
