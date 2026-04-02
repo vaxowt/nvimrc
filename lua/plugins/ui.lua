@@ -59,7 +59,7 @@ return {
                 'oil',
                 'symbols-outline',
                 'toggleterm',
-                -- TODO: codecompanion
+                'codecompanion',
             },
         },
     },
