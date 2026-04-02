@@ -6,7 +6,7 @@ return {
                 -- language = 'Chinese',
                 -- log_level = 'DEBUG',
             },
-            strategies = {
+            interactions = {
                 chat = {
                     adapter = 'copilot',
                 },
