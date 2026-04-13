@@ -1,0 +1,25 @@
+priority 100
+
+snippet ifdefcpp "Wrap with extern \"C\" for C++ compatibility" b
+	#ifdef __cplusplus
+	extern "C" {
+	#endif
+	
+	$0
+	
+	#ifdef __cplusplus
+	}
+	#endif
+
+snippet ifndefheader "Header guard" b
+  #ifndef ${1:HEADER_H}
+  #define $1
+
+  $0
+
+  #endif /* $1 */
+
+snippet ifndef "#ifndef MACRO" b
+	#ifndef ${1:MACRO}
+	#define $1
+	#endif
