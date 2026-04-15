@@ -106,10 +106,10 @@ return {
                             },
                         })
                     end,
-                    siliconflow_qwen = function()
+                    siliconflow = function()
                         return require('codecompanion.adapters').extend('openai_compatible', {
-                            name = 'siliconflow_qwen',
-                            formatted_name = 'QWen - SiliconFlow',
+                            name = 'siliconflow',
+                            formatted_name = 'SiliconFlow',
                             url = 'https://api.siliconflow.cn/v1/chat/completions',
                             env = {
                                 api_key = function()
@@ -118,10 +118,12 @@ return {
                             },
                             schema = {
                                 model = {
-                                    default = 'Qwen/Qwen2.5-Coder-32B-Instruct',
+                                    default = 'Pro/zai-org/GLM-5.1',
                                     choices = {
-                                        'Qwen/Qwen2.5-Coder-32B-Instruct',
-                                        'Qwen/Qwen2.5-Coder-7B-Instruct',
+                                        'Pro/zai-org/GLM-5.1',
+                                        'Pro/MiniMaxAI/MiniMax-M2.5',
+                                        'Pro/deepseek-ai/DeepSeek-V3.2',
+                                        'Qwen/Qwen3.5-397B-A17B',
                                     },
                                 },
                             },
