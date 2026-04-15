@@ -47,14 +47,17 @@ return {
                             },
                             schema = {
                                 model = {
-                                    default = 'stepfun/step-3.5-flash:free',
+                                    default = 'google/gemma-4-31b-it:free',
                                     choices = {
-                                        'stepfun/step-3.5-flash:free',
                                         'nvidia/nemotron-3-super-120b-a12b:free',
-                                        'qwen/qwen3.6-plus-preview:free',
+                                        'openrouter/elephant-alpha',
                                         'arcee-ai/trinity-large-preview:free',
                                         'z-ai/glm-4.5-air:free',
+                                        'openai/gpt-oss-120b:free',
+                                        'nvidia/nemotron-3-nano-30b-a3b:free',
                                         'minimax/minimax-m2.5:free',
+                                        'google/gemma-4-31b-it:free',
+                                        'qwen/qwen3-coder:free',
                                     },
                                 },
                             },
