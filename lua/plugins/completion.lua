@@ -216,6 +216,29 @@ return {
                 }),
             })
 
+            -- codeium not work for oil.nvim
+            -- https://github.com/Exafunction/windsurf.nvim/issues/277
+            cmp.setup.filetype({ 'oil' }, {
+                sources = {
+                    {
+                        name = 'buffer',
+                        option = {
+                            get_bufnrs = function()
+                                local bufs = {}
+                                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                                    bufs[vim.api.nvim_win_get_buf(win)] = true
+                                end
+                                return vim.tbl_keys(bufs)
+                            end,
+                        },
+                    },
+                    { name = 'path' },
+                    { name = 'tmux' },
+                    { name = 'dictionary', keyword_length = 2 },
+                    { name = 'browser' },
+                },
+            })
+
             -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
             cmp.setup.cmdline({ '/', '?' }, {
                 mapping = cmp.mapping.preset.cmdline(),
