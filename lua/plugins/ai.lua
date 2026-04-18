@@ -232,8 +232,16 @@ return {
             { '<leader>am', '<CMD>CodeCompanion /commit<CR>', mode = { 'n', 'v' }, desc = 'ai: codecompanion /commit' },
             { '<leader>ac', '<CMD>CodeCompanionChat<CR>', mode = { 'n', 'v' }, desc = 'ai: codecompanion chat' },
             { '<leader>ai', '<CMD>CodeCompanionChat Add<CR>', mode = 'v', desc = 'ai: codecompanion chat' },
+            { '<leader>ah', '<CMD>CodeCompanionHistory<CR>', mode = {'n', 'v'}, desc = 'ai: codecompanion history' },
+            { '<leader>as', '<CMD>CodeCompanionSummaries<CR>', mode = {'n', 'v'}, desc = 'ai: codecompanion summaries' },
             -- stylua: ignore stop
         },
-        cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions' },
+        cmd = {
+            'CodeCompanion',
+            'CodeCompanionChat',
+            'CodeCompanionActions',
+            'CodeCompanionHistory',
+            'CodeCompanionSummaries',
+        },
     },
 }
