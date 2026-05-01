@@ -36,7 +36,7 @@ return {
                         })
                     end,
                     openrouter = function()
-                        return require('codecompanion.adapters').extend('openai_compatible', {
+                        return require('codecompanion.adapters').extend('openai', {
                             name = 'openrouter',
                             formatted_name = 'OpenRouter',
                             url = 'https://openrouter.ai/api/v1/chat/completions',
@@ -64,7 +64,7 @@ return {
                         })
                     end,
                     ark = function()
-                        return require('codecompanion.adapters').extend('openai_compatible', {
+                        return require('codecompanion.adapters').extend('openai', {
                             name = 'Ark',
                             formatted_name = 'Ark',
                             url = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions',
@@ -107,7 +107,8 @@ return {
                         })
                     end,
                     siliconflow = function()
-                        return require('codecompanion.adapters').extend('openai_compatible', {
+                        local openai_adapter = require('codecompanion.adapters.http.openai')
+                        return require('codecompanion.adapters').extend('openai', {
                             name = 'siliconflow',
                             formatted_name = 'SiliconFlow',
                             url = 'https://api.siliconflow.cn/v1/chat/completions',
@@ -126,6 +127,22 @@ return {
                                         'Qwen/Qwen3.5-397B-A17B',
                                     },
                                 },
+                            },
+                            handlers = {
+                                chat_output = function(self, data, tools)
+                                    local result = openai_adapter.handlers.chat_output(self, data, tools)
+                                    if result and result.output then
+                                        -- Filter empty string content to prevent blank lines in chat
+                                        if result.output.content == '' then
+                                            result.output.content = nil
+                                        end
+                                        -- Skip chunks that carry no meaningful data
+                                        if not result.output.content and not result.output.role then
+                                            return nil
+                                        end
+                                    end
+                                    return result
+                                end,
                             },
                         })
                     end,
