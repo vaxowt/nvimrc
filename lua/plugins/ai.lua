@@ -149,6 +149,13 @@ return {
                 },
             },
             extensions = {
+                agentskills = {
+                    opts = {
+                        paths = {
+                            { '~/.config/skills', recursive = true },
+                        },
+                    },
+                },
                 history = {
                     enabled = true,
                     opts = {
@@ -240,6 +247,7 @@ return {
             'nvim-treesitter/nvim-treesitter',
             { 'zbirenbaum/copilot.lua', opts = {}, cmd = 'Copilot' },
             'ravitemer/codecompanion-history.nvim',
+            'cairijun/codecompanion-agentskills.nvim',
         },
         keys = {
             -- stylua: ignore start
