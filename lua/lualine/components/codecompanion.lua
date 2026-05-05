@@ -45,7 +45,11 @@ function M:update_status()
     local model = nil
 
     if self.options.show_adapter or self.options.show_model then
-        local cc = require('codecompanion')
+        local ok, cc = pcall(require, 'codecompanion')
+        if not ok then
+            return nil
+        end
+
         local chat = cc.buf_get_chat(0)
         adapter = chat.adapter.formatted_name
         model = chat.adapter.model.name

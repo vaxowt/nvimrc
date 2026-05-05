@@ -1,10 +1,5 @@
 -- lualine extension for codecompanion.nvim
 
-local ok, lazy = pcall(require, 'codecompanion')
-if not ok then
-    return ''
-end
-
 local M = {}
 
 M.sections = {
