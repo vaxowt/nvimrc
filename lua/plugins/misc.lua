@@ -135,8 +135,12 @@ return {
     -- neovim plugins database with automatic installation
     {
         'alex-popov-tech/store.nvim',
-        dependencies = { 'OXY2DEV/markview.nvim' },
-        opts = {},
+        -- NOTE: store.nvim use the markdown filetype, markview.nvim will
+        -- enable for all markdown buffer
+        -- dependencies = { 'OXY2DEV/markview.nvim' },
+        opts = {
+            telemetry = false,
+        },
         cmd = 'Store',
     },
 }

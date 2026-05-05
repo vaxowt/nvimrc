@@ -34,7 +34,7 @@ return {
     },
 
     -- Live Markdown preview for Neovim with Mermaid diagrams,
-    -- LaTeX math (KaTeX), scroll sync, and syntax highlighting. 
+    -- LaTeX math (KaTeX), scroll sync, and syntax highlighting.
     -- Pure Lua, zero npm dependencies.
     {
         'selimacerbas/markdown-preview.nvim',
@@ -55,6 +55,7 @@ return {
         },
         opts = {
             -- enabled = false,
+            file_types = { 'codecompanion' },
         },
         cmd = 'RenderMarkdown',
         ft = { 'codecompanion' },
