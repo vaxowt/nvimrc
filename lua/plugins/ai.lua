@@ -148,6 +148,14 @@ return {
                     end,
                 },
             },
+            prompt_library = {
+                markdown = {
+                    dirs = {
+                        vim.fn.getcwd() .. '/.prompts',
+                        vim.fn.stdpath('config') .. '/prompts',
+                    }
+                },
+            },
             extensions = {
                 agentskills = {
                     opts = {
@@ -254,7 +262,7 @@ return {
             { '<leader>aA', '<CMD>CodeCompanion<CR>', mode = { 'n', 'v' }, desc = 'ai: codecompanion' },
             { '<leader>aa', '<CMD>CodeCompanionActions<CR>', mode = { 'n', 'v' }, desc = 'ai: codecompanion actions' },
             { '<leader>ae', '<CMD>CodeCompanion /explain<CR>', mode = { 'n', 'v' }, desc = 'ai: codecompanion /explain' },
-            { '<leader>am', '<CMD>CodeCompanion /commit<CR>', mode = { 'n', 'v' }, desc = 'ai: codecompanion /commit' },
+            { '<leader>am', '<CMD>CodeCompanion /commit2<CR>', mode = { 'n', 'v' }, desc = 'ai: codecompanion /commit' },
             { '<leader>ac', '<CMD>CodeCompanionChat<CR>', mode = { 'n', 'v' }, desc = 'ai: codecompanion chat' },
             { '<leader>ai', '<CMD>CodeCompanionChat Add<CR>', mode = 'v', desc = 'ai: codecompanion chat' },
             { '<leader>ah', '<CMD>CodeCompanionHistory<CR>', mode = {'n', 'v'}, desc = 'ai: codecompanion history' },
