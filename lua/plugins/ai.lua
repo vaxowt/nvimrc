@@ -35,6 +35,15 @@ return {
                             },
                         })
                     end,
+                    deepseek_no_reasoning = function()
+                        return require('codecompanion.adapters').extend('deepseek', {
+                            name = 'deepseek_no_reasoning',
+                            formatted_name = 'DeepSeek No Thinking',
+                            schema = {
+                                ['thinking.type'] = { default = 'disabled' },
+                            },
+                        })
+                    end,
                     openrouter = function()
                         return require('codecompanion.adapters').extend('openai', {
                             name = 'openrouter',
@@ -153,7 +162,7 @@ return {
                     dirs = {
                         vim.fn.getcwd() .. '/.prompts',
                         vim.fn.stdpath('config') .. '/prompts',
-                    }
+                    },
                 },
             },
             extensions = {
