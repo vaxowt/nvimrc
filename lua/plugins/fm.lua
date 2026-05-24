@@ -1,3 +1,5 @@
+local detail = false
+
 return {
 
     -- Neovim file explorer: edit your filesystem like a buffer

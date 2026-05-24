@@ -1,14 +1,14 @@
 -- move cursor one character left/right in insert mode
-Has_cursor_move_map = false
+local has_cursor_move_map = false
 local function set_mappings_for_curosr_move()
-    if not Has_cursor_move_map and not vim.o.insertmode then
+    if not has_cursor_move_map and not vim.o.insertmode then
         vim.keymap.set('i', '<C-h>', '<Left>', { noremap = true })
         vim.keymap.set('i', '<C-l>', '<Right>', { noremap = true })
-        Has_cursor_move_map = true
-    elseif Has_cursor_move_map then
+        has_cursor_move_map = true
+    elseif has_cursor_move_map then
         vim.keymap.del('i', '<C-h>')
         vim.keymap.del('i', '<C-l>')
-        Has_cursor_move_map = false
+        has_cursor_move_map = false
     end
 end
 

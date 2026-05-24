@@ -57,7 +57,7 @@ return {
                 'nvim-dap-ui',
                 'nvim-tree',
                 'oil',
-                'symbols-outline',
+                'symbols-outline', -- provided by hedyhli/outline.nvim (fork)
                 'toggleterm',
                 'codecompanion',
             },
