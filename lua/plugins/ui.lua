@@ -1,4 +1,6 @@
 return {
+    -- A blazing fast and easy to configure neovim statusline plugin written
+    -- in pure lua.
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -64,6 +66,8 @@ return {
         },
     },
 
+    -- Fancy code outline sidebar to visualize and navigate code symbols
+    -- in a tree hierarchy.
     {
         'hedyhli/outline.nvim',
         cmd = { 'Outline', 'OutlineOpen' },
@@ -73,6 +77,7 @@ return {
         opts = {},
     },
 
+    -- A minimap plugin for Neovim.
     {
         'gorbit99/codewindow.nvim',
         cmd = 'Minimap',
@@ -83,6 +88,7 @@ return {
         end,
     },
 
+    -- A snazzy bufferline for Neovim.
     {
         'akinsho/bufferline.nvim',
         dependencies = 'nvim-tree/nvim-web-devicons',
@@ -126,10 +132,12 @@ return {
     --     },
     -- },
 
+    -- IDE-like breadcrumbs, out of the box.
     {
         'Bekaboo/dropbar.nvim',
     },
 
+    -- Git integration for buffers.
     {
         'lewis6991/gitsigns.nvim',
         opts = {
@@ -195,6 +203,8 @@ return {
         },
     },
 
+    -- Single tabpage interface for easily cycling through diffs for all
+    -- modified files for any git rev.
     {
         'sindrets/diffview.nvim',
         dependencies = 'nvim-lua/plenary.nvim',
@@ -208,6 +218,8 @@ return {
         cmd = 'CodeDiff',
     },
 
+    -- An interactive and powerful Git interface for Neovim, inspired by
+    -- Magit.
     {
         'TimUntersberger/neogit',
         cmd = 'Neogit',
@@ -262,6 +274,7 @@ return {
         },
     },
 
+    -- A neovim lua plugin to help easily manage multiple terminal windows.
     {
         'akinsho/toggleterm.nvim',
         init = function()
@@ -334,6 +347,7 @@ return {
         end,
     },
 
+    -- Highlight, list and search todo comments in your projects.
     {
         'folke/todo-comments.nvim',
         dependencies = 'nvim-lua/plenary.nvim',

@@ -1,10 +1,13 @@
 return {
+    -- autopairs for neovim written in lua.
     {
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
         opts = {},
     },
 
+    -- // Smart and powerful comment plugin for neovim. Supports treesitter,
+    -- dot repeat, left-right/up-down motions, hooks, and more.
     {
         'numToStr/Comment.nvim',
         opts = {
@@ -24,6 +27,8 @@ return {
         end,
     },
 
+    -- Add/change/delete surrounding delimiter pairs with ease. Written with
+    -- love in Lua.
     {
         'kylechui/nvim-surround',
         opts = {},
@@ -38,6 +43,7 @@ return {
         end,
     },
 
+    -- Enable repeating supported plugin maps with ".".
     { 'tpope/vim-repeat' },
 
     -- 『盘古之白』中文排版自动规范化的 Vim 插件
@@ -113,7 +119,7 @@ return {
         end,
     },
 
-    -- Toogle comma(,), semicolon(;) or other character in neovim
+    -- Toggle comma and semicolon in Neovim
     {
         'saifulapm/commasemi.nvim',
         init = function()
@@ -124,7 +130,8 @@ return {
         },
     },
 
-    --- (Do)cumentation (Ge)nerator for nearly 20 languages
+    --- (Do)cumentation (Ge)nerator for nearly 20 languages.
+    --- Generate proper code documentation with a single keypress.
     {
         'kkoomen/vim-doge',
         build = ':call doge#install()',

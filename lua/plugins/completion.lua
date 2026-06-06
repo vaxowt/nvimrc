@@ -6,6 +6,7 @@ end
 
 return {
 
+    -- Snippet plugin for Neovim written in Lua.
     {
         'dcampos/nvim-snippy',
         event = 'InsertEnter',
@@ -19,6 +20,7 @@ return {
         },
     },
 
+    -- vim-snipmate default snippets (Previously snipmate-snippets).
     { 'honza/vim-snippets' },
 
     -- A completion plugin for neovim coded in Lua
@@ -268,6 +270,7 @@ return {
         end,
     },
 
+    -- A native neovim extension for Codeium.
     {
         'Exafunction/windsurf.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },

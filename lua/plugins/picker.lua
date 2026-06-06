@@ -1,5 +1,6 @@
 return {
 
+    -- A collection of small plugins that enhance the Neovim experience.
     {
         'folke/snacks.nvim',
         opts = {

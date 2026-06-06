@@ -1,4 +1,5 @@
 return {
+    -- AI Coding, Vim Style.
     {
         'olimorris/codecompanion.nvim',
         opts = {

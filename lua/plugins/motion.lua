@@ -1,4 +1,5 @@
 return {
+    -- A motion plugin for Neovim.
     {
         'https://codeberg.org/andyg/leap.nvim',
         -- Leap already lazy-loads itself

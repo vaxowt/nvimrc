@@ -18,6 +18,8 @@ return {
         },
     },
 
+    -- Extension to mason.nvim that makes it easier to use lspconfig with
+    -- mason.nvim.
     {
         'mason-org/mason-lspconfig.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
@@ -29,6 +31,7 @@ return {
         },
     },
 
+    -- Bridge between mason.nvim and none-ls.
     {
         'jay-babu/mason-null-ls.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
@@ -40,6 +43,7 @@ return {
         },
     },
 
+    -- Bridge between mason.nvim and nvim-dap.
     {
         'jay-babu/mason-nvim-dap.nvim',
         event = { 'BufReadPre', 'BufNewFile' },

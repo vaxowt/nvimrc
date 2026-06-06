@@ -1,7 +1,9 @@
 return {
 
+    -- A Vim plugin for profiling startup times.
     { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
+    -- A replacement for mksession with a better API.
     {
         'stevearc/resession.nvim',
         config = function()
@@ -43,6 +45,7 @@ return {
         },
     },
 
+    -- Telescope & Snacks pickers for resession.nvim.
     {
         'scottmckendry/pick-resession.nvim',
         dependencies = { 'folke/snacks.nvim' },
@@ -58,6 +61,7 @@ return {
         },
     },
 
+    -- Open URI with your favorite browser from your most favorite editor.
     {
         'tyru/open-browser.vim',
         init = function()
@@ -119,6 +123,7 @@ return {
         },
     },
 
+    -- Neovim lua plugin to toggle window fullscreen.
     {
         'propet/toggle-fullscreen.nvim',
         keys = {

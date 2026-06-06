@@ -4,6 +4,7 @@ local map = function(keys, func, desc, mode)
 end
 
 return {
+    -- Debug Adapter Protocol client implementation for Neovim.
     {
         'mfussenegger/nvim-dap',
         module = true,
@@ -235,6 +236,7 @@ return {
         end,
     },
 
+    -- A UI for nvim-dap.
     {
         'rcarriga/nvim-dap-ui',
         dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },

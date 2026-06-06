@@ -39,7 +39,9 @@ return {
         ft = { 'codecompanion' },
     },
 
+    -- A csv filetype plugin.
     { 'chrisbra/csv.vim', ft = 'csv' },
 
+    -- Syntax highlighting for generic log files in VIM.
     { 'mtdl9/vim-log-highlighting', ft = 'log' },
 }

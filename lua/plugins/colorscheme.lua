@@ -1,4 +1,6 @@
 return {
+    -- A highly customizable theme for vim and neovim with support for lsp,
+    -- treesitter and a variety of plugins.
     {
         'EdenEast/nightfox.nvim',
         lazy = true,
@@ -11,22 +13,27 @@ return {
         },
     },
 
+    -- Soothing pastel theme for Neovim.
     {
         'catppuccin/nvim',
         name = 'catppuccin',
         lazy = true,
     },
 
+    -- Material colorscheme for NeoVim written in Lua with built-in support
+    -- for native LSP, TreeSitter and many more plugins.
     {
         'marko-cerovac/material.nvim',
         lazy = true,
     },
 
+    -- GitHub's Neovim themes.
     {
         'projekt0n/github-nvim-theme',
         lazy = true,
     },
 
+    -- Atom's iconic One Dark theme for Neovim, written in Lua.
     { 'ful1e5/onedark.nvim', lazy = true },
 
     -- Gruvbox with Material Palette
@@ -62,6 +69,7 @@ return {
     --     },
     -- },
 
+    -- Clean & Elegant Color Scheme inspired by Atom One and Material.
     {
         'sainnhe/edge',
         init = function()

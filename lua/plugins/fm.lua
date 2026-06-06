@@ -124,6 +124,7 @@ return {
         },
     },
 
+    -- A Neovim Plugin for the yazi terminal file manager.
     {
         'mikavilpas/yazi.nvim',
         event = 'VeryLazy',
