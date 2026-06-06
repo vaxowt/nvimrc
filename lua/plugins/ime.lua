@@ -3,7 +3,8 @@ return {
     -- groups separately.
     {
         'alohaia/fcitx.nvim',
-        enabled = function()
+        enabled = vim.fn.has('linux') == 1,
+        cond = function()
             return vim.env.DISPLAY ~= nil
         end,
         config = function()
