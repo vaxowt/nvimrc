@@ -151,7 +151,7 @@ return {
                         gs.next_hunk()
                     end)
                     return '<Ignore>'
-                end, { expr = true, desc = '[git] Goto next hunk' })
+                end, { expr = true, desc = 'git: goto next hunk' })
 
                 map('n', '[c', function()
                     if vim.wo.diff then
@@ -161,18 +161,33 @@ return {
                         gs.prev_hunk()
                     end)
                     return '<Ignore>'
-                end, { expr = true, desc = '[git] goto previous hunk' })
+                end, { expr = true, desc = 'git: goto previous hunk' })
 
                 -- actions
-                map('n', '<leader>gr', gs.reset_hunk, { desc = '[git] reset hunk' })
-                map('n', '<leader>gp', gs.preview_hunk, { desc = '[git] preview hunk' })
+                map('n', '<leader>gs', gs.stage_hunk, { desc = 'git: stage/unstage hunk' })
+                map('v', '<leader>gs', function()
+                    gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+                end, { desc = 'git: stage/unstage selected lines' })
+
+                map('n', '<leader>gS', gs.stage_buffer, { desc = 'git: stage buffer' })
+
+                map('n', '<leader>gr', gs.reset_hunk, { desc = 'git: reset hunk' })
+                map('v', '<leader>gr', function()
+                    gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+                end, { desc = 'git: reset selected lines' })
+
+                map('n', '<leader>gR', gs.reset_buffer, { desc = 'git: reset buffer' })
+
+                map('n', '<leader>gp', gs.preview_hunk, { desc = 'git: preview hunk' })
+
                 map('n', '<leader>gb', function()
                     gs.blame_line({ full = true })
-                end, { desc = '[git] blame line' })
-                map('n', '<leader>gd', gs.diffthis, { desc = '[git] diffthis' })
+                end, { desc = 'git: blame line' })
+
+                map('n', '<leader>gd', gs.diffthis, { desc = 'git: diff against index (unstaged)' })
                 map('n', '<leader>gD', function()
                     gs.diffthis('~')
-                end, { desc = '[git] diffthis file' })
+                end, { desc = 'git: diff against HEAD~ (all uncommitted)' })
 
                 -- text object
                 map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')

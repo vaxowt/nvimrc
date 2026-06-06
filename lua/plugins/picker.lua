@@ -30,11 +30,11 @@ return {
             -- git
             { "<leader>gB",      function() Snacks.picker.git_branches() end, desc = "git: branches" },
             { "<leader>gl",      function() Snacks.picker.git_log() end, desc = "git: log" },
-            { "<leader>gL",      function() Snacks.picker.git_log_line() end, desc = "git: log line" },
-            { "<leader>gs",      function() Snacks.picker.git_status() end, desc = "git: status" },
-            { "<leader>gS",      function() Snacks.picker.git_stash() end, desc = "git: stash" },
+            { "<leader>gL",      function() Snacks.picker.git_log_line() end, desc = "git: log of line" },
+            { "<leader>g.",      function() Snacks.picker.git_status() end, desc = "git: status" },
+            { "<leader>gZ",      function() Snacks.picker.git_stash() end, desc = "git: stash" },
             -- { "<leader>gd",     function() Snacks.picker.git_diff() end, desc = "git: diff (hunks)" },
-            { "<leader>gf",      function() Snacks.picker.git_log_file() end, desc = "git: log file" },
+            { "<leader>gf",      function() Snacks.picker.git_log_file() end, desc = "git: log of file" },
             -- Grep
             { "<leader>sb",      function() Snacks.picker.lines() end, desc = "picker: buffer lines" },
             { "<leader>sB",      function() Snacks.picker.grep_buffers() end, desc = "picker: grep open buffers" },
