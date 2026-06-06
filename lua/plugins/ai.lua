@@ -116,14 +116,17 @@ return {
                             },
                             schema = {
                                 model = {
-                                    default = 'google/gemma-4-31b-it:free',
+                                    default = 'openrouter/owl-alpha',
                                     choices = {
-                                        'nvidia/nemotron-3-super-120b-a12b:free',
-                                        'openrouter/elephant-alpha',
-                                        'arcee-ai/trinity-large-preview:free',
-                                        'z-ai/glm-4.5-air:free',
                                         'openai/gpt-oss-120b:free',
-                                        'nvidia/nemotron-3-nano-30b-a3b:free',
+                                        'nvidia/nemotron-3-ultra-550b-a55b:free',
+                                        'nvidia/nemotron-3.5-content-safety:free',
+                                        'nvidia/nemotron-3-super-120b-a12b:free',
+                                        'sourceful/riverflow-v2.5-pro:free',
+                                        'sourceful/riverflow-v2.5-fast:free',
+                                        'openrouter/owl-alpha',
+                                        'poolside/laguna-m.1:free',
+                                        'z-ai/glm-4.5-air:free',
                                         'minimax/minimax-m2.5:free',
                                         'google/gemma-4-31b-it:free',
                                         'qwen/qwen3-coder:free',
