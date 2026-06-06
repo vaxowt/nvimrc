@@ -6,6 +6,8 @@ opts:
   alias: commit2
   auto_submit: false
   is_slash_cmd: true
+  adapter:
+    name: openrouter
 ---
 
 ## user
