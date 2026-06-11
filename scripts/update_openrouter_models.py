@@ -10,7 +10,7 @@ import urllib.request
 from pathlib import Path
 
 NUM_MODELS = 20
-API_URL = 'https://openrouter.ai/api/v1/models'
+API_URL = 'https://openrouter.ai/api/v1/models?sort=most-popular'
 REQUEST_TIMEOUT = 15
 
 
@@ -50,14 +50,10 @@ def fetch_models():
             continue
         all_models[mid] = m
 
-    free = sorted(
-        [
-            m for m in data if m.get('pricing', {}).get('prompt') == '0'
-            and m.get('pricing', {}).get('completion') == '0' and m.get('id')
-        ],
-        key=lambda m: m.get('created', 0),
-        reverse=True,
-    )
+    free = [
+        m for m in data if m.get('pricing', {}).get('prompt') == '0'
+        and m.get('pricing', {}).get('completion') == '0' and m.get('id')
+    ]
     top_free = [m['id'] for m in free[:NUM_MODELS]]
 
     if not top_free:
