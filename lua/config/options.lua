@@ -6,10 +6,10 @@ vim.o.ttimeoutlen = 0
 vim.o.splitbelow = true
 -- default vsplit direction
 vim.o.splitright = true
--- change <leader> (default `\`)
-vim.g.mapleader = ' '
--- change <localleader> (default `\`)
-vim.g.maplocalleader = ' '
+-- change <leader> (default `\`) -- set in lazy.lua before plugin load
+-- vim.g.mapleader = ' '
+-- change <localleader> (default `\`) -- set in lazy.lua before plugin load
+-- vim.g.maplocalleader = ' '
 -- enable 24-bit RGB color in the TUI
 vim.o.termguicolors = true
 -- enable mouse support
