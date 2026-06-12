@@ -94,9 +94,12 @@ return {
             }
 
             local menu_icons = {
+                browser = '󰖟 ',
                 calc = '󰃬 ',
-                greek = '󱌮 ',
+                dictionary = ' ',
                 emoji = '󰱫 ',
+                greek = 'α ',
+                tmux = ' ',
             }
 
             require('cmp-browser-source').start_server()
@@ -179,12 +182,12 @@ return {
                         end
                         vim_item.menu = ({
                             buffer = '[B]',
-                            path = '[P]',
-                            snippy = '[S]',
+                            -- path = '[P]',
                             nvim_lsp = '[LSP]',
-                            dictionary = '[D]',
-                            tmux = '[tmux]',
-                            codeium = '[AI]',
+                            -- snippy = '[S]',
+                            -- dictionary = '[D]',
+                            -- tmux = '[tmux]',
+                            -- codeium = '[AI]',
                         })[entry.source.name]
                         return vim_item
                     end,
@@ -212,9 +215,9 @@ return {
                     { name = 'tmux' },
                     { name = 'greek' },
                     { name = 'emoji' },
-                    { name = 'dictionary', keyword_length = 2 },
                     { name = 'browser' },
                     { name = 'codeium' },
+                    { name = 'dictionary', keyword_length = 3 },
                 }),
             })
 
@@ -236,8 +239,8 @@ return {
                     },
                     { name = 'path' },
                     { name = 'tmux' },
-                    { name = 'dictionary', keyword_length = 2 },
                     { name = 'browser' },
+                    { name = 'dictionary', keyword_length = 3 },
                 },
             })
 
@@ -261,11 +264,9 @@ return {
             })
 
             require('cmp_dictionary').setup({
-                dic = {
-                    ['*'] = { '/usr/share/dict/words' },
-                },
+                paths = { vim.fn.stdpath('config') .. '/dict/coca20000.txt' },
+                exact_length = 3,
                 first_case_insensitive = true,
-                async = true,
             })
         end,
     },
