@@ -26,3 +26,57 @@
 |--|--|--|
 | i | <kbd>CTRL</kbd><kbd>h</kbd>/<kbd>CTRL</kbd><kbd>l</kbd> | move cursor left/right |
 | i,n | <kbd>ALT</kbd><kbd>z</kbd> | toggle terminal |
+
+## Configuration
+
+### CodeCompanion
+
+External config at `~/.config/codecompanion/config.lua` (optional, merged with defaults):
+
+```lua
+-- ~/.config/codecompanion/config.lua
+return {
+    adapters = {
+        http = {
+            my_adapter = function()
+                return require('codecompanion.adapters').extend('openai', {
+                    name = 'my_adapter',
+                    -- ...
+                })
+            end,
+        },
+    },
+    prompt_library = {
+        markdown = {
+            dirs = {
+                vim.fn.getcwd() .. '/.prompts',
+            },
+        },
+    },
+}
+```
+
+Prompts are loaded from the following directories:
+- `~/.config/nvim/prompts/` — global prompts
+- `~/.config/codecompanion/prompts/` — codecompanion-specific prompts
+- `<project>/.prompts/` — per-project prompts
+
+AI skills are loaded from `~/.config/skills/` (recursive).
+
+### DAP
+
+Per-project DAP configurations via `dap-config.lua` in the project root:
+
+```lua
+-- <project>/dap-config.lua
+return {
+    {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch project',
+        program = '${workspaceFolder}/main.py',
+    },
+}
+```
+
+Use `:DapLoadConfig` to load it, or `:DapLoadConfig <path>` for a custom path.
