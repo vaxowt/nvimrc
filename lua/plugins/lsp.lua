@@ -26,9 +26,7 @@ return {
         dependencies = {
             'mason-org/mason.nvim',
         },
-        opts = {
-            automatic_installation = true,
-        },
+        opts = {},
     },
 
     -- Bridge between mason.nvim and none-ls.
