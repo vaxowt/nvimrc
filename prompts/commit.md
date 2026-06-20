@@ -7,7 +7,7 @@ opts:
   auto_submit: false
   is_slash_cmd: true
   adapter:
-    name: openrouter
+    name: openrouter_free
 ---
 
 ## user

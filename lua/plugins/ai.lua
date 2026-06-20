@@ -1,5 +1,69 @@
 local cc_config_dir = vim.fn.expand('~/.config/codecompanion')
 
+local _cache_expires
+local _cache_file
+local _cached_free_models
+
+local function openrouter_get_free_models()
+    if _cached_free_models and _cache_expires and _cache_expires > os.time() then
+        return _cached_free_models
+    end
+
+    local Curl = require('plenary.curl')
+    local adapter_utils = require('codecompanion.utils.adapters')
+    local cc_config = require('codecompanion.config')
+
+    if not _cache_file then
+        _cache_file = vim.fn.tempname()
+    end
+
+    local ok, response = pcall(function()
+        return Curl.get('https://openrouter.ai/api/v1/models', {
+            headers = { Authorization = 'Bearer ${api_key}' },
+            insecure = cc_config.adapters.http.opts.allow_insecure,
+            proxy = cc_config.adapters.http.opts.proxy,
+            sync = true,
+        })
+    end)
+    if not ok then
+        return {}
+    end
+
+    local json
+    ok, json = pcall(vim.json.decode, response.body)
+    if not ok then
+        return {}
+    end
+
+    local models = {}
+    for _, model in ipairs(json.data) do
+        local pricing = model.pricing or {}
+        if pricing.prompt == '0' and pricing.completion == '0' then
+            local supported = {}
+            for _, parameter in ipairs(model.supported_parameters or {}) do
+                supported[parameter] = true
+            end
+            local choice_opts = {
+                supported_parameters = supported,
+                can_use_tools = supported.tools or false,
+                can_reason = supported.reasoning or false,
+            }
+            if model.architecture and model.architecture.input_modalities then
+                choice_opts.has_vision = vim.tbl_contains(model.architecture.input_modalities, 'image')
+            end
+            models[model.id] = {
+                formatted_name = model.name,
+                meta = model.context_length and { context_window = model.context_length } or nil,
+                opts = choice_opts,
+            }
+        end
+    end
+
+    _cached_free_models = models
+    _cache_expires = adapter_utils.refresh_cache(_cache_file, cc_config.adapters.http.opts.cache_models_for)
+    return models
+end
+
 local default_opts = {
     opts = {
         -- language = 'Chinese',
@@ -102,41 +166,16 @@ local default_opts = {
                     },
                 })
             end,
-            openrouter = function()
-                return require('codecompanion.adapters').extend('openai', {
-                    name = 'openrouter',
-                    formatted_name = 'OpenRouter',
-                    url = 'https://openrouter.ai/api/v1/chat/completions',
-                    env = {
-                        api_key = function()
-                            return os.getenv('OPENROUTER_API_KEY')
-                        end,
-                    },
+            openrouter_free = function()
+                return require('codecompanion.adapters').extend('openrouter', {
+                    name = 'openrouter_free',
+                    formatted_name = 'OpenRouter Free',
                     schema = {
                         model = {
                             default = 'openrouter/owl-alpha',
-                            choices = {
-                                'openrouter/owl-alpha',
-                                'nvidia/nemotron-3-ultra-550b-a55b:free',
-                                'poolside/laguna-m.1:free',
-                                'nvidia/nemotron-3-super-120b-a12b:free',
-                                'openai/gpt-oss-120b:free',
-                                'nex-agi/nex-n2-pro:free',
-                                'poolside/laguna-xs.2:free',
-                                'openai/gpt-oss-20b:free',
-                                'google/gemma-4-31b-it:free',
-                                'nvidia/nemotron-3-nano-30b-a3b:free',
-                                'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free',
-                                'nvidia/nemotron-nano-12b-v2-vl:free',
-                                'nvidia/nemotron-nano-9b-v2:free',
-                                'google/gemma-4-26b-a4b-it:free',
-                                'liquid/lfm-2.5-1.2b-thinking:free',
-                                'nvidia/nemotron-3.5-content-safety:free',
-                                'liquid/lfm-2.5-1.2b-instruct:free',
-                                'qwen/qwen3-next-80b-a3b-instruct:free',
-                                'meta-llama/llama-3.3-70b-instruct:free',
-                                'cognitivecomputations/dolphin-mistral-24b-venice-edition:free',
-                            },
+                            choices = function()
+                                return openrouter_get_free_models()
+                            end,
                         },
                     },
                 })
