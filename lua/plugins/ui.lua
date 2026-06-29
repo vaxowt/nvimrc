@@ -35,7 +35,7 @@ return {
 
                 lualine_c = { 'filename' },
                 lualine_x = {
-                    { 'lsp_status', icon = '' },
+                    -- { 'lsp_status', icon = '' },
                     'encoding',
                     'fileformat',
                     { 'filetype', colored = false },
