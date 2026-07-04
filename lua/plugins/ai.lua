@@ -10,7 +10,7 @@ local function openrouter_get_free_models()
     end
 
     local Curl = require('plenary.curl')
-    local adapter_utils = require('codecompanion.utils.adapters')
+    local adapter_utils = require('codecompanion.adapters.utils')
     local cc_config = require('codecompanion.config')
 
     if not _cache_file then
@@ -172,7 +172,7 @@ local default_opts = {
                     formatted_name = 'OpenRouter Free',
                     schema = {
                         model = {
-                            default = 'openrouter/owl-alpha',
+                            default = 'nvidia/nemotron-3-ultra-550b-a55b:free',
                             choices = function()
                                 return openrouter_get_free_models()
                             end,
