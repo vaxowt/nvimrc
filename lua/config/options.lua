@@ -64,6 +64,10 @@ vim.g.python3_host_prog = 'python'
 -- file encodings: chinese, english
 vim.o.fileencodings = 'ucs-bom,utf-8,gbk,big5,gb18030,utf-16,latin1'
 
+-- HACK: cursor flickering when using ghostty + tmux (>=3.7)
+-- TODO: wait for fix
+vim.o.termsync = false
+
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
