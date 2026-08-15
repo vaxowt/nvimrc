@@ -236,27 +236,36 @@ return {
         end,
     },
 
-    -- A UI for nvim-dap.
+    -- Visualize debugging sessions in neovim
     {
-        'rcarriga/nvim-dap-ui',
-        dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
-        config = function()
-            local dap, dapui = require('dap'), require('dapui')
+        'igorlfs/nvim-dap-view',
+        dependencies = { 'mfussenegger/nvim-dap' },
+        opts = {
+            winbar = {
+                sections = {
+                    'watches',
+                    'scopes',
+                    'exceptions',
+                    'breakpoints',
+                    'threads',
+                    'disassembly',
+                    'repl',
+                },
+                controls = {
+                    enabled = true,
+                },
+            },
+            auto_toggle = true,
+        },
+        keys = {
+            { '<leader>du', '<cmd>DapViewToggle<cr>', desc = 'dap: toggle UI' },
+        },
+    },
 
-            dapui.setup()
-
-            dap.listeners.after.event_initialized['dapui_config'] = function()
-                dapui.open()
-            end
-            dap.listeners.before.event_terminated['dapui_config'] = function()
-                dapui.close()
-                print('terminated')
-            end
-            dap.listeners.before.event_exited['dapui_config'] = function()
-                dapui.close()
-            end
-
-            map('<leader>du', dapui.toggle, 'toggle dapui')
-        end,
+    -- Disassembly view for nvim-dap
+    {
+        'https://codeberg.org/Jorenar/nvim-dap-disasm',
+        dependencies = { 'mfussenegger/nvim-dap', 'igorlfs/nvim-dap-view' },
+        opts = {},
     },
 }
