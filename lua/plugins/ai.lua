@@ -1,69 +1,5 @@
 local cc_config_dir = vim.fn.expand('~/.config/codecompanion')
 
-local _cache_expires
-local _cache_file
-local _cached_free_models
-
-local function openrouter_get_free_models()
-    if _cached_free_models and _cache_expires and _cache_expires > os.time() then
-        return _cached_free_models
-    end
-
-    local Curl = require('plenary.curl')
-    local adapter_utils = require('codecompanion.adapters.utils')
-    local cc_config = require('codecompanion.config')
-
-    if not _cache_file then
-        _cache_file = vim.fn.tempname()
-    end
-
-    local ok, response = pcall(function()
-        return Curl.get('https://openrouter.ai/api/v1/models', {
-            headers = { Authorization = 'Bearer ${api_key}' },
-            insecure = cc_config.adapters.http.opts.allow_insecure,
-            proxy = cc_config.adapters.http.opts.proxy,
-            sync = true,
-        })
-    end)
-    if not ok then
-        return {}
-    end
-
-    local json
-    ok, json = pcall(vim.json.decode, response.body)
-    if not ok then
-        return {}
-    end
-
-    local models = {}
-    for _, model in ipairs(json.data) do
-        local pricing = model.pricing or {}
-        if pricing.prompt == '0' and pricing.completion == '0' then
-            local supported = {}
-            for _, parameter in ipairs(model.supported_parameters or {}) do
-                supported[parameter] = true
-            end
-            local choice_opts = {
-                supported_parameters = supported,
-                can_use_tools = supported.tools or false,
-                can_reason = supported.reasoning or false,
-            }
-            if model.architecture and model.architecture.input_modalities then
-                choice_opts.has_vision = vim.tbl_contains(model.architecture.input_modalities, 'image')
-            end
-            models[model.id] = {
-                formatted_name = model.name,
-                meta = model.context_length and { context_window = model.context_length } or nil,
-                opts = choice_opts,
-            }
-        end
-    end
-
-    _cached_free_models = models
-    _cache_expires = adapter_utils.refresh_cache(_cache_file, cc_config.adapters.http.opts.cache_models_for)
-    return models
-end
-
 local default_opts = {
     opts = {
         -- language = 'Chinese',
@@ -163,20 +99,6 @@ local default_opts = {
                     formatted_name = 'DeepSeek No Thinking',
                     schema = {
                         ['thinking.type'] = { default = 'disabled' },
-                    },
-                })
-            end,
-            openrouter_free = function()
-                return require('codecompanion.adapters').extend('openrouter', {
-                    name = 'openrouter_free',
-                    formatted_name = 'OpenRouter Free',
-                    schema = {
-                        model = {
-                            default = 'nvidia/nemotron-3-ultra-550b-a55b:free',
-                            choices = function()
-                                return openrouter_get_free_models()
-                            end,
-                        },
                     },
                 })
             end,
