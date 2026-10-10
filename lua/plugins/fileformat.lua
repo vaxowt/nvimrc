@@ -14,7 +14,7 @@ return {
     -- Pure Lua, zero npm dependencies.
     {
         'selimacerbas/markdown-preview.nvim',
-        dependencies = { 'selimacerbas/live-server.nvim' },
+        dependencies = { 'selimacerbas/kitehost.nvim' },
         opts = {
             default_theme = "light",
         },
