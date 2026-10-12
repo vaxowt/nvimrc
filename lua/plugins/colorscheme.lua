@@ -33,9 +33,6 @@ return {
         lazy = true,
     },
 
-    -- Atom's iconic One Dark theme for Neovim, written in Lua.
-    { 'ful1e5/onedark.nvim', lazy = true },
-
     -- Gruvbox with Material Palette
     {
         'sainnhe/gruvbox-material',

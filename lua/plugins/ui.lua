@@ -221,7 +221,7 @@ return {
     -- An interactive and powerful Git interface for Neovim, inspired by
     -- Magit.
     {
-        'TimUntersberger/neogit',
+        'NeogitOrg/neogit',
         cmd = 'Neogit',
         keys = {
             { '<leader>gG', '<Cmd>Neogit<CR>', desc = 'Neogit (cwd repo)' },

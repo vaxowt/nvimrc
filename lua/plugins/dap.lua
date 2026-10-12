@@ -7,7 +7,6 @@ return {
     -- Debug Adapter Protocol client implementation for Neovim.
     {
         'mfussenegger/nvim-dap',
-        module = true,
         config = function()
             local dap = require('dap')
             local widgets = require('dap.ui.widgets')
