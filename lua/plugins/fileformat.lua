@@ -13,15 +13,15 @@ return {
     -- LaTeX math (KaTeX), scroll sync, and syntax highlighting.
     -- Pure Lua, zero npm dependencies.
     {
-        'selimacerbas/markdown-preview.nvim',
+        'selimacerbas/mdkite.nvim',
         dependencies = { 'selimacerbas/kitehost.nvim' },
         opts = {
-            default_theme = "light",
+            default_theme = 'light',
         },
         keys = {
-            { '<leader>p', '<cmd>MarkdownPreview<cr>', desc = 'markdown: start preview' },
+            { '<leader>p', '<cmd>MdKite<cr>', desc = 'markdown: start preview' },
         },
-        cmd = { 'MarkdownPreview', 'MarkdownPreviewRefresh', 'MarkdownPreviewStop' },
+        cmd = { 'MdKite' },
     },
 
     -- Plugin to improve viewing Markdown files in Neovim
